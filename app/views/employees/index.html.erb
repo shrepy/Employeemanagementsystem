@@ -1,0 +1,10 @@
+<header class="masthead bg-primary text-white text-center"> <% @employees.each do |employee| %> <% if employee.email == current_employee.email %> <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image--> <img class="masthead-avatar mb-5" src="<%= employee.image %>" style="border-radius: 100%;" /> <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0"><%= employee.name %></h1> <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div> <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0"><%= employee.destination %></p> <%= link_to 'View Profile', employee, class: "btn btn-light m-2" %>
+    </div> <% end %> <% end %> </header>
