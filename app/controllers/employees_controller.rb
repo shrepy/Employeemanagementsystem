@@ -20,4 +20,5 @@ class EmployeesController < ApplicationController
     @employee = Employee.find_by_id params[:id]
     render :show, notice: 'jsbdfjeb', status: 404 unless @employee.present?
   end
+  
 end
