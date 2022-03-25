@@ -1,22 +1,114 @@
- <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="#page-top">Employee Management System</a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1">
-                        <%= link_to 'Home', root_path, class: "nav-link py-3 px-0 px-lg-3 rounded" %></li>
-                        <li class="nav-item mx-0 mx-lg-1">
-                        <%= link_to 'Holidays', holidays_path, class: "nav-link py-3 px-0 px-lg-3 rounded" %></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Performance</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Salary</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Leave</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Logout</a></li>
-                        <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="#contact"><%#= current_employee.email %></a></li> -->
-                    </ul>
-                </div>
-            </div>
-</nav>
+ <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="" class="logo d-flex align-items-center">
+        <img src="assets/logo.png" alt="">
+        <span class="d-none d-lg-block">EMS</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="fal fa-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+         
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span>
+          </a><!-- End Messages Icon -->
+
+         
+
+        </li><!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" >
+            <%= image_tag current_employee.image_url, class: "rounded-circle" %>
+            <span class="d-none d-md-block "><%= current_employee.email %></span>
+          </a><!-- End Profile Iamge Icon -->
+
+          
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <%= link_to root_path, class: "nav-link" do %> 
+          <i class="bi bi-grid"></i>
+          <%= "Dashboard" %>
+        <% end %>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+          <%= link_to employee_path(current_employee.id) , class: "nav-link collapsed" do %>
+          <i class="bi bi-person"></i>
+          <%= 'Profile' %>
+          <% end %>
+      </li>
+      </li class="nav-item">
+          <%= link_to  holidays_path , class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Holidays' %>
+          <% end %>
+      </li>
+      <li class="nav-item">
+          </i><%= link_to  performances_path, class: "nav-link collapsed" do %>
+          <i class="bi bi-bar-chart"></i>
+          <%= 'Peformance' %>
+          <% end %>
+      </li>
+      <li class="nav-item">
+          </i><%= link_to  performances_path, class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Salary' %>
+          <% end %>
+      </li>
+      <li class="nav-item">
+          </i><%= link_to  employee_path(current_employee.id), class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Leave' %>
+          <% end %>
+      </li>
+      <li class="nav-item">
+          </i><%= link_to  performances_path, class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Logout' %>
+          <% end %>
+      </li>
+    </ul>
+  </aside>

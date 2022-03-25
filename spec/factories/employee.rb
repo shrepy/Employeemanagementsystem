@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+
 FactoryBot.define do
   factory :employee do
-    name { 'payal' }
+    name { Faker::Name.name  }
     father_name { 'polo' }
     mother_name { 'kdgb' }
     age { 22 }
@@ -10,7 +11,7 @@ FactoryBot.define do
     address { 'ehugtue' }
     trainer_id { 1 }
     destination { 'irhgfedgvb' }
-    email { 'payal@gmail.com' }
+    email {  Faker::Internet.email }
     image { '' }
     password { '123456' }
   end
