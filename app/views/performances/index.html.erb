@@ -1,0 +1,50 @@
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>ECharts</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Charts</li>
+          <li class="breadcrumb-item active">ECharts</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <% points = @performances.pluck(:points) %>
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+                <canvas id="myChart" class="zero" style="width:100%;max-width:100%"></canvas>
+                  <script>
+                  var xValues = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] 
+                  var yValues = <%= points %>;
+                  var barColors = "blue";
+
+                  new Chart("myChart", {
+                    type: "bar",
+                    data: {
+                      labels: xValues,
+                      datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                      }]
+                    },
+                    options: {
+                      legend: {display: false},
+                      title: {
+                        display: true,
+                        text: "Employee Performance"
+                      }
+                    }
+                  });
+                  </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
