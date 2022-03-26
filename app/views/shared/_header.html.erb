@@ -75,7 +75,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-          <%= link_to employee_path(current_employee.id) , class: "nav-link collapsed" do %>
+          <%= link_to employees_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
           <%= 'Profile' %>
           <% end %>
@@ -93,7 +93,7 @@
           <% end %>
       </li>
       <li class="nav-item">
-          </i><%= link_to  performances_path, class: "nav-link collapsed" do %>
+          </i><%= link_to  salaries_path, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Salary' %>
           <% end %>
