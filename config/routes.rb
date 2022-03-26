@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :salaries
   get 'dashboard/index'
   resources :performances
   resources :holidays
