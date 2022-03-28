@@ -20,8 +20,12 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
+    <% if employee_signed_in? %>
+      <%= render 'shared/header' %>
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
