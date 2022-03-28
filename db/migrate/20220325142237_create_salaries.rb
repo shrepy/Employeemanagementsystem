@@ -5,7 +5,7 @@ class CreateSalaries < ActiveRecord::Migration[6.1]
       t.string :month
       t.integer :total
       t.references :employee, null: false, foreign_key: true
-
+        
       t.timestamps
     end
   end

@@ -16,7 +16,9 @@ module Ems
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    #config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Mumbai"
+    config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
     config.factory_bot.definition_file_paths = ["spec/factories"]
   end

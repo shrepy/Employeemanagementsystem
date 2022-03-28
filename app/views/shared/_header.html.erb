@@ -105,10 +105,23 @@
           <% end %>
       </li>
       <li class="nav-item">
+        <% if checkout.nil? %>
+          <%= link_to  attendences_path, method: :post, class: "nav-link collapsed" do %>
+            <i class="bi bi-menu-button-wide"></i>
+            <%= 'Checkin' %>
+          <% end %>
+        <% else %>
+          <%= link_to  attendence_path(id: checkout), method: :patch, class: "nav-link collapsed" do %>
+                <i class="bi bi-menu-button-wide"></i>
+                <%= 'Checkout' %>
+          <% end %>
+        <% end %>
+      </li>
+      <li class="nav-item">
           </i><%= link_to  performances_path, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Logout' %>
           <% end %>
       </li>
     </ul>
-  </aside>
+  </aside>new_attendence

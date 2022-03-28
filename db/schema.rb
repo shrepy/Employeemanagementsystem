@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_25_142237) do
+ActiveRecord::Schema.define(version: 2022_03_28_072128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 2022_03_25_142237) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "attendences", force: :cascade do |t|
+    t.datetime "checkin_time"
+    t.datetime "checkout_time"
+    t.string "status"
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_attendences_on_employee_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -90,6 +100,7 @@ ActiveRecord::Schema.define(version: 2022_03_25_142237) do
     t.index ["employee_id"], name: "index_salaries_on_employee_id"
   end
 
+  add_foreign_key "attendences", "employees"
   add_foreign_key "performances", "employees"
   add_foreign_key "salaries", "employees"
 end
