@@ -1,0 +1,57 @@
+<%= form_with(model: leaf) do |form| %>
+  <% if leaf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(leaf.errors.count, "error") %> prohibited this leaf from being saved:</h2>
+
+      <ul>
+        <% leaf.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- <div class="form-group">
+    <%#= form.label :available_balance %>
+    <%#= form.number_field :available_balance, class: "form-control" %>
+  </div> -->
+
+  <div class="form-group">
+    <%= form.label :leave_type %>
+    <%= form.text_field :leave_type, class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= form.label :from_date %>
+    <%= form.date_select :from_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= form.label :till_date %>
+    <%= form.date_select :till_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= form.label :leave_starts %>
+    <%= form.text_field :leave_starts, class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= form.label :leave_end %>
+    <%= form.text_field :leave_end, class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= form.label :total_days %>
+    <%= form.number_field :total_days, class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= form.label :resion %>
+    <%= form.text_field :resion, class: "form-control" %>
+  </div>
+  <%= form.hidden_field :employee_id, value: current_employee.id %>
+  <div class="actions mt-3">
+    <%= form.submit 'Submit', class: "btn btn-primary"%>
+  </div>
+<% end %>

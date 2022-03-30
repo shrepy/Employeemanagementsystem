@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Available balance:</strong>
+  <%= @leaf.available_balance %>
+</p>
+
+<p>
+  <strong>Leave type:</strong>
+  <%= @leaf.leave_type %>
+</p>
+
+<p>
+  <strong>From date:</strong>
+  <%= @leaf.from_date %>
+</p>
+
+<p>
+  <strong>Till date:</strong>
+  <%= @leaf.till_date %>
+</p>
+
+<p>
+  <strong>Leave starts:</strong>
+  <%= @leaf.leave_starts %>
+</p>
+
+<p>
+  <strong>Leave end:</strong>
+  <%= @leaf.leave_end %>
+</p>
+
+<p>
+  <strong>Total days:</strong>
+  <%= @leaf.total_days %>
+</p>
+
+<p>
+  <strong>Resion:</strong>
+  <%= @leaf.resion %>
+</p>
+
+<p>
+  <strong>Leave status:</strong>
+  <%= @leaf.leave_status %>
+</p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @leaf.employee_id %>
+</p>
+
+<%= link_to 'Edit', edit_leaf_path(@leaf) %> |
+<%= link_to 'Back', leafs_path %>
