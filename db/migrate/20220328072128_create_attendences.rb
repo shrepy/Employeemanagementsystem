@@ -4,6 +4,7 @@ class CreateAttendences < ActiveRecord::Migration[6.1]
       t.datetime :checkin_time
       t.datetime :checkout_time
       t.string :status
+      t.string :hour
       t.references :employee, null: false, foreign_key: true
 
       t.timestamps

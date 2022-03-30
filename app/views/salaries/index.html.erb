@@ -33,14 +33,16 @@
                 </thead>
                 <tbody>
                   <% @salaries.each do |salary| %>
-                  <% emp = Employee.find(salary.employee_id) %>
-                  <tr>
-                    <th><%= salary.id %></th>
-                    <td><%= emp.name %></td>
-                    <td><%= salary.salary %></td>
-                    <td><%= salary.month %></td>
-                    <td><%= salary.total = salary_total %></td>
-                  </tr>
+                  <% if current_employee.id == salary.employee_id %>
+                    <% emp = Employee.find(salary.employee_id) %>
+                    <tr>
+                      <th><%= salary.id %></th>
+                      <td><%= emp.name %></td>
+                      <td><%= salary.salary %></td>
+                      <td><%= salary.month %></td>
+                      <td><%= salary.total = salary_total %></td>
+                    </tr>
+                    <% end %>
                   <% end %>
                 </tbody>
               </table>

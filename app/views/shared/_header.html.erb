@@ -50,7 +50,9 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" >
-            <%= image_tag current_employee.image_url, class: "rounded-circle" %>
+            <% unless current_employee.image.blank? %>
+              <%= image_tag current_employee.image_url, class: "rounded-circle" %>
+            <% end %>
             <span class="d-none d-md-block "><%= current_employee.email %></span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -118,10 +120,10 @@
         <% end %>
       </li>
       <li class="nav-item">
-          </i><%= link_to  performances_path, class: "nav-link collapsed" do %>
+          </i><%= link_to  destroy_employee_session_path, method: :delete, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Logout' %>
           <% end %>
       </li>
     </ul>
-  </aside>new_attendence
+  </aside>

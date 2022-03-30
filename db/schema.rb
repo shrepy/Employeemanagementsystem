@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_03_28_072128) do
     t.datetime "checkin_time"
     t.datetime "checkout_time"
     t.string "status"
+    t.string "hour"
     t.bigint "employee_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
