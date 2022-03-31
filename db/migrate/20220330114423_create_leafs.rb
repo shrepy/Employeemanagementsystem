@@ -1,7 +1,6 @@
 class CreateLeafs < ActiveRecord::Migration[6.1]
   def change
     create_table :leafs do |t|
-      t.integer :available_balance
       t.string :leave_type
       t.date :from_date
       t.date :till_date

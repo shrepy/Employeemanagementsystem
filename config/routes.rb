@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :leave_balances
   resources :leafs
   resources :attendences
   resources :salaries

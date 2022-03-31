@@ -6,6 +6,7 @@ class Leaf < ApplicationRecord
   }
   validate :check_past_date
   before_create :total_day
+  after_save { employee.recalculate_leave_balance }
   private
 
   def total_day
