@@ -18,7 +18,7 @@
 
   <div class="form-group">
     <%= form.label :leave_type %>
-    <%= form.text_field :leave_type, class: "form-control" %>
+    <%= form.select :leave_type, ['Sick Leave', 'Casual Leave', 'Marriage Leave'], class: "form-control" %>
   </div>
 
   <div class="form-group mt-3">
@@ -33,17 +33,12 @@
 
   <div class="form-group mt-3">
     <%= form.label :leave_starts %>
-    <%= form.text_field :leave_starts, class: "form-control" %>
+    <%= form.select :leave_starts, ['Full Day', 'Half Day'] %>
   </div>
 
   <div class="form-group mt-3">
     <%= form.label :leave_end %>
-    <%= form.text_field :leave_end, class: "form-control" %>
-  </div>
-
-  <div class="form-group mt-3">
-    <%= form.label :total_days %>
-    <%= form.number_field :total_days, class: "form-control" %>
+    <%= form.select :leave_end, ['Full Day', 'Half Day'] %>
   </div>
 
   <div class="form-group mt-3">

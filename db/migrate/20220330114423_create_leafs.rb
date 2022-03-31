@@ -7,7 +7,7 @@ class CreateLeafs < ActiveRecord::Migration[6.1]
       t.date :till_date
       t.string :leave_starts
       t.string :leave_end
-      t.integer :total_days
+      t.float :total_days
       t.string :resion
       t.string :leave_status
       t.references :employee, null: false, foreign_key: true

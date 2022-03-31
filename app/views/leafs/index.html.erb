@@ -47,15 +47,15 @@
                     <td><%= leaf.till_date %></td>
                     <td><%= leaf.leave_starts %></td>
                     <td><%= leaf.leave_end %></td>
-                    <td><%= leaf.total_days %></td>
+                    <td><%= leaf.total_days %> Days</td>
                     <td><%= leaf.resion %></td>
                     <td>
                     <% if leaf.leave_status == "accept" %>
-                      <button type="button" class="btn btn-success">Accept</button>
+                      <button type="button" class="btn btn-success disabled">Accept</button>
                     <% elsif leaf.leave_status == nil%>
-                      <button type="button" class="btn btn-danger">Pending</button>
+                      <button type="button" class="btn btn-warning disabled">Pending</button>
                     <% else %>
-                      <button type="button" class="btn btn-danger">Reject</button>
+                      <button type="button" class="btn btn-danger disabled">Reject</button>
                     <% end %>
                   </td>
                   </tr>

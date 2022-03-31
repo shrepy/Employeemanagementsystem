@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2022_03_30_114423) do
     t.date "till_date"
     t.string "leave_starts"
     t.string "leave_end"
-    t.integer "total_days"
+    t.float "total_days"
     t.string "resion"
     t.string "leave_status"
     t.bigint "employee_id", null: false
