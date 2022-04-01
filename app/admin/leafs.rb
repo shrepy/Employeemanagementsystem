@@ -5,21 +5,11 @@ ActiveAdmin.register Leaf do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-   permit_params :available_balance, :leave_type, :from_date, :till_date, :leave_starts, :leave_end, :total_days, :resion, :leave_status, :employee_id
-    form do |f|
-      f.inputs do
-        f.input :leave_status,
-                as: :select,
-                include_blank: false,
-                collection: Leaf.leave_statuses
-        
-      f.submit
-    end
-  end
+  
   # or
   #
    permit_params do
-     permitted = [:available_balance, :leave_type, :from_date, :till_date, :leave_starts, :leave_end, :total_days, :resion, :leave_status, :employee_id]
+     permitted = [:leave_type, :from_date, :till_date, :leave_starts, :leave_end, :total_days, :resion, :leave_status, :employee_id]
      permitted << :other if params[:action] == 'create' && current_user.admin?
      permitted
    end

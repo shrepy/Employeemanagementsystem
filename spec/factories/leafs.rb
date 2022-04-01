@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :leaf do
-    available_balance { 1 }
     leave_type { "MyString" }
     from_date { "2022-03-30" }
     till_date { "2022-03-30" }
@@ -8,7 +7,7 @@ FactoryBot.define do
     leave_end { "MyString" }
     total_days { 1 }
     resion { "MyString" }
-    leave_status { false }
+    leave_status { nil }
     employee { nil }
   end
 end

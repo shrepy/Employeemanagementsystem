@@ -9,22 +9,14 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  before_save :leave_balance
 
   def recalculate_leave_balance
-    a = self.leafs 
-    a.each do |b|
-      if b.leave_status == "accept" && leave_count > 0
-        update_attribute(:leave_count, leave_count - 1)
+    leafs.each do |leave|
+      if leave.updated_at.min == Time.zone.now.min
+        if leave.leave_status == "accept" && leave_count > 0
+          update_attribute(:leave_count, leave_count - 1)
+        end
       end
     end
   end
-
-
-  private
-
-  def leave_balance
-    byebug
-  end
-
 end

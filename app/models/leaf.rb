@@ -7,12 +7,12 @@ class Leaf < ApplicationRecord
   validate :check_past_date
   before_create :total_day
   after_save { employee.recalculate_leave_balance }
-  private
+  
 
   def total_day
     start_date = self.from_date
     and_date = self.till_date
-    self.total_days = (and_date - start_date) - total_leave_count + 1
+    self.total_days = ((and_date - start_date) - total_leave_count) + 1
   end
 
   def total_leave_count
