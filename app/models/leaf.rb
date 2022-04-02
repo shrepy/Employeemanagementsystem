@@ -10,9 +10,7 @@ class Leaf < ApplicationRecord
   
 
   def total_day
-    start_date = self.from_date
-    and_date = self.till_date
-    self.total_days = ((and_date - start_date) - total_leave_count) + 1
+    self.total_days = ((self.till_date - self.from_date) - total_leave_count) + 1
   end
 
   def total_leave_count
