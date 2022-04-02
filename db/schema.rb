@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_28_072128) do
+ActiveRecord::Schema.define(version: 2022_03_31_124408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2022_03_28_072128) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "image"
+    t.integer "leave_count", default: 0
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
@@ -78,6 +79,21 @@ ActiveRecord::Schema.define(version: 2022_03_28_072128) do
     t.date "holiday_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "leafs", force: :cascade do |t|
+    t.string "leave_type"
+    t.date "from_date"
+    t.date "till_date"
+    t.string "leave_starts"
+    t.string "leave_end"
+    t.float "total_days"
+    t.string "resion"
+    t.string "leave_status"
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_leafs_on_employee_id"
   end
 
   create_table "performances", force: :cascade do |t|
@@ -102,6 +118,7 @@ ActiveRecord::Schema.define(version: 2022_03_28_072128) do
   end
 
   add_foreign_key "attendences", "employees"
+  add_foreign_key "leafs", "employees"
   add_foreign_key "performances", "employees"
   add_foreign_key "salaries", "employees"
 end
