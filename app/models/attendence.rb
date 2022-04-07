@@ -2,7 +2,7 @@ class Attendence < ApplicationRecord
   belongs_to :employee
 
   before_save :working_hour
-
+ 
   private
 
   def working_hour

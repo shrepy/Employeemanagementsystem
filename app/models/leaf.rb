@@ -10,9 +10,7 @@ class Leaf < ApplicationRecord
   
 
   def total_day
-    start_date = self.from_date
-    and_date = self.till_date
-    self.total_days = ((and_date - start_date) - total_leave_count) + 1
+    self.total_days = ((self.till_date - self.from_date) - total_leave_count) + 1
   end
 
   def total_leave_count
@@ -27,6 +25,9 @@ class Leaf < ApplicationRecord
 
 
   def check_past_date
+    return errors.add :base, "Please select date :)" if from_date.nil? && till_date.nil?
+
     errors.add :base, "Please select right date :)" unless from_date >= Time.now.to_date && till_date >= from_date
   end
+
 end

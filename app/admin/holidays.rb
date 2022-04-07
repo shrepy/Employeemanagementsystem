@@ -11,7 +11,6 @@ ActiveAdmin.register Holiday do
   #
   permit_params do
     permitted = [:holiday_name, :holiday_date]
-     byebug
      permitted << :other if params[:action] == 'create' && current_admin_user
      permitted
   end

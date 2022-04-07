@@ -68,3 +68,5 @@ gem 'font_awesome5_rails'
 gem 'faker'
 gem 'sidekiq' 
 gem 'whenever'
+gem 'wicked_pdf'
+gem "wkhtmltopdf-binary", group: :development

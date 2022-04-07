@@ -22,7 +22,7 @@ RSpec.describe EmployeesController, type: :controller do
     end
 
     it 'When employee not exist' do
-      get :show, params: { id: 2 }
+      get :show, params: { id: employee.id + 1 }
       expect(response.status).to eq(404)
     end
   end

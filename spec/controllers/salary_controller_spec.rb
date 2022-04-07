@@ -7,7 +7,7 @@ RSpec.describe SalariesController, type: :controller do
   employee = FactoryBot.create(:employee)
   let!(:salary) { FactoryBot.create(:salary, employee_id: employee.id) }
   describe 'index' do
-    it 'Get Performance' do
+    it 'Get all salaries' do
       get :index
       expect(response.status).to eq(200)
     end

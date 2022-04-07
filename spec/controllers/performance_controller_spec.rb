@@ -7,7 +7,7 @@ RSpec.describe PerformancesController, type: :controller do
   employee = FactoryBot.create(:employee)
   let!(:performance) { FactoryBot.create(:performance, employee_id: employee.id) }
   describe 'index' do
-    it 'Get Performance' do
+    it 'Get all Performance' do
       get :index
       expect(response.status).to eq(200)
     end

@@ -1,15 +1,17 @@
 class Employee < ApplicationRecord
-  has_many :performances
-  has_many :salaries
-  has_many :attendences
-  has_many :leafs
+  has_many :performances, dependent: :destroy
+  has_many :salaries, dependent: :destroy
+  has_many :attendences, dependent: :destroy
+  has_many :leafs, dependent: :destroy
+  #validates :name, :father_name, :mother_name, :age, :phone_number, :address, :trainer_id, :destination, :password, :password_confirmation, :image, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   mount_uploader :image
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
+  
   def recalculate_leave_balance
     leafs.each do |leave|
       if leave.updated_at.min == Time.zone.now.min
@@ -19,4 +21,34 @@ class Employee < ApplicationRecord
       end
     end
   end
+
+  def working_days
+    created_at_time = []
+    attendences.each do |attendence|
+      if attendence.created_at.strftime('%m-%y') == Time.now.strftime('%m-%y')
+        created_at_time << attendence.created_at.strftime('%d-%m-%y')
+      end
+    end
+    days = created_at_time.uniq
+    working_days = days.count
+  end
+
+  def leave_total
+    count = 0
+    leafs.each do |leaf|
+      if leaf.leave_status == "accept"
+        count = count + leaf.total_days 
+      end
+    end
+    unless count == 0
+      return count - leave_count
+    end
+    return count
+
+  end
+
+  # def check_salary_amount
+  #   return errors.add :base, "Salary not Valid :)"  unless salary <= 50000
+  # end
+
 end

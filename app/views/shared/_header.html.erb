@@ -2,7 +2,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="" class="logo d-flex align-items-center">
-        <img src="assets/logo.png" alt="">
+        <img src="assets/favicon.png.png" alt="">
         <span class="d-none d-lg-block">EMS</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -53,7 +53,7 @@
             <% unless current_employee.image.blank? %>
               <%= image_tag current_employee.image_url, class: "rounded-circle" %>
             <% end %>
-            <span class="d-none d-md-block "><%= current_employee.email %></span>
+            <span class="d-none d-md-block"><%= current_employee.email %></span>
           </a><!-- End Profile Iamge Icon -->
 
           
@@ -70,7 +70,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <%= link_to root_path, class: "nav-link" do %> 
+        <%= link_to root_path, class: "nav-link collapsed a" do %> 
           <i class="bi bi-grid"></i>
           <%= "Dashboard" %>
         <% end %>
@@ -80,12 +80,6 @@
           <%= link_to employees_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
           <%= 'Profile' %>
-          <% end %>
-      </li>
-      </li class="nav-item">
-          <%= link_to  holidays_path , class: "nav-link collapsed" do %>
-          <i class="bi bi-menu-button-wide"></i>
-          <%= 'Holidays' %>
           <% end %>
       </li>
       <li class="nav-item">
@@ -107,17 +101,24 @@
           <% end %>
       </li>
       <li class="nav-item">
-        <% if checkout.nil? %>
-          <%= link_to  attendences_path, method: :post, class: "nav-link collapsed" do %>
+        <%# if checkout.nil? %>
+        <%= link_to  attendences_path, method: :get, class: "nav-link collapsed" do %>
+          <%#= link_to  attendences_path, method: :post, class: "nav-link collapsed" do %>
             <i class="bi bi-menu-button-wide"></i>
-            <%= 'Checkin' %>
+            <%= 'Attendence' %>
           <% end %>
-        <% else %>
-          <%= link_to  attendence_path(id: checkout), method: :patch, class: "nav-link collapsed" do %>
-                <i class="bi bi-menu-button-wide"></i>
-                <%= 'Checkout' %>
+        <%# else %>
+          <%#= link_to  attendence_path(id: checkout), method: :patch, class: "nav-link collapsed" do %>
+               <!--  <i class="bi bi-menu-button-wide"></i> -->
+                <%#= 'Checkout' %>
+          <%# end %>
+        <%# end %>
+      </li>
+      </li class="nav-item">
+          <%= link_to  holidays_path , class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Holidays' %>
           <% end %>
-        <% end %>
       </li>
       <li class="nav-item">
           </i><%= link_to  destroy_employee_session_path, method: :delete, class: "nav-link collapsed" do %>
