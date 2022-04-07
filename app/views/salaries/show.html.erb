@@ -1,74 +1,78 @@
+</aside><!-- End Sidebar-->
 
-<table border="1">
-<tr height="100px" style="color:#ffffff;text-align:center;font-size:24px; font-weight:600;">
-<td colspan='4' style="color: black;">Simply Alliance Software Solution Private Limited, Indore</td>
-</tr>
-<tr height="50px" style="color:#ffffff;text-align:center;font-size:24px; font-weight:300;">
-<td colspan='4' style="color: black;">Salary Slip For <%= @salary.month %> 20<%= Time.zone.now.strftime('%y') %></td>
-</tr>
-<tr>
-<th>Name:</th>
-<td><%= @salary.employee.name %></td>
-<th>Phone Number:</th>
-<td><%= @salary.employee.phone_number %></td>
-</tr>
-<!-----2 row--->
-<tr>
-<th>Email:</th>
-<td><%= @salary.employee.email %></td>
-<th>Bank Name:</th>
-<td><%= @salary.employee.bank_name %></td>
-</tr>
-<!------3 row---->
-<tr>
-<th>Address:</th>
-<td><%= @salary.employee.address %></td>
-<th>Bank Account No.</th>
-<td><%= @salary.employee.account_number %></td>
-</tr>
-<!------4 row---->
-<!------5 row---->
-<tr>
-<th>Location</th>
-<td>India</td>
-<th>Working Days</th>
-<td><%= @salary.leaves %></td>
-</tr>
-<!------6 row---->
-<tr>
-<th>Department</th>
-<td><%= @salary.employee.department %></td>
-<th>Designation</th>
-<td><%= @salary.employee.destination %></td>
-</tr>
-</table>
-<tr></tr>
-<br/>
-<table border="1">
-<tr>
-<th >Earnings</th>
-<th>Amount</th>
-<th >Deductions</th>
-<th>Amount</th>
-</tr>
+  <main id="main" class="main">
 
-<tr>
-<td>Basic</td>
-<td><%= @salary.salary%></td>
-<td>Deduction</td>
-<td><%= @salary.deductions %></td>
-</tr>
+		<table border="1">
+		<tr height="100px" style="color:#ffffff;text-align:center;font-size:24px; font-weight:600;">
+		<td colspan='4' style="color: black;">Simply Alliance Software Solution Private Limited, Indore</td>
+		</tr>
+		<tr height="50px" style="color:#ffffff;text-align:center;font-size:24px; font-weight:300;">
+		<td colspan='4' style="color: black;">Salary Slip For <%= @salary.month %> 20<%= Time.zone.now.strftime('%y') %></td>
+		</tr>
+		<tr>
+		<th>Name:</th>
+		<td><%= @salary.employee.name %></td>
+		<th>Phone Number:</th>
+		<td><%= @salary.employee.phone_number %></td>
+		</tr>
+		<!-----2 row--->
+		<tr>
+		<th>Email:</th>
+		<td><%= @salary.employee.email %></td>
+		<th>Bank Name:</th>
+		<td><%= @salary.employee.bank_name %></td>
+		</tr>
+		<!------3 row---->
+		<tr>
+		<th>Address:</th>
+		<td><%= @salary.employee.address %></td>
+		<th>Bank Account No.</th>
+		<td><%= @salary.employee.account_number %></td>
+		</tr>
+		<!------4 row---->
+		<!------5 row---->
+		<tr>
+		<th>Location</th>
+		<td>India</td>
+		<th>Working Days</th>
+		<td><%= @salary.leaves %></td>
+		</tr>
+		<!------6 row---->
+		<tr>
+		<th>Department</th>
+		<td><%= @salary.employee.department %></td>
+		<th>Designation</th>
+		<td><%= @salary.employee.destination %></td>
+		</tr>
+		</table>
+		<tr></tr>
+		<br/>
+		<table border="1">
+		<tr>
+		<th >Earnings</th>
+		<th>Amount</th>
+		<th >Deductions</th>
+		<th>Amount</th>
+		</tr>
 
-<tr>
-<th>Total Earning</th>
-<td><%= @salary.earnings %></td>
-<th>Total Deduction </th>
-<td><%= @salary.deductions %></td>
-</tr>
+		<tr>
+		<td>Basic</td>
+		<td><%= @salary.salary%></td>
+		<td>Deduction</td>
+		<td><%= @salary.deductions %></td>
+		</tr>
 
-<tr height="50px" style="color:#ffffff;text-align:center;font-size:24px; font-weight:300;">
-<th colspan='4' style="color: black;">Net Salary <%= @salary.earnings %> <span ></span></th>
-</tr>
+		<tr>
+		<th>Total Earning</th>
+		<td><%= @salary.earnings %></td>
+		<th>Total Deduction </th>
+		<td><%= @salary.deductions %></td>
+		</tr>
 
-</table>
+		<tr height="50px" style="color:#ffffff;text-align:center;font-size:24px; font-weight:300;">
+		<th colspan='4' style="color: black;">Net Salary <%= @salary.earnings %> <span ></span></th>
+		</tr>
+
+		</table>
+	</main>
 

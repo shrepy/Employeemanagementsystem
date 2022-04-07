@@ -40,7 +40,7 @@
                       <td><%= emp.name.capitalize() %></td>
                       <td><%= salary.salary %></td>
                       <td><%= salary.month %></td>
-                     <td> <%= link_to 'This salary in PDF', salary_path(salary, format: :pdf) %></td>
+                     <td> <%= link_to 'Show Salary Details', salary_path(salary) %></td>
                     </tr>
                     <% end %>
                   <% end %>
