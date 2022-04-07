@@ -17,3 +17,4 @@ class LeafsController < InheritedResources::Base
     end
 
 end
+

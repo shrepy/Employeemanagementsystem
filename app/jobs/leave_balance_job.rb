@@ -8,3 +8,4 @@ class LeaveBalanceJob < ApplicationJob
     end
   end
 end
+

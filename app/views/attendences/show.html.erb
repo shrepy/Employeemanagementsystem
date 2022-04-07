@@ -1,24 +1,63 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Checkin time:</strong>
-  <%= @attendence.checkin_time %>
-</p>
 
-<p>
-  <strong>Checkout time:</strong>
-  <%= @attendence.checkout_time %>
-</p>
+</aside><!-- End Sidebar-->
 
-<p>
-  <strong>Status:</strong>
-  <%= @attendence.status %>
-</p>
+  <main id="main" class="main">
 
-<p>
-  <strong>Employee:</strong>
-  <%= @attendence.employee_id %>
-</p>
+    <div class="pagetitle">
+      <h1 class="mb-4">Attendence List</h1>
+      
+        <% if checkout.nil? %>
+          <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3" %>
+        <% else %>
+          <%= link_to 'Checkout',  attendence_path(id: checkout), method: :patch, class: "btn btn-danger mb-3" %>
+        <% end %>
+    </div><!-- End Page Title -->
+    <section class="section">
+      <div class="row">
+        
+        <div class="col-lg-12">
 
-<%= link_to 'Edit', edit_attendence_path(@attendence) %> |
-<%= link_to 'Back', attendences_path %>
+          <div class="card">
+            <div class="card-body">
+             
+
+              <!-- Table with stripped rows -->
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Checkin Time</th>
+                    <th scope="col">Checkout Time</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Working Hours</th>
+                  </tr>
+                </thead>
+                <tbody>
+              <% @attendence %>
+              <% @attendences.each do |attendence| %>
+              <% if @attendence.created_at.strftime('%d-%m-%Y') == attendence.created_at.strftime('%d-%m-%Y') %>
+                <tr>
+                  <td><%= attendence.checkin_time %></td>
+                  <td><%= attendence.checkout_time %></td>
+                  <td><%= attendence.status %></td>
+                  <td><%= attendence.hour %></td>
+                </tr> 
+              <% end %> 
+              <% end %>
+              <%= link_to 'Back', attendences_path %>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+
+

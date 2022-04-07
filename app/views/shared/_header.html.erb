@@ -82,12 +82,6 @@
           <%= 'Profile' %>
           <% end %>
       </li>
-      </li class="nav-item">
-          <%= link_to  holidays_path , class: "nav-link collapsed" do %>
-          <i class="bi bi-menu-button-wide"></i>
-          <%= 'Holidays' %>
-          <% end %>
-      </li>
       <li class="nav-item">
           </i><%= link_to  performances_path, class: "nav-link collapsed" do %>
           <i class="bi bi-bar-chart"></i>
@@ -107,17 +101,24 @@
           <% end %>
       </li>
       <li class="nav-item">
-        <% if checkout.nil? %>
-          <%= link_to  attendences_path, method: :post, class: "nav-link collapsed" do %>
+        <%# if checkout.nil? %>
+        <%= link_to  attendences_path, method: :get, class: "nav-link collapsed" do %>
+          <%#= link_to  attendences_path, method: :post, class: "nav-link collapsed" do %>
             <i class="bi bi-menu-button-wide"></i>
-            <%= 'Checkin' %>
+            <%= 'Attendence' %>
           <% end %>
-        <% else %>
-          <%= link_to  attendence_path(id: checkout), method: :patch, class: "nav-link collapsed" do %>
-                <i class="bi bi-menu-button-wide"></i>
-                <%= 'Checkout' %>
+        <%# else %>
+          <%#= link_to  attendence_path(id: checkout), method: :patch, class: "nav-link collapsed" do %>
+               <!--  <i class="bi bi-menu-button-wide"></i> -->
+                <%#= 'Checkout' %>
+          <%# end %>
+        <%# end %>
+      </li>
+      </li class="nav-item">
+          <%= link_to  holidays_path , class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Holidays' %>
           <% end %>
-        <% end %>
       </li>
       <li class="nav-item">
           </i><%= link_to  destroy_employee_session_path, method: :delete, class: "nav-link collapsed" do %>

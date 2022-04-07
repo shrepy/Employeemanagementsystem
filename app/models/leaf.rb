@@ -25,6 +25,9 @@ class Leaf < ApplicationRecord
 
 
   def check_past_date
+    return errors.add :base, "Please select date :)" if from_date.nil? && till_date.nil?
+
     errors.add :base, "Please select right date :)" unless from_date >= Time.now.to_date && till_date >= from_date
   end
+
 end

@@ -3,12 +3,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Salary Details</h1>
+      <h1>Salary</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Salaries</li>
-          
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item">Employee</li>
+          <li class="breadcrumb-item">Salary</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -19,7 +19,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Simply Alliance Monthly Salary Details</h5>
+              
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
@@ -37,10 +37,10 @@
                     <% emp = Employee.find(salary.employee_id) %>
                     <tr>
                       <th><%= salary.id %></th>
-                      <td><%= emp.name %></td>
+                      <td><%= emp.name.capitalize() %></td>
                       <td><%= salary.salary %></td>
                       <td><%= salary.month %></td>
-                      <td><%= salary.total = salary_total %></td>
+                     <td> <%= link_to 'This salary in PDF', salary_path(salary, format: :pdf) %></td>
                     </tr>
                     <% end %>
                   <% end %>

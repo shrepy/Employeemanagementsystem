@@ -20,6 +20,7 @@
   </head>
 
   <body>
+
     <% if employee_signed_in? %>
       <%= render 'shared/header' %>
       <%= yield %>
@@ -27,5 +28,6 @@
     <% else %>
       <%= yield %>
     <% end %>
+    
   </body>
 </html>

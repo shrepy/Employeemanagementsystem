@@ -11,14 +11,15 @@ module ApplicationHelper
         attendence_id << attendence.id
       end
     end
-
     find_last_id = attendence_id.last
     show_checking_button(find_last_id)
   end
 
   def show_checking_button(id)
-    attendence = current_employee.attendences.find(id)
-    attendence.id if attendence.checkout_time.nil?
+    unless id.nil?
+      attendence = current_employee.attendences.find(id)
+      attendence.id if attendence.checkout_time.nil?
+    end
   end
 
   def salary_total
