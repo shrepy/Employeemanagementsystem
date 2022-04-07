@@ -70,3 +70,7 @@ gem 'sidekiq'
 gem 'whenever'
 gem 'wicked_pdf'
 gem "wkhtmltopdf-binary", group: :development
+
+group :production do
+  
+end
