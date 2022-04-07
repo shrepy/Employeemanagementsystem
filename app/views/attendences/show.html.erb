@@ -35,14 +35,16 @@
                 <tbody>
               <% @attendence %>
               <% @attendences.each do |attendence| %>
-              <% if @attendence.created_at.strftime('%d-%m-%Y') == attendence.created_at.strftime('%d-%m-%Y') %>
-                <tr>
-                  <td><%= attendence.checkin_time %></td>
-                  <td><%= attendence.checkout_time %></td>
-                  <td><%= attendence.status %></td>
-                  <td><%= attendence.hour %></td>
-                </tr> 
-              <% end %> 
+                <% if current_employee.id == attendence.employee_id %>
+                <% if @attendence.created_at.strftime('%d-%m-%Y') == attendence.created_at.strftime('%d-%m-%Y') %>
+                  <tr>
+                    <td><%= attendence.checkin_time %></td>
+                    <td><%= attendence.checkout_time %></td>
+                    <td><%= attendence.status %></td>
+                    <td><%= attendence.hour %></td>
+                  </tr> 
+                <% end %> 
+                <% end %>
               <% end %>
               <%= link_to 'Back', attendences_path %>
                 </tbody>

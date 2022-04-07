@@ -34,8 +34,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-
 end
+
+# group :test do
+#   gem 'rspec-rails', '~> 5.0.0'
+#   gem 'factory_bot_rails'
+#   gem 'rails-controller-testing'
+# end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -70,3 +75,7 @@ gem 'sidekiq'
 gem 'whenever'
 gem 'wicked_pdf'
 gem "wkhtmltopdf-binary", group: :development
+gem "wkhtmltopdf-heroku", group: :production
+group :production do
+  
+end
