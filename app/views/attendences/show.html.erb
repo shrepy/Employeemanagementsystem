@@ -38,8 +38,8 @@
                 <% if current_employee.id == attendence.employee_id %>
                 <% if @attendence.created_at.strftime('%d-%m-%Y') == attendence.created_at.strftime('%d-%m-%Y') %>
                   <tr>
-                    <td><%= attendence.checkin_time %></td>
-                    <td><%= attendence.checkout_time %></td>
+                    <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                    <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                     <td><%= attendence.status %></td>
                     <td><%= attendence.hour %></td>
                   </tr> 

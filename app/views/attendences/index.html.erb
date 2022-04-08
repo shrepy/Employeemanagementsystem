@@ -38,8 +38,8 @@
                       <% unless array.include?(attendence.created_at.strftime('%d-%m-%y')) %>
                          <% array << attendence.created_at.strftime('%d-%m-%y') %>
                             <tr>
-                             <td><%= attendence.checkin_time %></td>
-                              <td><%= attendence.checkout_time %></td>
+                             <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                              <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                               <td><%= attendence.status %></td>
                               <td><%= attendence.hour %></td>
                               <td><%= link_to 'View', attendence_path(attendence), class: "btn btn-primary" %></td>
