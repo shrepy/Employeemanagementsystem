@@ -1,67 +1,53 @@
-<%= form_with(model: employee) do |form| %>
-  <% if employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+<%= form_with(model: employee) do |form| %> <div class="field row">
+    <div class="col-lg-2"> <%= form.label :name %> </div>
+    <div class="col-lg-10"> <%= form.text_field :name, class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :father_name %> </div>
+    <div class="col-lg-10"> <%= form.text_field :father_name, class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :mother_name %> </div>
+    <div class="col-lg-10"> <%= form.text_field :mother_name, class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :date_of_birth %> </div>
+    <div class="col-lg-10"> <%= form.date_field :date_of_birth, class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :phone_number %> </div>
+    <div class="col-lg-10"> <%= form.text_field :phone_number, class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :email %> </div>
+    <div class="col-lg-10"> <%= form.text_field :email,class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :address %> </div>
+    <div class="col-lg-10"> <%= form.text_area :address, class: "form-control" %> </div>
+</div>
 
-      <ul>
-        <% employee.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="field row mt-3">
+    <div class="row">
+    <div class="col-lg-2"> <%= form.label :skill %> </div>
+    <% @skills.each do |s| %>
+      <div class="col-lg-2">
+       <%#= form.check_box :primary_skill, value: s.name, multiple: true %> 
+       <%= form.collection_check_boxes :primary_skill, @skills.all, :id, :id %>
+       <%= form.label s.name %> 
+      </div>
+    <% end %>
     </div>
-  <% end %>
+</div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :designation %> </div>
+    <div class="col-lg-10"> <%= form.select :designation_id, @designations.map { |t| [t.name]}, {}, class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :image %> </div>
+    <div class="col-lg-10"> <%= form.file_field :image %> </div>
+</div>
+<div class="actions"> <%= form.submit 'Save', class: "btn btn-primary right" %> </div> <% end %>
 
-  <div class="field">
-    <%= form.label :father_name %>
-    <%= form.text_field :father_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mother_name %>
-    <%= form.text_field :mother_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :age %>
-    <%= form.number_field :age %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_area :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :trainer_id %>
-    <%= form.number_field :trainer_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :destination %>
-    <%= form.text_field :destination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<%#= f.check_box :tag_ids, {multiple: true}, tag.id, '' %>
