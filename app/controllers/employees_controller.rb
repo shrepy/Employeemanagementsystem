@@ -12,7 +12,9 @@ class EmployeesController < ApplicationController
   end
 
   # GET /employees/1 or /employees/1.json
-  def show; end
+  def show
+    @employee = Employee.find(params[:id])
+  end
 
   def edit 
     @designations = Designation.all 
@@ -20,6 +22,7 @@ class EmployeesController < ApplicationController
   end
 
   def update
+    byebug 
     @employee = Employee.find(params[:id])
     if @employee.update(employee_params)
       redirect_to employees_path 
@@ -32,7 +35,7 @@ class EmployeesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_employee
-    @employee = Employee.find_by_id params[:id]
+    @employee = Employee.find(params[:id])
     render :show, notice: 'jsbdfjeb', status: 404 unless @employee.present?
   end
 

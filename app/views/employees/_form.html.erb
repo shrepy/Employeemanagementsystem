@@ -28,15 +28,9 @@
 </div>
 
 <div class="field row mt-3">
-    <div class="row">
-    <div class="col-lg-2"> <%= form.label :skill %> </div>
-    <% @skills.each do |s| %>
-      <div class="col-lg-2">
-       <%#= form.check_box :primary_skill, value: s.name, multiple: true %> 
-       <%= form.collection_check_boxes :primary_skill, @skills.all, :id, :id %>
-       <%= form.label s.name %> 
-      </div>
-    <% end %>
+    <div class="col-lg-2"> <%= form.label :primary_skill %> </div>
+    <div class="col-lg-10">
+       <%= form.select :primary_skill, @skills.map { |t| [t.name]}, {}, class: "form-control" %>
     </div>
 </div>
 
@@ -44,6 +38,7 @@
     <div class="col-lg-2"> <%= form.label :designation %> </div>
     <div class="col-lg-10"> <%= form.select :designation_id, @designations.map { |t| [t.name]}, {}, class: "form-control" %> </div>
 </div>
+
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :image %> </div>
     <div class="col-lg-10"> <%= form.file_field :image %> </div>
