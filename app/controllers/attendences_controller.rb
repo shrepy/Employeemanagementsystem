@@ -2,6 +2,9 @@
 
 # Attendence controller
 class AttendencesController < InheritedResources::Base
+  def index
+    @attendences = Attendence.order('created_at DESC')
+  end
 
   def show
     @attendence = Attendence.find(params[:id])

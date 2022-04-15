@@ -2,17 +2,17 @@
 
 # salaries controller
 class SalariesController < InheritedResources::Base
-
-
+  before_action :authenticate_employee!
+  load_and_authorize_resource
   def show
-    @salary = Salary.find_by_id params[:id]
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render template: "salaries/show.html.erb",
-          pdf: "Salary of Month: #{@salary.id}"
-      end
-    end
+    # @salary = Salary.find_by_id params[:id]
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #     render template: "salaries/show.html.erb",
+    #       pdf: "Salary of Month: #{@salary.id}"
+    #   end
+    # end
   end
 
   private

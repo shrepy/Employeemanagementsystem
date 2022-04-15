@@ -37,6 +37,7 @@
                     <th scope="row"><%= holiday.id %></th>
                     <td><%= holiday.holiday_name.capitalize() %></td>
                     <td><%= holiday.holiday_date %></td>
+                    <%= link_to 'Show', holiday %>
                   </tr>
                   <% end %>
                 </tbody>

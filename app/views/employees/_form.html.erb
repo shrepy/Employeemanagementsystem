@@ -36,7 +36,12 @@
 
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :designation %> </div>
-    <div class="col-lg-10"> <%= form.select :designation_id, @designations.map { |t| [t.name]}, {}, class: "form-control" %> </div>
+    <div class="col-lg-10"> <%= form.select :designation_id, @designations.map { |t| [t.name, t.id]}, {}, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :role %> </div>
+    <div class="col-lg-10"> <%= form.select :role_id, @roles.map { |t| [t.name, t.id]}, {}, class: "form-control" %> </div>
 </div>
 
 <div class="field row mt-3">

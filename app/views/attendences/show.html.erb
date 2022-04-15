@@ -42,15 +42,17 @@
                     <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                     <td><%= attendence.status %></td>
                     <td><%= attendence.hour %></td>
+                    <% if can? :update, @attendence%>
+                    <%= link_to 'Edit', edit_attendence_path(attendence) %>
+                    <% end %>
                   </tr> 
                 <% end %> 
                 <% end %>
               <% end %>
-              <%= link_to 'Back', attendences_path %>
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-
+            <%= link_to 'Back', attendences_path, class: "right btn btn-primary" %>
             </div>
           </div>
 

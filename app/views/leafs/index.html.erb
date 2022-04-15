@@ -13,7 +13,6 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    <%= link_to 'Apply For Leave', new_leaf_path, class: "btn btn-primary mb-3" %>
     <section class="section">
       <div class="row">
         
@@ -22,7 +21,7 @@
           <div class="card">
             <div class="card-body">
               <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                <span class="badge bg-primary badge-number p-2">Available Leave Balance <%= current_employee.leave_count %></span>
+                 <%= link_to 'Apply For Leave', new_leaf_path, class: "btn btn-primary mb-3 right "  %>
               </a><!-- End Notification Icon -->
               <!-- Table with stripped rows -->
               <table class="table table-striped">
@@ -43,7 +42,7 @@
                   <% @leafs.each do |leaf| %>
                   <tr>
                     <% if current_employee.id == leaf.employee_id  %>
-                      <th scope="row"><%= leaf.id %></th>
+                      <th scope="row"></th>
                       <td><%= leaf.leave_type %></td>
                       <td><%= leaf.from_date %></td>
                       <td><%= leaf.till_date %></td>

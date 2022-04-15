@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	# def show_employee
 	# end
 
-	def after_sign_in_path_for(resource_or_scope)
+	# def after_sign_in_path_for(resource_or_scope)
 	# 	#Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
 		# ips = Ip.pluck(:unblockip)
 		# #byebug
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 	 #  	else
   #        	stored_location_for(resource_or_scope) || signed_in_root_path(resource_or_scope)
 	 #  	end
-    end
+    # end
 
  #    def get_ip
  #    	if UnblockIP.pluck(:id).includes?(request.ip)
@@ -22,4 +22,14 @@ class ApplicationController < ActionController::Base
 
  #    	end
  #    end
+
+	rescue_from CanCan::AccessDenied do
+		flash[:error] = 'Access denied!'
+		redirect_to root_url
+	end
+
+   def current_user
+    	current_employee
+   end
+
 end

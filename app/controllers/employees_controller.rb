@@ -3,29 +3,34 @@
 # Employee controller
 class EmployeesController < ApplicationController
   before_action :authenticate_employee!
-  before_action :set_employee, only: %i[show, edit]
+  load_and_authorize_resource
+  #before_action :set_employee, only: %i[show, edit]
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.search(params[:search])
     @designations = Designation.all
   end
 
   # GET /employees/1 or /employees/1.json
   def show
-    @employee = Employee.find(params[:id])
+    if current_user.role.name == 'HR'
+      @employee = Employee.find(params[:id])
+    else
+      @employee = current_user
+    end
   end
 
   def edit 
     @designations = Designation.all 
     @skills = Skill.all
+    @roles = Role.all
   end
 
   def update
-    byebug 
     @employee = Employee.find(params[:id])
     if @employee.update(employee_params)
-      redirect_to employees_path 
+      redirect_to @employee
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,6 +45,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-     params.require(:employee).permit(:name, :primary_skill)
+     params.require(:employee).permit(:name, :primary_skill, :password, :password_confirmation, :designation_id, :role_id, :image)
   end
 end

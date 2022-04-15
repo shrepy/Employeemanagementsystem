@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_11_111311) do
+ActiveRecord::Schema.define(version: 2022_04_13_111724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,9 +83,11 @@ ActiveRecord::Schema.define(version: 2022_04_11_111311) do
     t.text "primary_skill"
     t.date "date_of_birth"
     t.bigint "designation_id"
+    t.bigint "role_id"
     t.index ["designation_id"], name: "index_employees_on_designation_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_employees_on_role_id"
   end
 
   create_table "holidays", force: :cascade do |t|
@@ -127,6 +129,12 @@ ActiveRecord::Schema.define(version: 2022_04_11_111311) do
     t.index ["employee_id"], name: "index_performances_on_employee_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "salaries", force: :cascade do |t|
     t.integer "salary"
     t.string "month"
@@ -148,6 +156,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_111311) do
 
   add_foreign_key "attendences", "employees"
   add_foreign_key "employees", "designations"
+  add_foreign_key "employees", "roles"
   add_foreign_key "leafs", "employees"
   add_foreign_key "performances", "employees"
   add_foreign_key "salaries", "employees"

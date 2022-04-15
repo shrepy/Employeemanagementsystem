@@ -2,6 +2,8 @@
 
 # performance controller
 class PerformancesController < InheritedResources::Base
+  before_action :authenticate_employee!
+  load_and_authorize_resource
   def index
     @performances = Performance.all
   end

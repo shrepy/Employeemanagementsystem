@@ -3,32 +3,11 @@
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Form Layouts</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">Layouts</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body p-4">
-              <h5 class="card-title">Horizontal Form</h5>
+    <div class="card shadow p-5">
 				        <%= render 'form', leaf: @leaf %>
-                <%= link_to 'Back', leafs_path, class: "btn btn-secondary mt-3" %>
-                <!-- Horizontal Form -->
-                <div class="text-center">
-                  
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div>
+      <%= link_to 'Back', leafs_path, class: "btn btn-secondary mt-3 right " %>
+    </div>
+    </div>     
 
   </main><!-- End #main -->

@@ -21,7 +21,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body mt-4">
-                                    <div> <img src="assets/logo-new.png"> <% if checkout.nil? %> <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3 right"%> <% else %> <%= link_to 'Checkout',  attendence_path(id: checkout), method: :patch, class: "btn btn-danger mb-3 right"  %> <% end %> </div> <!-- Line Chart -->
+                                    <div> <img src="assets/logo-new.png"> <% if checkout.nil? %> <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3 right check-in-check-out", remote: true %> <% else %> <%= link_to 'Checkout',  attendence_path(id: checkout), method: :patch, class: "btn btn-danger mb-3 right check-in-check-out"  %> <% end %> </div> <!-- Line Chart -->
                                     <!-- End Line Chart -->
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                        <i class="bi bi-arrow-90deg-left"></i> -->
                                         </div>
                                         <div class="ps-3">
-                                            <h6>11 AM to 8 PM o'clock</h6>
+                                            <h6>11 AM to 8 PM</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -119,71 +119,7 @@
                             </div>
                         </div><!-- End Recent Sales -->
                         <!-- Top Selling -->
-                        <div class="col-12">
-                            <div class="card top-selling overflow-auto">
-                                <div class="filter"> <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title">Top Selling <span>| Today</span></h5>
-                                    <table class="table table-borderless">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Preview</th>
-                                                <th scope="col">Product</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Sold</th>
-                                                <th scope="col">Revenue</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row"><a href="#"><img src="assets/product-1.jpg" alt=""></a></th>
-                                                <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                                                <td>$64</td>
-                                                <td class="fw-bold">124</td>
-                                                <td>$5,828</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#"><img src="assets/product-2.jpg" alt=""></a></th>
-                                                <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                                                <td>$46</td>
-                                                <td class="fw-bold">98</td>
-                                                <td>$4,508</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#"><img src="assets/product-3.jpg" alt=""></a></th>
-                                                <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                                                <td>$59</td>
-                                                <td class="fw-bold">74</td>
-                                                <td>$4,366</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#"><img src="assets/product-4.jpg" alt=""></a></th>
-                                                <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                                                <td>$32</td>
-                                                <td class="fw-bold">63</td>
-                                                <td>$2,016</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#"><img src="assets/product-5.jpg" alt=""></a></th>
-                                                <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                                                <td>$79</td>
-                                                <td class="fw-bold">41</td>
-                                                <td>$3,239</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div><!-- End Top Selling -->
+                        
                     </div>
                 </div><!-- End Left side columns -->
                 <!-- Right side columns -->

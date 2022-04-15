@@ -5,19 +5,17 @@ ActiveAdmin.register Employee do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :name, :father_name, :mother_name, :age, :phone_number, :address, :trainer_id, :destination, :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :image, :leave_count, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill
+  # permit_params :name, :father_name, :mother_name, :phone_number, :address, :trainer_id, :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :image, :leave_count, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, :date_of_birth, :designation_id, :role_id
   #
   # or
   #
-  actions :index, :show, :edit, :new, :create, :update
-
   permit_params do
-     permitted = [:name, :father_name, :mother_name, :date_of_birth, :phone_number, :address, :trainer_id, :destination, :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :image, :leave_count, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill]
+     permitted = [:name, :father_name, :mother_name, :phone_number, :address, :trainer_id, :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :image, :leave_count, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, :date_of_birth, :designation_id, :role_id]
      permitted << :other if params[:action] == 'create' && current_admin_user
      permitted
-  end
+   end
 
-  index do
+   index do
     id_column
     column :name
     column :father_name
@@ -26,7 +24,8 @@ ActiveAdmin.register Employee do
     column :phone_number
     column :address
     column :trainer_id
-    column :destination
+    column :role_id
+    column :designation_id
 
     column :actions do |action|
       link_to 'View', admin_employee_path(action.id)
@@ -48,9 +47,10 @@ ActiveAdmin.register Employee do
       row :phone_number
       row :address
       row :trainer_id
-      row :destination
+      row :designation_id
       row :email
       row :image
+      row :role_id
       row :leave_count
       row :department
       row :bank_name
@@ -64,7 +64,7 @@ ActiveAdmin.register Employee do
     active_admin_comments
   end
 
-   permit_params :name, :father_name, :mother_name, :date_of_birth, :phone_number, :address, :trainer_id, :destination, :email, :encrypted_password, :reset_password_token, :password, :password_confirmation, :reset_password_sent_at, :remember_created_at, :image, :leave_count, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill
+   permit_params :name, :father_name, :mother_name, :date_of_birth, :phone_number, :address, :trainer_id, :email, :encrypted_password, :reset_password_token, :password, :password_confirmation, :reset_password_sent_at, :remember_created_at, :image, :leave_count, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, :designation_id, :role_id
    form do |f|
      f.inputs do   
        f.input :name
@@ -74,9 +74,10 @@ ActiveAdmin.register Employee do
        f.input :phone_number
        f.input :address
        f.input :trainer_id
-       f.input :destination
+       f.input :designation.name
        f.input :email
        f.input :image
+       f.input :role.name
        f.input :department
        f.input :bank_name
        f.input :account_number
@@ -89,4 +90,5 @@ ActiveAdmin.register Employee do
     end
      f.actions
    end
+  
 end

@@ -76,6 +76,7 @@ gem 'whenever'
 gem 'wicked_pdf'
 gem "wkhtmltopdf-binary", group: :development
 gem "wkhtmltopdf-heroku", group: :production
+gem 'cancancan'
 group :production do
   
 end
