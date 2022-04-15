@@ -79,15 +79,11 @@
       <li class="nav-item">
           <%= link_to employees_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
-            <% unless current_employee.role.name == nil %>
-              <% unless current_employee.role.name == "HR" %>
-                  <%= 'Profile' %>
-              <% else %>
-                  <%= 'Employees' %>
-              <% end %>
-            <% else %>
+          <%# unless current_employee.role.name == "HR" %>
               <%= 'Profile' %>
-            <% end %>
+          <%# else %>
+              <%#= 'Employees' %>
+          <%# end %>
           <% end %>
       </li>
       
