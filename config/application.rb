@@ -20,7 +20,7 @@ module Ems
     config.time_zone = "Mumbai"
     config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
-    # config.factory_bot.definition_file_paths = ["spec/factories"]
+    #config.factory_bot.definition_file_paths = ["spec/factories"]
     config.active_job.queue_adapter = :sidekiq
   end
 end

@@ -1,52 +1,51 @@
-<%= form_with(model: leaf) do |form| %>
-  <% if leaf.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(leaf.errors.count, "error") %> prohibited this leaf from being saved:</h2>
-
-      <ul>
-        <% leaf.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <!-- <div class="form-group">
+<%= form_with(model: leaf) do |form| %> <% if leaf.errors.any? %> <div id="error_explanation" style="color: red;">
+    <h2><%= pluralize(leaf.errors.count, "error") %> prohibited this leaf from being saved:</h2>
+    <ul> <% leaf.errors.each do |error| %> <li><%= error.full_message %></li> <% end %> </ul>
+</div> <% end %>
+<!-- <div class="form-group">
     <%#= form.label :available_balance %>
     <%#= form.number_field :available_balance, class: "form-control" %>
   </div> -->
-
-  <div class="form-group">
+<div class="form-group mt-3 row">
+    <div class="col-lg-2">
     <%= form.label :leave_type %>
-    <%= form.select :leave_type, ['Sick Leave', 'Casual Leave', 'Marriage Leave'], class: "form-control" %>
-  </div>
+</div>
+    <div class="col-lg-10">
+    <%= form.select(:leave_type, ['Sick Leave', 'Casual Leave', 'Marriage Leave'], { selected: 'Casual Leave'}, { :class => 'form-control' }) %>
+</div>
+</div>
+<div class="form-group mt-3 row">
+    <div class="col-lg-2"> <%= form.label :from_date %> </div>
+    <div class="col-lg-10"> <%= form.date_field :from_date , class: "form-control"%> </div>
+</div>
 
-  <div class="form-group mt-3">
-    <%= form.label :from_date %>
-    <%= form.date_field :from_date %>
-  </div>
+<div class="form-group mt-3 row">
+    <div class="col-lg-2"> <%= form.label :till_date %> </div>
+    <div class="col-lg-10"> <%= form.date_field :till_date, class: "form-control" %> </div>
+</div>
 
-  <div class="form-group mt-3">
-    <%= form.label :till_date %>
-    <%= form.date_field :till_date %>
-  </div>
-
-  <div class="form-group mt-3">
+<div class="form-group mt-3 row">
+    <div class="col-lg-2">
     <%= form.label :leave_starts %>
-    <%= form.select :leave_starts, ['Full Day', 'Half Day'] %>
-  </div>
+</div>
+    <div class="col-lg-10">
+    <%= form.select(:leave_starts, ['Full Day', 'Half Day'], {}, { :class => 'form-control' }) %>
+</div>
+</div>
 
-  <div class="form-group mt-3">
+<div class="form-group mt-3 row">
+    <div class="col-lg-2">
     <%= form.label :leave_end %>
-    <%= form.select :leave_end, ['Full Day', 'Half Day'] %>
-  </div>
+</div>
+    <div class="col-lg-10">
+    <%= form.select(:leave_end, ['Full Day', 'Half Day'], {}, { :class => 'form-control' }) %>
+</div>
+</div>
 
-  <div class="form-group mt-3">
-    <%= form.label :reason %>
-    <%= form.text_field :resion, class: "form-control" %>
-  </div>
-  <%= form.hidden_field :employee_id, value: current_employee.id %>
-  <div class="actions mt-3">
-    <%= form.submit 'Submit', class: "btn btn-primary"%>
-  </div>
-<% end %>
+
+
+<div class="form-group mt-3 row">
+    <div class="col-lg-2"> <%= form.label :reason %> </div>
+    <div class="col-lg-10"> <%= form.text_field :resion, class: "form-control" %> </div>
+
+</div> <%= form.hidden_field :employee_id, value: current_employee.id %> <div class="actions mt-3"> <%= form.submit 'Submit', class: "btn btn-primary right"%> </div> <% end %>

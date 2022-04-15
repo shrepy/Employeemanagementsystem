@@ -1,6 +1,8 @@
 class LeafsController < InheritedResources::Base
-  
- 
+  before_action :authenticate_employee!
+  def index
+    @leafs = Leaf.order('created_at DESC')
+  end
 
   def create
     @leaf = Leaf.new(leaf_params)

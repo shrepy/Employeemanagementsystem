@@ -1,8 +1,11 @@
 class Employee < ApplicationRecord
+  self.inheritance_column = "not_sti"
   has_many :performances, dependent: :destroy
   has_many :salaries, dependent: :destroy
   has_many :attendences, dependent: :destroy
   has_many :leafs, dependent: :destroy
+  belongs_to  :designation, dependent: :destroy
+  belongs_to  :role, dependent: :destroy
   #validates :name, :father_name, :mother_name, :age, :phone_number, :address, :trainer_id, :destination, :password, :password_confirmation, :image, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -46,6 +49,14 @@ class Employee < ApplicationRecord
     return count
 
   end
+
+  def self.search(search)
+        if search 
+            where(["name LIKE ? OR father_name LIKE ?","%#{search}%", "%#{search}%"])
+        else
+            all
+        end
+    end 
 
   # def check_salary_amount
   #   return errors.add :base, "Salary not Valid :)"  unless salary <= 50000

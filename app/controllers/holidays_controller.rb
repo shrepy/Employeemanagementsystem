@@ -3,6 +3,7 @@
 # Holidays controller
 class HolidaysController < InheritedResources::Base
   before_action :authenticate_employee!
+  load_and_authorize_resource
   def index
     @holidays = Holiday.all
   end

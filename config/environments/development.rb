@@ -75,4 +75,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.factory_bot.definition_file_paths = ["spec/factories"]
+  config.hosts << "7080-122-170-204-119.ngrok.io"
 end

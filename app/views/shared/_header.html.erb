@@ -49,7 +49,7 @@
 
         <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" >
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/employees/" >
             <% unless current_employee.image.blank? %>
               <%= image_tag current_employee.image_url, class: "rounded-circle" %>
             <% end %>
@@ -79,13 +79,18 @@
       <li class="nav-item">
           <%= link_to employees_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
-          <%= 'Profile' %>
+          <% unless current_employee.role.name == "HR" %>
+              <%= 'Profile' %>
+          <% else %>
+              <%= 'Employees' %>
+          <% end %>
           <% end %>
       </li>
+      
       <li class="nav-item">
           </i><%= link_to  performances_path, class: "nav-link collapsed" do %>
           <i class="bi bi-bar-chart"></i>
-          <%= 'Peformance' %>
+          <%= 'Performance' %>
           <% end %>
       </li>
       <li class="nav-item">
