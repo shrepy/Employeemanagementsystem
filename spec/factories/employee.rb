@@ -11,6 +11,7 @@ FactoryBot.define do
     address { 'ehugtue' }
     trainer_id { 1 }
     designation_id { }
+    role_id { }
     email {  Faker::Internet.email }
     image { '' }
     password { '123456' }
