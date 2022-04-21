@@ -1,0 +1,16 @@
+<%= form_with(model: @daily_task) do |form| %>
+
+  <div class="field">
+     <%#= form.hidden_field :date, value: Date.today %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.cktext_area :description %>
+  </div>
+  <%= form.hidden_field :employee_id, value: current_employee.id %>     
+  
+  <div class="actions mt-3">
+  <%= form.submit 'Submit', class: "btn btn-primary right"%> </div> 
+
+<% end %>

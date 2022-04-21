@@ -80,3 +80,5 @@ gem 'cancancan'
 group :production do
   
 end
+gem 'ckeditor'
+gem 'paperclip'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_13_111724) do
+ActiveRecord::Schema.define(version: 2022_04_18_133201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,26 @@ ActiveRecord::Schema.define(version: 2022_04_13_111724) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employee_id"], name: "index_attendences_on_employee_id"
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "data_fingerprint"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "daily_tasks", force: :cascade do |t|
+    t.text "description"
+    t.integer "rank", default: 10
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_daily_tasks_on_employee_id"
   end
 
   create_table "designations", force: :cascade do |t|
@@ -155,6 +175,7 @@ ActiveRecord::Schema.define(version: 2022_04_13_111724) do
   end
 
   add_foreign_key "attendences", "employees"
+  add_foreign_key "daily_tasks", "employees"
   add_foreign_key "employees", "designations"
   add_foreign_key "employees", "roles"
   add_foreign_key "leafs", "employees"

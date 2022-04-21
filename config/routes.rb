@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   resources :roles
   resources :skills
   resources :designations
   resources :leafs
   resources :attendences
   resources :salaries
+  resources :daily_tasks
   get 'dashboard/index'
   root "dashboard#index"
   resources :performances

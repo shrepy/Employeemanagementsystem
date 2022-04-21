@@ -22,5 +22,6 @@ module Ems
     # config.eager_load_paths << Rails.root.join("extras")
     #config.factory_bot.definition_file_paths = ["spec/factories"]
     config.active_job.queue_adapter = :sidekiq
+    config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
   end
 end
