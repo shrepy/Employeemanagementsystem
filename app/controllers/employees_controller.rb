@@ -36,12 +36,17 @@ class EmployeesController < ApplicationController
     end
   end
 
+
+  def profile
+    @employee = Employee.all
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_employee
     @employee = Employee.find(params[:id])
-    render :show, notice: 'jsbdfjeb', status: 404 unless @employee.present?
+    render :show, notice: 'Employee not found', status: 404 unless @employee.present?
   end
 
   def employee_params

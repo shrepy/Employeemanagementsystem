@@ -1,8 +1,6 @@
- </aside><!-- End Sidebar-->
-
+</aside><!-- End Sidebar-->
   <main id="main" class="main">
-    <% unless current_employee.role.name == "HR" %>
-
+    
     <div class="pagetitle">
       <h1>Profile</h1>
       <nav>
@@ -324,51 +322,5 @@
         <% end %>
       </div>
     </section>
-    <% else %>
-    <section class="section">
-      <div class="row">
-        
-        <div class="col-lg-12">
-
-          <div class="card">
-            <div class="card-body mt-3">
-          <%= form_with(url: '/employees', method: 'get', local: true) do %>
-            <div>
-              <%= text_field_tag :search%>
-              <%= submit_tag("Search") %>
-            </div>
-          <% end %>
-              <!-- Table with stripped rows -->
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Employee Name</th>
-                    <th scope="col">Designation</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @employees.each do |employee| %>
-                  <tr>
-                    <th scope="row"></th>
-                    <td><%= employee.name %></td>
-                    <td><%= employee.designation.name %></td>
-                     <td><%#= link_to 'Attendence', attendences_path, class: "btn btn-primary"%></td>
-                     <% unless employee.role.name == "HR" %>
-                    <td><%= link_to 'Details', employee, class: "btn btn-primary"%></td>
-                    <% end %>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    <% end %>
 
   </main><!-- End #main -->
