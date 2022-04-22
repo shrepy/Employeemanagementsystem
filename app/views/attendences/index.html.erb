@@ -5,12 +5,6 @@
 
     <div class="pagetitle">
       <h1 class="mb-4">Attendence List</h1>
-      
-        <% if checkout.nil? %>
-          <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3" %>
-        <% else %>
-          <%= link_to 'Checkout',  attendence_path(id: checkout), method: :patch, class: "btn btn-danger mb-3" %>
-        <% end %>
     </div><!-- End Page Title -->
     <section class="section">
       <div class="row">
@@ -48,6 +42,7 @@
                   <% end %>
                 </tbody>
               </table>
+              <%= link_to 'Back', root_path, class: "right btn btn-primary" %>
               <!-- End Table with stripped rows -->
             </div>
           </div>

@@ -82,3 +82,4 @@ group :production do
 end
 gem 'ckeditor'
 gem 'paperclip'
+gem "letter_opener", group: :development

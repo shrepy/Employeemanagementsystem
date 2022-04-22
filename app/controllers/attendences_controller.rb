@@ -13,13 +13,13 @@ class AttendencesController < InheritedResources::Base
   
   def create
     @attendence = Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now, status: 'Present')
-    redirect_to attendences_path if @attendence.save
+    redirect_to root_path if @attendence.save
   end
 
   def update
     @attendence = Attendence.find(params[:id])
     if @attendence.update(checkout_time: Time.zone.now)
-      redirect_to attendences_path
+      redirect_to root_path
     else
       redirect_to attendences_path
     end

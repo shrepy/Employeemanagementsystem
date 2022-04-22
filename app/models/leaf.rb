@@ -2,7 +2,8 @@ class Leaf < ApplicationRecord
   belongs_to :employee
    enum leave_status: {
     accept: 'accept',
-    decline: 'decline' # Newly created orde
+    decline: 'decline',
+    cancel: 'cancel' # Newly created orde
   }
   validate :check_past_date
   before_create :total_day
