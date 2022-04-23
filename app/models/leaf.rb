@@ -3,7 +3,7 @@ class Leaf < ApplicationRecord
    enum leave_status: {
     accept: 'accept',
     decline: 'decline',
-    cancel: 'cancel' # Newly created orde
+    cancel: 'cancelled' # Newly created orde
   }
   validate :check_past_date
   before_create :total_day

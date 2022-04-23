@@ -55,10 +55,9 @@
                         <button type="button" class="btn btn-success disabled">Accepted</button>
                       <% elsif leaf.leave_status == nil%>
                         <button type="button" class="btn btn-warning disabled">Pending</button>
-                        <%= link_to 'Cancel',  leaf_path(id: leaf.id), method: :patch, class: "btn btn-warning" %>
-                        <% byebug %>
+                        <%= link_to 'Cancel',  leaf_path(id: leaf.id), method: :patch, class: "btn btn-primary" %>
                       <% elsif leaf.leave_status == "cancel" %>
-                          <%= link_to 'Cancelled',  leaf_path(id: leaf.id), method: :patch, class: "btn btn-warning" %>
+                          <%= link_to 'Cancelled',  leaf_path(id: leaf.id), method: :patch, class: "btn btn-primary" %>
                       <% else %>
                         <button type="button" class="btn btn-danger disabled">Rejected</button>
                       <% end %>

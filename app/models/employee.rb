@@ -57,7 +57,7 @@ class Employee < ApplicationRecord
         else
             all
         end
-    end 
+  end 
 
   # def check_salary_amount
   #   return errors.add :base, "Salary not Valid :)"  unless salary <= 50000

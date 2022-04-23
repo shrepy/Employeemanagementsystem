@@ -1,3 +1,6 @@
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
 <%= form_with(model: attendence) do |form| %>
   <% if attendence.errors.any? %>
     <div id="error_explanation">
@@ -35,3 +38,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</main>

@@ -16,7 +16,7 @@ class LeafsController < InheritedResources::Base
   def update
      @leaf = Leaf.find(params[:id])
       if @leaf.from_date > Time.now
-        if @leaf.update(leave_status: 'cancel')
+        if @leaf.update(leave_status: 'cancelled')
           redirect_to leafs_path
         else
           render :index
