@@ -142,6 +142,12 @@
           <% end %>
       </li>
       <li class="nav-item">
+          </i><%= link_to  tickets_path, class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Ticket' %>
+          <% end %>
+      </li>
+      <li class="nav-item">
           </i><%= link_to  destroy_employee_session_path, method: :delete, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Logout' %>

@@ -25,8 +25,6 @@
                     <th scope="col">#</th>
                     <th scope="col">Date</th>
                     <th scope="col">Daily status</th>
-                    <th scope="col">Rank</th>
-                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -34,10 +32,35 @@
                   <tr>
                       <th scope="row"></th>
                      	<td><%= task.created_at.to_date%></td>
-                      <td><%= raw task.description.slice(0,15) + "..." %></td>                  
-                      <td><%= task.rank%></td>
+                      <td ><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><%= raw task.description.slice(0,15) + "..." %></button></td>  
                       <td><%= link_to "Show", daily_task_path(task),class: "btn btn-primary"%> </td>
                   </tr>
+
+                      <div class="container">
+  <!-- Trigger the modal with a button -->
+ 
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+        </div>
+        <div>
+          <%= raw task.description %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
                   <% end %>
                 </tbody>
               </table>
@@ -47,4 +70,5 @@
         </div>
       </div>
     </section>
+    
   </main><!-- End #main -->
