@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div> <!-- Sales Card -->
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-6 col-md-6">
                             <div class="card info-card sales-card">
                                 <div class="filter"> <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -50,7 +50,7 @@
                             </div>
                         </div><!-- End Sales Card -->
                         <!-- Revenue Card -->
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-6 col-md-6">
                             <div class="card info-card revenue-card">
                                 <div class="card-body">
                                     <h5 class="card-title">Shift <span></span></h5>
@@ -67,41 +67,39 @@
                             </div>
                         </div><!-- End Revenue Card -->
                         <!-- Customers Card -->
-                        <div class="col-xxl-4 col-xl-12">
-                            <div class="card info-card customers-card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Checkin <span>| Checkout</span></h5>
-                                    <div class="d-flex align-items-center">
-                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-arrow-90deg-right"></i> </div>
-                                        <div class="ps-3">
-                                            <h6></h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End Customers Card -->
+                       
                         <!-- Reports -->
                         <!-- End Reports -->
-                        <!-- Recent Sales --> <% emp =Employee.last(2) %> <% emp.each do |employee| %> <div class="col-6">
-                            <div class="card recent-sales overflow-auto">
-                                <div class="card-body">
-                                    <h5 class="card-title">Recent Employee </h5>
-                                    <div class="tab-content pt-2">
-                                        <div class="row mt-2">
-                                            <div class="col-lg-3 col-md-4 label ">Name</div>
-                                            <div class="col-lg-9 col-md-8"><%= employee.name.capitalize() %></div>
-                                        </div>
-                                        <div class="row mt-5">
-                                            <div class="col-lg-9 col-md-8"><%= image_tag employee.image_url, class: " size-image" %></div>
+                        <!-- Recent Sales --> 
+                         <% @employees.each do |employee| %> 
+                         <div class="col-6">
+                             <% created_date = employee.created_at.strftime("%d-%m-%y") %>
+                             <% if created_date >= (Time.zone.now - 2.days).strftime("%d-%m-%y") %>
+                                <div class="card recent-sales overflow-auto">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Recent Employee </h5>
+                                        <div class="tab-content pt-2">
+                                            <div class="row mt-2">
+                                                <div class="col-lg-6 col-md-6">Name</div>
+                                                <div class="col-lg-6 col-md-6"><%= employee.name.capitalize() %></div>
+                                            </div>
+                                            <div class="row mt-5">
+                                                <div class="col-lg-9 col-md-8">
+                                                    <% unless employee.image.blank? %>
+                                                    <%= image_tag employee.image_url, class: " size-image" %>
+                                                    <% end %>
+                                                    </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade pt-3" id="profile-settings">
-                                <!-- Settings Form -->
-                            </div>
-                            <div class="tab-pane fade pt-3" id="profile-change-password"> </div>
-                        </div> <% end %>
+                                <div class="tab-pane fade pt-3" id="profile-settings">
+                                    <!-- Settings Form -->
+                                </div>
+                                <div class="tab-pane fade pt-3" id="profile-change-password"> </div>
+                                <% end %>
+                        </div> 
+                        <% end %>
                     </div>
                 </div>
             </div>

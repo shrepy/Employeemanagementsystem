@@ -5,9 +5,17 @@ class AttendencesController < InheritedResources::Base
   #load_and_authorize_resource
   def index
     if current_user.role.name == 'HR'
-      @attendences = Attendence.search(params[:search])
+      unless params[:start_date].blank? && params[:end_date].blank?
+        @attendences = Attendence.where(created_at: params[:start_date]..params[:end_date])
+      else
+        @attendences = Attendence.all 
+      end
     else
-      @attendences = Attendence.where(employee_id: current_employee).search(params[:search])
+      unless params[:start_date].blank? && params[:end_date].blank?
+        @attendences = Attendence.where(employee_id: current_employee, created_at: params[:search]..params[:sear])
+      else
+        @attendences = Attendence.all
+      end
     end
   end
 
@@ -27,11 +35,9 @@ class AttendencesController < InheritedResources::Base
 
   def update
     @attendence = Attendence.find(params[:id])
-    byebug 
     if params[:attendence].present?
       @attendence.update(attendence_params)
     elsif @attendence.update(checkout_time: Time.zone.now)
-      redirect_to root_path
     else
       redirect_to attendences_path
     end

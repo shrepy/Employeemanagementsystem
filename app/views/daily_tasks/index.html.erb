@@ -32,35 +32,30 @@
                   <tr>
                       <th scope="row"></th>
                      	<td><%= task.created_at.to_date%></td>
-                      <td ><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><%= raw task.description.slice(0,15) + "..." %></button></td>  
+                      <td ><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=task.id%>"><%= raw task.description.slice(0,15) + "..." %></button></td>  
                       <td><%= link_to "Show", daily_task_path(task),class: "btn btn-primary"%> </td>
                   </tr>
 
-                      <div class="container">
-  <!-- Trigger the modal with a button -->
- 
+                  <div class="container">
+                    <div class="modal fade" id="myModal-<%=task.id%>" role="dialog">
+                      <div class="modal-dialog">
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title"></h4>
-        </div>
-        <div>
-          <%= raw task.description %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
+                      <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                          <h4 class="modal-title"></h4>
+                          </div>
+                          <div class="p-5">
+                          <%= raw task.description %>
+                          </div>
+                          <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
                   <% end %>
                 </tbody>
               </table>
@@ -72,3 +67,8 @@
     </section>
     
   </main><!-- End #main -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

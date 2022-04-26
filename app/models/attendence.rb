@@ -16,11 +16,11 @@ class Attendence < ApplicationRecord
     end
   end
 
-  def self.search(search)
-        if search 
-            where(["CAST(created_at AS text) LIKE ?", "%#{search}%"])
-        else
-            all
-        end
-  end 
+  # def self.search(search, sear)
+  #       if search 
+  #           where(["CAST(created_at AS text) LIKE ? AND CAST(created_at AS text) LIKE ?", "%#{search}%", "%#{search}%"])
+  #       else
+  #           all
+  #       end
+  # end 
 end
