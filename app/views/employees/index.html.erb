@@ -26,7 +26,7 @@
                     <%= image_tag current_employee.image_url, class: "rounded-circle img-width" %>
                   <% end %>
                   <h2><%= employee.name.capitalize() %></h2>
-                  <h3><%= employee.designation_id %></h3>
+                  <h3><%= employee.designation.name.capitalize() %></h3>
                   <div class="social-links mt-2">
                     <a href="" class="twitter"><i class="bi bi-twitter"></i></a>
                     <a href="https://www.facebook.com", target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -88,7 +88,7 @@
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Designation</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.designation_id %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.designation.name.capitalize() %></div>
                         </div>
 
                         <div class="row">
@@ -118,19 +118,19 @@
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Pan Card No.</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.designation_id %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.pan_card_number %></div>
                         </div>
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Aadhar Card No.</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.designation_id %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.aadhar_card_number %></div>
                         </div>
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Bank Name</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.designation_id %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.bank_name%></div>
                         </div>
                          <div class="row">
                           <div class="col-lg-3 col-md-4 label">Account No.</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.designation_id %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.account_number %></div>
                         </div>
                       </div>
 
