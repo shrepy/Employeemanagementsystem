@@ -16,7 +16,7 @@
                 <tbody>
                   <% @tickets.each do |ticket| %>
                   <tr>
-                    <th scope="row"><%=ticket.description %></th>
+                    <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,50) %></button></th>
                     <td><%= ticket.employee.name %></td>
                     <td><%= ticket.ticket_type %></td>
                     <% if current_employee.role.name == 'HR' %>
@@ -42,6 +42,26 @@
                        <% end%>
                     <% end %>
                   </tr>
+                  <div class="container">
+                    <div class="modal fade" id="myModal-<%=ticket.id%>" role="dialog">
+                      <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                          <h4 class="modal-title"></h4>
+                          </div>
+                          <div class="p-5">
+                            <%= raw ticket.description %>
+                          </div>
+                          <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
                   <% end %>
                 </tbody>
 
@@ -49,3 +69,8 @@
                 
               </table>
 </main>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

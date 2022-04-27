@@ -12,7 +12,7 @@ class AttendencesController < InheritedResources::Base
       end
     else
       unless params[:start_date].blank? && params[:end_date].blank?
-        @attendences = Attendence.where(employee_id: current_employee, created_at: params[:search]..params[:sear])
+        @attendences = Attendence.where(employee_id: current_employee, created_at: params[:start_date]..params[:end_date])
       else
         @attendences = Attendence.all
       end
