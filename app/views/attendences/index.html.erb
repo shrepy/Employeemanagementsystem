@@ -5,12 +5,6 @@
 
     <div class="pagetitle">
       <h1 class="mb-4">Attendence List</h1>
-      
-        <% if checkout.nil? %>
-          <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3" %>
-        <% else %>
-          <%= link_to 'Checkout',  attendence_path(id: checkout), method: :patch, class: "btn btn-danger mb-3" %>
-        <% end %>
     </div><!-- End Page Title -->
     <section class="section">
       <div class="row">
@@ -21,33 +15,51 @@
             <div class="card-body">
              <h5 class="card-title"></h5>
               <!-- Table with stripped rows -->
+                <%= form_with(url: '/attendences', method: 'get', local: true) do %>
+            <div>
+              <div class="row mb-3">
+                <div class="col-2">
+                  <%= label_tag :start_date%>
+                  <%= date_field_tag :start_date%>
+                </div>
+                <div class="col-2">
+                  <%= label_tag :end_date%>
+                  <%= date_field_tag :end_date %>
+                </div>
+              </div>
+              <%= submit_tag("Search") %>
+
+            </div>
+          <% end %>
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">Checkin Time</th>
                     <th scope="col">Checkout Time</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Working Hours</th>
                   </tr>
                 </thead>
                 <tbody>
                  <% array = [] %>
                  <% @attendences.each do |attendence| %>
-                   <% if current_employee.id == attendence.employee_id %>
+                   <%# if current_employee.id == attendence.employee_id %>
                       <% unless array.include?(attendence.created_at.strftime('%d-%m-%y')) %>
                          <% array << attendence.created_at.strftime('%d-%m-%y') %>
                             <tr>
-                             <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                             <td><%= attendence.checkin_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                               <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
-                              <td><%= attendence.status %></td>
                               <td><%= attendence.hour %></td>
                               <td><%= link_to 'View', attendence_path(attendence), class: "btn btn-primary" %></td>
+                              <% if current_employee.role.name == "HR" %>
+                                <td><%= link_to 'Edit', edit_attendence_path(attendence), class: "btn btn-primary" %></td>
+                              <% end %>
                             </tr>
                       <% end %>
                     <% end %>
-                  <% end %>
+                  <%# end %>
                 </tbody>
               </table>
+              <%= link_to 'Back', root_path, class: "right btn btn-primary" %>
               <!-- End Table with stripped rows -->
             </div>
           </div>

@@ -34,7 +34,7 @@
                     <th scope="col">Leave starts</th>
                     <th scope="col">Leave end</th>
                     <th scope="col">Total days</th>
-                    <th scope="col">Resion</th>
+                    <th scope="col">Reason</th>
                     <th scope="col">Leave status</th>
                   </tr>
                 </thead>
@@ -55,6 +55,9 @@
                         <button type="button" class="btn btn-success disabled">Accepted</button>
                       <% elsif leaf.leave_status == nil%>
                         <button type="button" class="btn btn-warning disabled">Pending</button>
+                        <%= link_to 'Cancel',  leaf_path(id: leaf.id), method: :patch, class: "btn btn-primary" %>
+                      <% elsif leaf.leave_status == "cancel" %>
+                          <%= link_to 'Cancelled',  leaf_path(id: leaf.id), method: :patch, class: "btn btn-primary" %>
                       <% else %>
                         <button type="button" class="btn btn-danger disabled">Rejected</button>
                       <% end %>

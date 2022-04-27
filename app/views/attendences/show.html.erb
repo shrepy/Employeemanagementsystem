@@ -6,12 +6,6 @@
 
     <div class="pagetitle">
       <h1 class="mb-4">Attendence List</h1>
-      
-        <% if checkout.nil? %>
-          <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3" %>
-        <% else %>
-          <%= link_to 'Checkout',  attendence_path(id: checkout), method: :patch, class: "btn btn-danger mb-3" %>
-        <% end %>
     </div><!-- End Page Title -->
     <section class="section">
       <div class="row">
@@ -28,7 +22,6 @@
                   <tr>
                     <th scope="col">Checkin Time</th>
                     <th scope="col">Checkout Time</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Working Hours</th>
                   </tr>
                 </thead>
@@ -40,10 +33,9 @@
                   <tr>
                     <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                     <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
-                    <td><%= attendence.status %></td>
                     <td><%= attendence.hour %></td>
-                    <% if can? :update, @attendence%>
-                    <%= link_to 'Edit', edit_attendence_path(attendence) %>
+                    <% if current_employee.role.name == "HR" %>
+                    <td><%= link_to 'Edit', edit_attendence_path(attendence), class: "btn btn-primary" %></td>
                     <% end %>
                   </tr> 
                 <% end %> 

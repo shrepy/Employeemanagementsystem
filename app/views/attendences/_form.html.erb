@@ -1,3 +1,6 @@
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
 <%= form_with(model: attendence) do |form| %>
   <% if attendence.errors.any? %>
     <div id="error_explanation">
@@ -12,26 +15,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :checkin_time %>
-    <%= form.datetime_select :checkin_time %>
+    <%= form.label :checkout_time, class: "mb-3" %>
+    <%= form.datetime_field :checkout_time, class: "form-control mb-3" %>
   </div>
 
-  <div class="field">
-    <%= form.label :checkout_time %>
-    <%= form.datetime_select :checkout_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :employee_id %>
-    <%= form.text_field :employee_id %>
-  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+</main>

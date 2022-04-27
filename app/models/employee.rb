@@ -6,6 +6,7 @@ class Employee < ApplicationRecord
   has_many :leafs, dependent: :destroy
   belongs_to  :designation, dependent: :destroy
   belongs_to  :role, dependent: :destroy
+  has_many :tickets, dependent: :destroy
   has_many :daily_tasks
   #validates :name, :father_name, :mother_name, :age, :phone_number, :address, :trainer_id, :destination, :password, :password_confirmation, :image, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, presence: true
   # Include default devise modules. Others available are:
@@ -57,7 +58,7 @@ class Employee < ApplicationRecord
         else
             all
         end
-    end 
+  end 
 
   # def check_salary_amount
   #   return errors.add :base, "Salary not Valid :)"  unless salary <= 50000
