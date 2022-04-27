@@ -29,8 +29,14 @@ class AttendencesController < InheritedResources::Base
   end
   
   def create
-    @attendence = Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now, status: 'Present')
-    redirect_to root_path if @attendence.save
+    last = Attendence.where(checkin_time: Time.zone.now-2.minutes..Time.zone.now).last
+    unless last.nil?
+       last.update(checkout_time: nil)
+    else
+      @attendence = Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now, status: 'Present')
+      @attendence.save
+    end
+    redirect_to root_path
   end
 
   def update
@@ -44,7 +50,8 @@ class AttendencesController < InheritedResources::Base
      redirect_to root_path
   end
 
-   def attendence_params
-     params.require(:attendence).permit(:checkout_time)
-   end
+  def attendence_params
+   params.require(:attendence).permit(:checkout_time)
+  end
+
 end

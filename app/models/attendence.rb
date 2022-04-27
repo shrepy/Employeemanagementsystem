@@ -3,7 +3,7 @@ class Attendence < ApplicationRecord
   belongs_to :employee
 
   before_save :working_hour
- 
+
   private
 
   def working_hour
@@ -16,11 +16,16 @@ class Attendence < ApplicationRecord
     end
   end
 
-  # def self.search(search, sear)
-  #       if search 
-  #           where(["CAST(created_at AS text) LIKE ? AND CAST(created_at AS text) LIKE ?", "%#{search}%", "%#{search}%"])
-  #       else
-  #           all
-  #       end
-  # end 
+
+  # def checkin_time_validation
+  #   attendence = Attendence.last 
+
+  #   return if attendence.nil?
+
+  #   if attendence.checkin_time.strftime("%H-%M") < checkin_time.strftime("%H-%M")
+  #     true
+  #   else
+  #     false
+  #   end
+  #end
 end
