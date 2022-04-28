@@ -16,7 +16,7 @@
                 <tbody>
                   <% @tickets.each do |ticket| %>
                   <tr>
-                    <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,50) %></button></th>
+                    <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= ticket.description.slice(0,50) %></button></th>
                     <td><%= ticket.employee.name %></td>
                     <td><%= ticket.ticket_type %></td>
                     <% if current_employee.role.name == 'HR' %>
@@ -52,7 +52,7 @@
                           <h4 class="modal-title"></h4>
                           </div>
                           <div class="p-5">
-                            <%= raw ticket.description %>
+                            <%= ticket.description %>
                           </div>
                           <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

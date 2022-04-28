@@ -60,6 +60,16 @@ class Employee < ApplicationRecord
         end
   end 
 
+  def todays_last_attendence
+    todays_attendences = attendences.where('checkin_time > ? AND checkin_time < ?', Date.today.beginning_of_day, Date.today.end_of_day)
+    todays_attendences.sort.last
+  end
+
+  def show_checkin?
+    attendence = todays_last_attendence
+    return true if attendence.present? && attendence.checkout_time.present?
+  end
+
   # def check_salary_amount
   #   return errors.add :base, "Salary not Valid :)"  unless salary <= 50000
   # end

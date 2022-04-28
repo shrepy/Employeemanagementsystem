@@ -21,7 +21,12 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body mt-4">
-                                    <div class="check-in-check-out"> <img src="assets/logo-new.png"> <% if checkout.nil? %> <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3 right", remote: true %> <% else %> <%= link_to 'Checkout',  attendence_path(id: checkout), method: :patch, class: "btn btn-danger mb-3 right check-in-check-out", remote: true  %> <% end %> </div> <!-- Line Chart -->
+                                    <div class="check-in-check-out"> <img src="assets/logo-new.png">
+                                        <% if current_employee.show_checkin? %>
+                                            <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3 right" %>
+                                        <% else %>
+                                                <%= link_to 'Checkout',  update_attendence_attendences_path, class: "btn btn-danger mb-3 right check-in-check-out"  %>
+                                        <% end %> </div> <!-- Line Chart -->
                                     <!-- End Line Chart -->
                                 </div>
                             </div>

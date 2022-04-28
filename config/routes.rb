@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   resources :skills
   resources :designations
   resources :leafs
-  resources :attendences
+  resources :attendences do
+    collection do
+      get :update_attendence
+    end
+  end
   resources :salaries
   resources :daily_tasks
   get 'dashboard/index'
@@ -23,4 +27,6 @@ Rails.application.routes.draw do
 
   patch '/accept/:id', to: "tickets#decline_ticket",  as: 'decline_ticket'
   #patch '/accept/:id', to: "tickets#decline_ticket",  as: 'accept_ticket'
+
+  get '/search', to: "attendences#search"
 end
