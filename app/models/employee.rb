@@ -67,7 +67,11 @@ class Employee < ApplicationRecord
 
   def show_checkin?
     attendence = todays_last_attendence
-    return true if attendence.present? && attendence.checkout_time.present?
+    if attendence.present?
+      return attendence.checkout_time.present?
+    else
+      return true
+    end
   end
 
   # def check_salary_amount
