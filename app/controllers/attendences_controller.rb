@@ -25,7 +25,7 @@ class AttendencesController < InheritedResources::Base
     unless last.nil?
        last.update(checkout_time: nil)
     else
-      @attendence = Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now, status: 'Present')
+      @attendence = Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now, status: 'Present', ip_address: request.remote_ip)
       @attendence.save
     end
     redirect_to root_path
@@ -43,7 +43,7 @@ class AttendencesController < InheritedResources::Base
 
   def update_attendence
     attendence = current_employee.todays_last_attendence
-    attendence.update(checkout_time: Time.zone.now)
+    attendence.update(checkout_time: Time.zone.now, ip_address: request.remote_ip)
     redirect_to root_path
   end
 
