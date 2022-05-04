@@ -28,11 +28,16 @@ class EmployeesController < ApplicationController
   end
 
   def update
+    @designations = Designation.all 
+    @skills = Skill.all
+    @roles = Role.all
     @employee = Employee.find(params[:id])
     if @employee.update(employee_params)
       redirect_to @employee
     else
-      render :edit, status: :unprocessable_entity
+      #render js: edit, status: :unprocessable_entity
+      #render json: :edit
+      render :edit
     end
   end
 

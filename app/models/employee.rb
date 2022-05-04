@@ -16,7 +16,9 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  
+  before_validation :date_of_birth_validation
+  validates :account_number, :aadhar_card_number, :pan_card_number,  format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
+  validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' }, format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
   def recalculate_leave_balance
     leafs.each do |leave|
       if leave.updated_at.min == Time.zone.now.min
@@ -78,4 +80,7 @@ class Employee < ApplicationRecord
   #   return errors.add :base, "Salary not Valid :)"  unless salary <= 50000
   # end
 
+  def date_of_birth_validation
+    return errors.add :base, "Employee Should be 18 " unless date_of_birth < Time.now.to_date - 18.years
+  end
 end
