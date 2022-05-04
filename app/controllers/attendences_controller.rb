@@ -2,13 +2,13 @@
 
 # Attendence controller
 class AttendencesController < InheritedResources::Base
-  #load_and_authorize_resource
+  # load_and_authorize_resource
   def index
-    if current_employee.role.name == 'HR'
-        @attendences = Attendence.order(created_at: :desc)
-    else
-        @attendences = Attendence.where(employee_id: current_employee).order(created_at: :desc)
-    end
+    @attendences = if current_employee&.role&.name == 'HR'
+                     Attendence.order(created_at: :desc)
+                   else
+                     current_employees.attendences.order(created_at: :desc)
+                   end
   end
 
   def show
@@ -19,14 +19,14 @@ class AttendencesController < InheritedResources::Base
   def edit
     @attendence = Attendence.find(params[:id])
   end
-  
+
   def create
-    last_attendance = Attendence.where(checkin_time: Time.zone.now-2.minutes..Time.zone.now).last
-    unless last_attendance.nil?
-      last_attendance.update_column('checkout_time', nil)
+    last_attendance = Attendence.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now).last
+    if last_attendance.nil?
+        Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now,
+                                     status: 'Present')
     else
-      @attendence = Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now, status: 'Present')
-      @attendence.save(validate: false)
+        last_attendance.update_column('checkout_time', nil)
     end
     redirect_to root_path
   end
@@ -52,22 +52,21 @@ class AttendencesController < InheritedResources::Base
 
   def search
     if current_user.role.name == 'HR'
-      unless params[:start_date].blank? && params[:end_date].blank?
-        @attendences = Attendence.where(created_at: params[:start_date]..params[:end_date])
-      else
-        @attendences = Attendence.all 
-      end
+      @attendences = if params[:start_date].blank? && params[:end_date].blank?
+                       Attendence.all
+                     else
+                       Attendence.where(created_at: params[:start_date]..params[:end_date])
+                     end
+    elsif params[:start_date].blank? && params[:end_date].blank?
+      @attendences = Attendence.order(created_at: :desc)
     else
-      unless params[:start_date].blank? && params[:end_date].blank?
-        @attendences = Attendence.where(employee_id: current_employee, created_at: params[:start_date].to_date..(params[:end_date].to_date + 1.day)).order(created_at: :desc)
-      else
-        @attendences = Attendence.order(created_at: :desc)
-      end
+      @attendences = Attendence.where(employee_id: current_employee,
+                                      created_at: params[:start_date].to_date..(params[:end_date].to_date + 1.day))
+                               .order(created_at: :desc)
     end
   end
 
   def attendence_params
-   params.require(:attendence).permit(:checkout_time)
+    params.require(:attendence).permit(:checkout_time)
   end
-
 end

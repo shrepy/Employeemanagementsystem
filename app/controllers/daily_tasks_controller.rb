@@ -5,7 +5,7 @@ class DailyTasksController < ApplicationController
 	end
 
 	def show 
-			@daily_task = DailyTask.find(params[:id])
+		@daily_task = DailyTask.find(params[:id])
 	end
 
 	def new
@@ -27,7 +27,7 @@ class DailyTasksController < ApplicationController
 	end	
 
 	def edit
-		 @daily_task = current_employee.daily_tasks.last
+		@daily_task = current_employee.daily_tasks.last
 		#@@daily_task = DailyTask.find(params[:id])
 	end
 
@@ -36,7 +36,7 @@ class DailyTasksController < ApplicationController
 		if @daily_task.update(params_daily_task)
 			redirect_to @daily_task
     else
-      render :edit
+        render :edit
     end
   end
 
