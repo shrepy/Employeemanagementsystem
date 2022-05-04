@@ -22,7 +22,7 @@
                   <% unless @employee.image.blank? %>
                     <%= image_tag @employee.image_url, class: "rounded-circle img-width" %>
                   <% end %>
-                  <h2><%= @employee.name.capitalize() %></h2>
+                  <h2><%= @employee.name&.capitalize() %></h2>
                   <h3><%= @employee.designation.name %></h3>
                   <div class="social-links mt-2">
                     <a href="" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -62,17 +62,17 @@
 
                          <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Name</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Father Name</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.father_name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.father_name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Mother Name</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.mother_name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.mother_name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
@@ -97,7 +97,7 @@
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Address</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.address.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.address&.capitalize() %></div>
                         </div>
 
                         <div class="row">
