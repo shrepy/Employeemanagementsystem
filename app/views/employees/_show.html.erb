@@ -6,17 +6,17 @@
                         <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
                          <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Name</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Father Name</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.father_name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.father_name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Mother Name</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.mother_name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.mother_name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
@@ -31,7 +31,7 @@
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Designation</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.designation_id %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.designation.name %></div>
                         </div>
 
                         <div class="row">
@@ -41,7 +41,7 @@
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Address</div>
-                          <div class="col-lg-9 col-md-8"><%= @employee.address.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.address&.capitalize() %></div>
                         </div>
 
                         <div class="row">

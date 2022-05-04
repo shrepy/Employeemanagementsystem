@@ -1,7 +1,7 @@
 class DailyTasksController < ApplicationController
 
 	def index
-		@daily_tasks = current_employee.daily_tasks
+		@daily_tasks = current_employee.daily_tasks.order(created_at: :desc)
 	end
 
 	def show 

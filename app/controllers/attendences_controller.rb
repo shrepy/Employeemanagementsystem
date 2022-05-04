@@ -7,7 +7,7 @@ class AttendencesController < InheritedResources::Base
     @attendences = if current_employee&.role&.name == 'HR'
                      Attendence.order(created_at: :desc)
                    else
-                     current_employees.attendences.order(created_at: :desc)
+                     current_employee.attendences.order(created_at: :desc)
                    end
   end
 
@@ -21,7 +21,7 @@ class AttendencesController < InheritedResources::Base
   end
 
   def create
-    last_attendance = Attendence.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now).last
+    last_attendance = Attendence.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now, employee_id: current_employee.id).last
     if last_attendance.nil?
         Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now,
                                      status: 'Present')

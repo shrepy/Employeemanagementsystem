@@ -19,8 +19,8 @@ class Attendence < ApplicationRecord
 
     def checkout_time_validation
         return errors.add :base, "Checkout time can't be blank"  unless checkout_time.present? 
-        
-        return errors.add :base, "Please select date #{checkin_time.strftime("%d-%m-%Y")} and time greater then #{checkin_time.strftime("%H-%M-%S")} :)" unless checkin_time.strftime("%d") == checkout_time.strftime("%d") && checkout_time > checkin_time
+       
+        return errors.add :base, "Please select date #{checkin_time.strftime("%d-%m-%Y")} and time greater then #{checkin_time.strftime("%H:%M")} :)" unless checkin_time.strftime("%d") == checkout_time.strftime("%d") && checkout_time.strftime("%H:%M") > checkin_time.strftime("%H:%M")
     end
 
 end

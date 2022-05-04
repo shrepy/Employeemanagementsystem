@@ -21,16 +21,13 @@
                     <td><%= ticket.ticket_type %></td>
                     <% if current_employee.role.name == 'HR' %>
                       <td><% if ticket.status == 'accept' %>
-                      <%= link_to 'Accepted', ticket_path(ticket), method: :patch, class: 'btn btn-success' %>
-                      <% else %>
-                        <%= link_to 'Accept', ticket_path(ticket), method: :patch, class: 'btn btn-success' %>
-                      <% end %>
-                    
-                     <% if  ticket.status == 'decline' %>
-                        <%= link_to 'Declined', decline_ticket_path(ticket), method: :patch, class: 'btn btn-danger' %>
-                      <% else %>
-                        <%= link_to 'Decline', decline_ticket_path(ticket), method: :patch, class: 'btn btn-danger' %>
-                      <% end %>
+                            <%= link_to 'Accepted', ticket_path(ticket), method: :patch, class: 'btn btn-success disabled' %>
+                          <% elsif ticket.status == 'decline' %>
+                            <%= link_to 'Declined', decline_ticket_path(ticket), method: :patch, class: 'btn btn-danger disabled' %>
+                          <% else %>
+                            <%= link_to 'Accept', ticket_path(ticket), method: :patch, class: 'btn btn-success' %>
+                            <%= link_to 'Decline', decline_ticket_path(ticket), method: :patch, class: 'btn btn-danger' %>
+                          <% end %>
                     </td>
                     <% else %>
                        <% if ticket.status == nil %>

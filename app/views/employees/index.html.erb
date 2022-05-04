@@ -45,7 +45,7 @@
                     <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
-                  <%= link_to 'Overview', employee_path(current_employee.id), class: "nav-link" , remote: true %>
+                  <%= link_to 'Overview', employee_path(current_employee), class: "nav-link" , remote: true %>
                 </li>
 
                 <li class="nav-item"><%= link_to 'Change Password', edit_employee_registration_path, class: "nav-link",
