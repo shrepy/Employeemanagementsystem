@@ -4,8 +4,8 @@
 class AttendencesController < InheritedResources::Base
   #load_and_authorize_resource
   def index
-    if current_user.role.name == 'HR'
-        @attendences = Attendence.order(created_at: :desc) 
+    if current_employee.role.name == 'HR'
+        @attendences = Attendence.order(created_at: :desc)
     else
         @attendences = Attendence.where(employee_id: current_employee).order(created_at: :desc)
     end
@@ -21,12 +21,12 @@ class AttendencesController < InheritedResources::Base
   end
   
   def create
-    last = Attendence.where(checkin_time: Time.zone.now-2.minutes..Time.zone.now).last
-    unless last.nil?
-       last.update(checkout_time: nil)
+    last_attendance = Attendence.where(checkin_time: Time.zone.now-2.minutes..Time.zone.now).last
+    unless last_attendance.nil?
+      last_attendance.update_column('checkout_time', nil)
     else
       @attendence = Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now, status: 'Present')
-      @attendence.save
+      @attendence.save(validate: false)
     end
     redirect_to root_path
   end
@@ -34,8 +34,11 @@ class AttendencesController < InheritedResources::Base
   def update
     @attendence = Attendence.find(params[:id])
     if params[:attendence].present?
-      @attendence.update(attendence_params)
-      redirect_to root_path
+      if @attendence.update(attendence_params)
+        redirect_to attendences_path
+      else
+        render :edit
+      end
     else
       redirect_to attendences_path
     end

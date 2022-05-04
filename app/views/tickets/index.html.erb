@@ -16,7 +16,7 @@
                 <tbody>
                   <% @tickets.each do |ticket| %>
                   <tr>
-                    <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,50) %></button></th>
+                    <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
                     <td><%= ticket.employee.name %></td>
                     <td><%= ticket.ticket_type %></td>
                     <% if current_employee.role.name == 'HR' %>
@@ -36,9 +36,9 @@
                        <% if ticket.status == nil %>
                           <td><button type="button" class="btn btn-warning disabled">Pending</button></td>
                        <% elsif ticket.status == 'accept' %>
-                          <td><button type="button" class="btn btn-success disabled">Accepted</button></td>
+                          <td><button type="button" class="btn btn-success disabled">Accepted</button> by <%= ticket.updated_by%></td>
                        <% else %>
-                          <td><button type="button" class="btn btn-danger disabled">Rejected</button></td>
+                          <td><button type="button" class="btn btn-danger disabled">Rejected</button> by <%= ticket.updated_by%></td>
                        <% end%>
                     <% end %>
                   </tr>

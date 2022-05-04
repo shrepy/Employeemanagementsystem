@@ -34,6 +34,7 @@
                     <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                     <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                     <td><%= attendence.hour %></td>
+                    <td><%= attendence.employee.name %></td>
                     <% if current_employee.role.name == "HR" %>
                     <td><%= link_to 'Edit', edit_attendence_path(attendence), class: "btn btn-primary" %></td>
                     <% end %>

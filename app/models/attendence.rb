@@ -3,6 +3,7 @@ class Attendence < ApplicationRecord
   belongs_to :employee
 
   before_save :working_hour
+  before_validation :checkout_time_validation,  on: [:update]
 
   private
 
@@ -16,16 +17,10 @@ class Attendence < ApplicationRecord
     end
   end
 
+  def checkout_time_validation
+    return errors.add :base, "Checkout time can't be blank"  unless checkout_time.present? 
+    
+    return errors.add :base, "Please select date #{checkin_time.strftime("%d-%m-%Y")} and time greater then #{checkin_time.strftime("%H-%M-%S")} :)" unless checkin_time.strftime("%d") == checkout_time.strftime("%d") && checkout_time > checkin_time
+  end
 
-  # def checkin_time_validation
-  #   attendence = Attendence.last 
-
-  #   return if attendence.nil?
-
-  #   if attendence.checkin_time.strftime("%H-%M") < checkin_time.strftime("%H-%M")
-  #     true
-  #   else
-  #     false
-  #   end
-  #end
 end

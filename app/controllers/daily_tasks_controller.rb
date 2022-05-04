@@ -5,11 +5,16 @@ class DailyTasksController < ApplicationController
 	end
 
 	def show 
-		@daily_task = DailyTask.find(params[:id])
+			@daily_task = DailyTask.find(params[:id])
 	end
 
 	def new
-		@daily_task = DailyTask.new
+		task = current_employee.daily_tasks.map{ |task| task if task.created_at.to_date == Time.now.to_date}.compact 
+		if task.blank?
+			@daily_task = DailyTask.new
+		else
+			redirect_to edit_daily_task_path(task)
+		end
 	end
 
 	def create
@@ -22,7 +27,8 @@ class DailyTasksController < ApplicationController
 	end	
 
 	def edit
-		@daily_task = DailyTask.find(params[:id])
+		 @daily_task = current_employee.daily_tasks.last
+		#@@daily_task = DailyTask.find(params[:id])
 	end
 
 	def update

@@ -9,5 +9,6 @@ class Ticket < ApplicationRecord
     accept: 'Accept',
     decline: 'Decline',
   }
-
+ 
+  validates :description,  presence: true
 end

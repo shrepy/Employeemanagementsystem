@@ -1,7 +1,8 @@
 </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-<%= form_with(model: attendence) do |form| %>
+<%= link_to 'Back', attendences_path, class: "btn btn-primary right mb-5"%>
+<%= form_with(model: attendence, action: "edit") do |form| %>
   <% if attendence.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(attendence.errors.count, "error") %> prohibited this attendence from being saved:</h2>
@@ -16,7 +17,7 @@
 
   <div class="field">
     <%= form.label :checkout_time, class: "mb-3" %>
-    <%= form.datetime_field :checkout_time, class: "form-control mb-3" %>
+    <%= form.datetime_field :checkout_time, class: "form-control mb-3"%>
   </div>
 
 
@@ -24,4 +25,5 @@
     <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
 </main>

@@ -7,4 +7,23 @@ class HolidaysController < InheritedResources::Base
   def index
     @holidays = Holiday.all
   end
+
+  def new
+    @holiday = Holiday.new
+  end
+
+  def create
+    @holiday = Holiday.new(holiday_params)
+    if @holiday.save 
+      redirect_to holidays_path
+    else
+      render :new 
+    end
+  end
+
+  private
+
+  def holiday_params
+    params.require(:holiday).permit(:holiday_date, :holiday_name)
+  end
 end

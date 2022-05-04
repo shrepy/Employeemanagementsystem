@@ -1,17 +1,21 @@
- <% array = [] %>
-                 <% @attendences.each do |attendence| %>
+<% array = [] %>
+    <% @attendences.each do |attendence| %>
                    <%# if current_employee.id == attendence.employee_id %>
-                      <% unless array.include?(attendence.created_at.strftime('%d-%m-%y')) %>
-                         <% array << attendence.created_at.strftime('%d-%m-%y') %>
-                            <tr>
-                             <td><%= attendence.checkin_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
-                              <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
-                              <td><%= attendence.hour %></td>
-                              <td><%= link_to 'View', attendence_path(attendence), class: "btn btn-primary" %></td>
-                              <% if current_employee.role.name == "HR" %>
-                                <td><%= link_to 'Edit', edit_attendence_path(attendence), class: "btn btn-primary" %></td>
-                              <% end %>
-                            </tr>
-                      <% end %>
+        <% unless array.include?([attendence.created_at.strftime('%d-%m-%y'), attendence.employee_id]) %>
+            <% array << [attendence.created_at.strftime('%d-%m-%y'), attendence.employee_id] %>
+            <tr>
+                <td><%= attendence.checkin_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                <td><%= attendence.hour %></td>
+                <td><%= attendence.employee.name %></td>
+                <td><%= link_to 'View', attendence_path(attendence), class: "btn btn-primary" %></td>
+                <td><% if current_employee.role.name == "HR" %>
+                    <% if attendence.employee.role.name == "HR" %>
+                    <% else %>
+                        <%= link_to 'Edit', edit_attendence_path(attendence), class: "btn btn-primary" %>
                     <% end %>
+                <% end %></td>
+            </tr>
+        <% end %>
+    <% end %>
                   <%# end %>

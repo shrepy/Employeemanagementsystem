@@ -1,6 +1,32 @@
-<h1>Editing Ticket</h1>
+</aside><!-- End Sidebar-->
 
-<%= render 'form', ticket: @ticket %>
+  <main id="main" class="main">
+		<%= form_with(model: @ticket) do |form| %>
+		  <% if @ticket.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
 
-<%= link_to 'Show', @ticket %> |
-<%= link_to 'Back', tickets_path %>
+		      <ul>
+		        <% @ticket.errors.each do |error| %>
+		          <li><%= error.full_message %></li>
+		        <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+
+		  <div class="field">
+		    <%= form.label :add_reason%>
+		    <%= form.text_field :add_reason, class: "form-control mt-3 mb-3" %>
+		  </div>
+
+		  
+
+		  <%= form.hidden_field :employee_id, value: current_employee.id %> 
+
+		  <div class="actions">
+		    <%= form.submit 'Send', class: 'btn btn-primary' %>
+		  </div>
+		<% end %>
+</main>
+
+
