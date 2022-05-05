@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2022_05_02_071450) do
     t.bigint "employee_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "checkin_ip_address"
+    t.string "checkout_ip_address"
     t.index ["employee_id"], name: "index_attendences_on_employee_id"
   end
 
