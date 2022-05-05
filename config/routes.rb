@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   devise_for :employees
   resources :employees
 
+  namespace :hr do
+    resources :employees
+  end
+
   get '/set_ip', to: "dashboard#set_ip"
   get '/profile', to: "employees#profile"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -29,4 +33,6 @@ Rails.application.routes.draw do
   #patch '/accept/:id', to: "tickets#decline_ticket",  as: 'accept_ticket'
 
   get '/search', to: "attendences#search"
+
+  
 end
