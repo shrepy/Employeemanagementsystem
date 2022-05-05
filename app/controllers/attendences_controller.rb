@@ -24,10 +24,9 @@ class AttendencesController < InheritedResources::Base
     last_attendance = Attendence.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now, employee_id: current_employee.id).last
     if last_attendance.nil?
         Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now,
-                                     status: 'Present')
+                                     status: 'Present', checkin_ip_address: request.remote_ip)
     else
-      @attendence = Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now, status: 'Present', checkin_ip_address: request.remote_ip)
-      @attendence.save
+      last_attendance.update_column('checkout_time', nil)
     end
     redirect_to root_path
   end
