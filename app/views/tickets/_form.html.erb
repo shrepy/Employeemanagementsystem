@@ -1,6 +1,4 @@
-</aside><!-- End Sidebar-->
 
-  <main id="main" class="main">
 <%= form_with(model: ticket) do |form| %>
   <% if ticket.errors.any? %>
     <div id="error_explanation">
@@ -19,9 +17,9 @@
     <%= form.cktext_area :description, class: "form-control mt-3 mb-3" %>
   </div>
 
-  <div class="field">
+  <div class="field mt-3">
     <%= form.label :ticket_type %>
-    <%= form.select(:ticket_type, Ticket.ticket_types, {}, { :class => 'form-control mt-3 mb-3' }) %>
+    <%= form.select(:ticket_type, Ticket.ticket_types, {}, { :class => 'form-control mt-2 mb-3' }) %>
   </div>
 
   <%= form.hidden_field :employee_id, value: current_employee.id %> 
@@ -30,4 +28,3 @@
     <%= form.submit 'Send', class: 'btn btn-primary' %>
   </div>
 <% end %>
-</main>

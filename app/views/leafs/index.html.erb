@@ -41,7 +41,6 @@
                 <tbody>
                   <% @leafs.each do |leaf| %>
                   <tr>
-                    <% if current_employee.id == leaf.employee_id  %>
                       <th scope="row"></th>
                       <td><%= leaf.leave_type %></td>
                       <td><%= leaf.from_date %></td>
@@ -62,7 +61,6 @@
                         <button type="button" class="btn btn-danger disabled">Rejected</button>
                       <% end %>
                       </td>
-                    <% end %>
                   </tr>
                   <% end %>
                 </tbody>

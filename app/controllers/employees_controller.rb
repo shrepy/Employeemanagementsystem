@@ -28,11 +28,16 @@ class EmployeesController < ApplicationController
   end
 
   def update
+    @designations = Designation.all 
+    @skills = Skill.all
+    @roles = Role.all
     @employee = Employee.find(params[:id])
     if @employee.update(employee_params)
       redirect_to @employee
     else
-      render :edit, status: :unprocessable_entity
+      #render js: edit, status: :unprocessable_entity
+      #render json: :edit
+      render :edit
     end
   end
 
@@ -50,6 +55,7 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-     params.require(:employee).permit(:name, :primary_skill, :password, :password_confirmation, :designation_id, :role_id, :image)
+     params.require(:employee).permit(:name, :father_name, :mother_name, :phone_number, :address, :email, :bank_name, :account_number, :pan_card_number, :aadhar_card_number,:primary_skill, :password, :password_confirmation, :designation_id, :role_id, :image, :date_of_birth)
   end
 end
+

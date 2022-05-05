@@ -2,13 +2,13 @@
 
 
 
-<%= form_with(model: holiday) do |form| %>
-  <% if holiday.errors.any? %>
+<%= form_with(model: @holiday) do |form| %>
+  <% if @holiday.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(holiday.errors.count, "error") %> prohibited this holiday from being saved:</h2>
+      <h2><%= pluralize(@holiday.errors.count, "error") %> prohibited this holiday from being saved:</h2>
 
       <ul>
-        <% holiday.errors.each do |error| %>
+        <% @holiday.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

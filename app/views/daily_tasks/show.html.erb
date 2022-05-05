@@ -27,7 +27,7 @@
                   
                   <tr>
                       <th scope="row"></th>
-                     	<td><%= @daily_task.rank%></td>
+                     	<td><%= @daily_task.created_at.to_date%></td>
                       <td><%= raw @daily_task.description %></td>                  
                       <td><%= link_to "Edit", edit_daily_task_path(@daily_task), class: "btn btn-primary " %></td>
                   </tr>

@@ -25,8 +25,8 @@
                   <% unless current_employee.image.blank? %>
                     <%= image_tag current_employee.image_url, class: "rounded-circle img-width" %>
                   <% end %>
-                  <h2><%= employee.name.capitalize() %></h2>
-                  <h3><%= employee.designation.name.capitalize() %></h3>
+                  <h2><%= employee.name&.capitalize() %></h2>
+                  <h3><%= employee.designation.name&.capitalize() %></h3>
                   <div class="social-links mt-2">
                     <a href="" class="twitter"><i class="bi bi-twitter"></i></a>
                     <a href="https://www.facebook.com", target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -45,7 +45,7 @@
                     <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
-                  <%= link_to 'Overview', employee_path(current_employee.id), class: "nav-link" , remote: true %>
+                  <%= link_to 'Overview', employee_path(current_employee), class: "nav-link" , remote: true %>
                 </li>
 
                 <li class="nav-item"><%= link_to 'Change Password', edit_employee_registration_path, class: "nav-link",
@@ -53,7 +53,7 @@
                 </li>
 
               </ul>
-                    <div class="tab-content pt-2 xyz">
+                    <div class="tab-content pt-2 show-data">
 
                       <div class="tab-pane fade show active profile-overview" id="profile-overview">
                         <h5 class="card-title">About</h5>
@@ -63,17 +63,17 @@
 
                          <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Name</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Father Name</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.father_name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.father_name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label ">Mother Name</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.mother_name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.mother_name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
@@ -88,7 +88,7 @@
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Designation</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.designation.name.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.designation.name&.capitalize() %></div>
                         </div>
 
                         <div class="row">
@@ -98,7 +98,7 @@
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Address</div>
-                          <div class="col-lg-9 col-md-8"><%= employee.address.capitalize() %></div>
+                          <div class="col-lg-9 col-md-8"><%= employee.address&.capitalize() %></div>
                         </div>
 
                         <div class="row">
