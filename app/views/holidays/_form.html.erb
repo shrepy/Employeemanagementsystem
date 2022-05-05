@@ -1,12 +1,9 @@
-<h1 style="width: 300px;">gfjwhb</h1>
-
-
+<h1 style="width: 300px;"></h1>
 
 <%= form_with(model: @holiday) do |form| %>
   <% if @holiday.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@holiday.errors.count, "error") %> prohibited this holiday from being saved:</h2>
-
       <ul>
         <% @holiday.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -17,15 +14,15 @@
 
   <div class="field">
     <%= form.label :holiday_name %>
-    <%= form.text_field :holiday_name %>
+    <%= form.text_field :holiday_name, class: 'form-control'%>
   </div>
 
-  <div class="field">
+  <div class="field mt-3 mb-3">
     <%= form.label :holiday_date %>
-    <%= form.date_select :holiday_date %>
+    <%= form.date_field :holiday_date, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
