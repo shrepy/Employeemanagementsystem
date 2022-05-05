@@ -6,7 +6,9 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.cktext_area :description %>
+    <%= form.cktext_area :description %> <% @daily_task.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   </div>
   <%= form.hidden_field :employee_id, value: current_employee.id %>     
   
