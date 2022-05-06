@@ -2,14 +2,13 @@
 
 # Attendence controller
 class AttendencesController < InheritedResources::Base
-  include ApplicationHelper
   # load_and_authorize_resource
   def index
     @attendences = current_employee.attendences.order(created_at: :desc)
   end
 
   def show
-    @attendence = if employee_role
+    @attendence = if current_employee.is_hr?
                     Attendence.find(params[:id])
                   # @attendences = Attendence.where(params[:employee_id])
                   else
@@ -19,7 +18,7 @@ class AttendencesController < InheritedResources::Base
   end
 
   def edit
-    if employee_role
+    if current_employee.is_hr?
       @attendence = Attendence.find(params[:id])
     else
       redirect_to root_path
@@ -58,7 +57,7 @@ class AttendencesController < InheritedResources::Base
   end
 
   def search
-    if employee_role
+    if current_employee.is_hr?
       @attendences = if params[:start_date].blank? && params[:end_date].blank?
                        Attendence.all
                      else

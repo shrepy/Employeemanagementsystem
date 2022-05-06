@@ -83,4 +83,9 @@ class Employee < ApplicationRecord
   def date_of_birth_validation
     return errors.add :base, "Employee Should be 18 " unless date_of_birth < Time.now.to_date - 18.years
   end
+
+
+  def is_hr?
+    role&.name == 'HR' || 'hr' || 'Hr' 
+  end
 end

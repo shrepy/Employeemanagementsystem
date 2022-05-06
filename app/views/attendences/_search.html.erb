@@ -8,8 +8,8 @@
                 <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                 <td><%= attendence.hour %></td>
                 <td><%= link_to 'View', attendence_path(attendence), class: "btn btn-primary" %></td>
-                <td><% if employee_role %>
-                    <% if attendence.employee.role.name == "HR" %>
+                <td><% if current_employee.is_hr? %>
+                    <% if attendence.employee.is_hr? %>
                     <% else %>
                         <%= link_to 'Edit', edit_attendence_path(attendence), class: "btn btn-primary" %>
                     <% end %>

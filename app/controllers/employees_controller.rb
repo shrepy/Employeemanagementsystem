@@ -2,7 +2,6 @@
 
 # Employee controller
 class EmployeesController < ApplicationController
-  include ApplicationHelper
   before_action :authenticate_employee!
   load_and_authorize_resource
   #before_action :set_employee, only: %i[show, edit]
@@ -15,7 +14,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1 or /employees/1.json
   def show
-    if employee_role
+    if current_employee.is_hr?
       @employee = Employee.find(params[:id])
     else
       @employee = current_user

@@ -22,12 +22,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :employees
   resources :employees
-  authenticated :employee, ->(employee) { employee.role.name == 'HR' } do
-    namespace :hr do
-      resources :employees
-      resources :attendences
-      get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'
-    end
+  namespace :hr do
+    resources :employees
+    resources :attendences
+    get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'
   end
   get '/set_ip', to: 'dashboard#set_ip'
   get '/profile', to: 'employees#profile'

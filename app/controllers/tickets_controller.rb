@@ -1,7 +1,6 @@
 class TicketsController < InheritedResources::Base
-  include ApplicationHelper
   def index 
-    if employee_role
+    if current_employee.is_hr?
       @tickets = Ticket.order(created_at: :desc)
     else
       @tickets = Ticket.where(employee_id: current_employee)
