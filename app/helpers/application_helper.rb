@@ -14,4 +14,9 @@ module ApplicationHelper
     #   return s.salary / 30 * array.uniq.count
     # end
   end
+
+
+  def employee_role
+    current_employee&.role&.name == 'HR'
+  end
 end

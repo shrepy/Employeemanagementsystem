@@ -1,7 +1,8 @@
 class LeafsController < InheritedResources::Base
+  include ApplicationHelper
   before_action :authenticate_employee!
   def index
-    if current_employee.role.name == "HR"
+    if employee_role
       @leafs = Leaf.order('created_at DESC')
     else
       @leafs = Leaf.where(employee_id: current_employee.id).order('created_at DESC')
