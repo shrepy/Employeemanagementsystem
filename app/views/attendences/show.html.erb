@@ -26,9 +26,10 @@
                   </tr>
                 </thead>
                 <tbody>
+            <%= link_to 'Back', :back,  class: "right btn btn-primary m-4" %>
               <% @attendence %>
               <% @attendences.each do |attendence| %>
-                <% if current_employee.id == attendence.employee_id %>
+                <%# if current_employee.id == attendence.employee_id %>
                 <% if @attendence.created_at.strftime('%d-%m-%Y') == attendence.created_at.strftime('%d-%m-%Y') %>
                   <tr>
                     <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
@@ -40,12 +41,12 @@
                     <% end %>
                   </tr> 
                 <% end %> 
-                <% end %>
+                <%# end %>
               <% end %>
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-            <%= link_to 'Back', attendences_path, class: "right btn btn-primary" %>
+            <%#= link_to 'Back', attendences_path, class: "right btn btn-primary" %>
             </div>
           </div>
          </div>

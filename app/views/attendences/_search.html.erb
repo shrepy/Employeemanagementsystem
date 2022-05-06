@@ -1,15 +1,12 @@
 <% array = [] %>
     <% @attendences.each do |attendence| %>
                    <%# if current_employee.id == attendence.employee_id %>
-        <% unless array.include?([attendence.created_at.strftime('%d-%m-%y'), attendence.employee_id]) %>
-            <% array << [attendence.created_at.strftime('%d-%m-%y'), attendence.employee_id] %>
+        <% unless array.include?(attendence.created_at.strftime('%d-%m-%y')) %>
+            <% array << attendence.created_at.strftime('%d-%m-%y') %>
             <tr>
                 <td><%= attendence.checkin_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                 <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                 <td><%= attendence.hour %></td>
-                <% if current_employee.role.name == "HR" %>
-                <td><%= attendence.employee.name %></td>
-                <% end %>
                 <td><%= link_to 'View', attendence_path(attendence), class: "btn btn-primary" %></td>
                 <td><% if current_employee.role.name == "HR" %>
                     <% if attendence.employee.role.name == "HR" %>

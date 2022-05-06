@@ -4,27 +4,33 @@
 class AttendencesController < InheritedResources::Base
   # load_and_authorize_resource
   def index
-    @attendences = if current_employee&.role&.name == 'HR'
-                     Attendence.order(created_at: :desc)
-                   else
-                     current_employee.attendences.order(created_at: :desc)
-                   end
+    @attendences = current_employee.attendences.order(created_at: :desc)
   end
 
   def show
-    @attendence = Attendence.find(params[:id])
-    @attendences = Attendence.where(params[:employee_id])
+    @attendence = if current_employee&.role&.name == 'HR'
+                    Attendence.find(params[:id])
+                  # @attendences = Attendence.where(params[:employee_id])
+                  else
+                    Attendence.find_by(employee_id: current_employee.id)
+                  end
+    @attendences = Attendence.where(employee_id: @attendence.employee_id)
   end
 
   def edit
-    @attendence = Attendence.find(params[:id])
+    if current_employee.role.name == 'HR'
+      @attendence = Attendence.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   def create
-    last_attendance = Attendence.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now, employee_id: current_employee.id).last
+    last_attendance = Attendence.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now,
+                                       employee_id: current_employee.id).last
     if last_attendance.nil?
-        Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now,
-                                     status: 'Present', checkin_ip_address: request.remote_ip)
+      Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now,
+                        status: 'Present', checkin_ip_address: request.remote_ip)
     else
       last_attendance.update_column('checkout_time', nil)
     end
