@@ -86,6 +86,6 @@ class Employee < ApplicationRecord
 
 
   def is_hr?
-    role&.name == 'HR' || 'hr' || 'Hr' 
+    role&.name == 'HR' 
   end
 end
