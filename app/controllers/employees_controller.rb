@@ -46,6 +46,15 @@ class EmployeesController < ApplicationController
     @employee = Employee.all
   end
 
+  def search 
+    @employees = if params[:name].blank? && params[:father_name].blank? && params[:employee_id].blank?
+                  Employee.all
+                else
+                  Employee.where("name = :name  OR father_name = :father_name",
+                  {name: params[:name], father_name: params[:father_name]})
+                end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

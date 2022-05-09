@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :employees
-  resources :employees
+  resources :employees do 
+    collection do
+       get :search
+    end
+  end
 
   namespace :hr do
     resources :employees

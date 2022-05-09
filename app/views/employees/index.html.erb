@@ -337,10 +337,20 @@
           </div>
 
             <div class="card-body mt-3">
-          <%= form_with(url: '/employees', method: 'get', local: true) do %>
-            <div>
-              <%= text_field_tag :search%>
-              <%= submit_tag("Search") %>
+          <%= form_with(url: '/employees/search', method: 'get', local: false) do %>
+            <div class="row">
+              <div class="col-2">
+                <%= label_tag :name %>
+                <%= text_field_tag :name%>
+              </div>
+              <div class="col-2">
+                <%= label_tag :father_name %>
+                <%= text_field_tag :father_name%>
+              </div>
+              <div class="col-2 mt-3">
+                <%= submit_tag("Search", :class=>"btn btn-primary") %>
+                <button type="button" onClick="refreshPage()" class="btn btn-primary">Clear</button>
+              </div>
             </div>
           <% end %>
               <!-- Table with stripped rows -->
@@ -352,18 +362,8 @@
                     <th scope="col">Designation</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <% @employees.each do |employee| %>
-                  <tr>
-                    <th scope="row"></th>
-                    <td><%= employee.name %></td>
-                    <td><%= employee.designation.name %></td>
-                     <td><%#= link_to 'Attendence', attendences_path, class: "btn btn-primary"%></td>
-                     <% unless employee.role.name == "HR" %>
-                    <td><%= link_to 'Details', employee, class: "btn btn-primary"%></td>
-                    <% end %>
-                  </tr>
-                  <% end %>
+                <tbody class="search-data">
+                  <%= render 'search' %>
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
@@ -377,3 +377,8 @@
     <% end %>
 
   </main><!-- End #main -->
+  <script>
+                function refreshPage(){
+                    window.location.reload();
+                } 
+                </script>
