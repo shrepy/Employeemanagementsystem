@@ -11,10 +11,10 @@ class Leaf < ApplicationRecord
   
   before_validation :check_year
   before_validation :leave_days
-  before_create :total_day
+  before_create :total_leave_days
 
 
-  def total_day
+  def total_leave_days
     self.total_days = ((self.till_date - self.from_date) - total_leave_count) + 1
   end
 
@@ -42,7 +42,7 @@ class Leaf < ApplicationRecord
   end
 
   def leave_days
-    return errors.add :base, "You Can Apply only 30 days leave :)" unless total_day <= 30
+    return errors.add :base, "You Can Apply only 30 days leave :)" unless total_leave_days <= 30
   end
 
 end
