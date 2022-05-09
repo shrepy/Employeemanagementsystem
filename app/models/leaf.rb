@@ -5,12 +5,13 @@ class Leaf < ApplicationRecord
     decline: 'decline',
     cancel: 'cancelled' # Newly created orde
   }
+  validates :from_date, :till_date, :resion, presence: true
   validate :check_past_date
-  before_create :total_day
   after_save { employee.recalculate_leave_balance }
   
   before_validation :check_year
   before_validation :leave_days
+  before_create :total_day
 
 
   def total_day

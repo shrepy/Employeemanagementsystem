@@ -28,11 +28,12 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
+                     <% if current_employee.role.name == "HR" %>
+                    <th>Employee Name</th>
+                     <% end %>
                     <th scope="col">Leave type</th>
                     <th scope="col">From date</th>
                     <th scope="col">Till date</th>
-                    <th scope="col">Leave starts</th>
-                    <th scope="col">Leave end</th>
                     <th scope="col">Total days</th>
                     <th scope="col">Reason</th>
                     <th scope="col">Leave status</th>
@@ -42,11 +43,12 @@
                   <% @leafs.each do |leaf| %>
                   <tr>
                       <th scope="row"></th>
+                      <% if current_employee.role.name == "HR" %>
+                      <td><%= leaf.employee&.name&.capitalize() %></td>
+                      <% end %>
                       <td><%= leaf.leave_type %></td>
                       <td><%= leaf.from_date %></td>
                       <td><%= leaf.till_date %></td>
-                      <td><%= leaf.leave_starts %></td>
-                      <td><%= leaf.leave_end %></td>
                       <td><%= leaf.total_days %> Days</td>
                       <td><%= leaf.resion %></td>
                       <td>
