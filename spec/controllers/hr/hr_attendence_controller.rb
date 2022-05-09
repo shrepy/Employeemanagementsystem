@@ -23,7 +23,7 @@ RSpec.describe Hr::AttendencesController, type: :controller do
   #   end
   # end
 
-  describe 'show_attendence' do 
+  describe 'Hr can see attendences' do 
       designation = FactoryBot.create(:designation)
       role =  FactoryBot.create(:role, name: 'HR')
       employee = FactoryBot.create(:employee, designation_id: designation.id, role_id: role.id)
@@ -31,7 +31,7 @@ RSpec.describe Hr::AttendencesController, type: :controller do
         sign_in(employee)
       end
 
-      it 'Hr can show all employee attendence' do 
+      it 'Hr can see all employee attendences' do 
         attendence = FactoryBot.create(:attendence, employee_id: employee.id)
         get :show_attendence, params: { id: employee.id }
         expect(response.status).to eq(200)
@@ -39,7 +39,7 @@ RSpec.describe Hr::AttendencesController, type: :controller do
   end
 
 
-  describe 'show_attendence' do 
+  describe 'Employee can see attendences' do 
       designation_one = FactoryBot.create(:designation)
       role_one =  FactoryBot.create(:role, name: 'Employee')
       employee_one= FactoryBot.create(:employee, designation_id: designation_one.id, role_id: role_one.id)
@@ -47,7 +47,7 @@ RSpec.describe Hr::AttendencesController, type: :controller do
         sign_in(employee_one)
       end
 
-      it 'Employee can not show all employee attendence' do 
+      it 'Employee can not see all employee attendences' do 
         attendence = FactoryBot.create(:attendence, employee_id: employee_one.id)
         get :show_attendence, params: { id: employee_one.id }
         expect(response.status).to eq(302)
