@@ -7,7 +7,7 @@ class LeafsController < InheritedResources::Base
     @leafs = if current_employee.role.name == 'HR'
                Leaf.order('created_at DESC')
              else
-               Leaf.where(employee_id: current_employee.id).order('created_at DESC')
+               current_employee.leafs.order('created_at DESC')
              end
   end
 
