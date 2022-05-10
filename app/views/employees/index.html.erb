@@ -347,6 +347,10 @@
                 <%= label_tag :father_name %>
                 <%= text_field_tag :father_name%>
               </div>
+              <div class="col-2">
+                <%= label_tag :designation %>
+                <%= select_tag :designation, options_for_select(@designations.map { |t| ["#{t.name}",t.id]}) %>
+              </div>
               <div class="col-2 mt-3">
                 <%= submit_tag("Search", :class=>"btn btn-primary") %>
                 <button type="button" onClick="refreshPage()" class="btn btn-primary">Clear</button>

@@ -47,12 +47,7 @@ class EmployeesController < ApplicationController
   end
 
   def search 
-    @employees = if params[:name].blank? && params[:father_name].blank? && params[:employee_id].blank?
-                  Employee.all
-                else
-                  Employee.where("name = :name  OR father_name = :father_name",
-                  {name: params[:name], father_name: params[:father_name]})
-                end
+    @employees = Employee.search(params)
   end
 
   private
