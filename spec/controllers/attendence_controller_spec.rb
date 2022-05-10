@@ -22,4 +22,20 @@ RSpec.describe AttendencesController, type: :controller do
   #     expect(response.status).to eq(302)
   #   end
   # end
+
+  describe 'index' do
+    let!(:designation) { FactoryBot.create(:designation)}
+    let!(:role) { FactoryBot.create(:role )}
+    let!(:employee) { FactoryBot.create(:employee, role_id:  role.id, designation_id: designation.id) }
+    let!(:attendence) { FactoryBot.create(:attendence, employee_id: employee.id)}
+      before do
+        sign_in(employee)
+        get :index
+      end
+
+      it 'Get Employee' do
+        get :index
+        expect(response.status).to eq(200)
+      end
+  end
 end
