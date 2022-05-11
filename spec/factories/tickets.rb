@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :ticket do
-    status { "MyString" }
-    description { "MyText" }
-    ticket_type { 1 }
+    status { nil }
+    description { 'MyText' }
+    ticket_type { 'employee' }
     employee { nil }
   end
 end

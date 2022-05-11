@@ -3,14 +3,14 @@
 # Attendence controller
 class AttendencesController < InheritedResources::Base
   # load_and_authorize_resource
+  before_action :set_attendance, only: %i[show edit]
   def index
     @attendences = current_employee.attendences.order(created_at: :desc)
   end
 
   def show
     @attendence = if current_employee.is_hr?
-                    Attendence.find(params[:id])
-                  # @attendences = Attendence.where(params[:employee_id])
+                    Attendence.find_by_id params[:id]
                   else
                     Attendence.find_by(employee_id: current_employee.id)
                   end
@@ -21,7 +21,7 @@ class AttendencesController < InheritedResources::Base
     if current_employee.is_hr?
       @attendence = Attendence.find(params[:id])
     else
-      redirect_to root_path
+      render json: { message: 'You Have Not Access :)' }, status: 404
     end
   end
 
@@ -74,5 +74,10 @@ class AttendencesController < InheritedResources::Base
 
   def attendence_params
     params.require(:attendence).permit(:checkout_time)
+  end
+
+  def set_attendance
+    @attendence = Attendence.find_by_id params[:id]
+    render json: { message: 'Not Found' }, status: 404 unless @attendence.present?
   end
 end
