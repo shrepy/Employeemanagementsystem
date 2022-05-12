@@ -22,21 +22,14 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @designations = Designation.all
-    @skills = Skill.all
-    @roles = Role.all
+    set_designation
   end
 
   def update
-    @designations = Designation.all
-    @skills = Skill.all
-    @roles = Role.all
     @employee = Employee.find(params[:id])
     if @employee.update(employee_params)
       redirect_to @employee
     else
-      # render js: edit, status: :unprocessable_entity
-      # render json: :edit
       render :edit
     end
   end
@@ -51,6 +44,12 @@ class EmployeesController < ApplicationController
   def set_employee
     @employee = Employee.find_by_id params[:id]
     render json: { message: 'Not Found' }, status: 404 if @employee.nil?
+  end
+
+  def set_designation
+    @designations = Designation.all
+    @skills = Skill.all
+    @roles = Role.all
   end
 
   def employee_params

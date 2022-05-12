@@ -5,7 +5,12 @@ class DailyTasksController < ApplicationController
 	end
 
 	def show 
-		@daily_task = DailyTask.find(params[:id])
+		if current_employee.role.name == "HR" 
+				@daily_task = DailyTask.find_by_id(params[:id]) 
+		else	
+				@daily_task = current_user.daily_tasks.find_by_id(params[:id]) 
+		end
+		redirect_to daily_tasks_path if @daily_task.nil?
 	end
 
 	def new

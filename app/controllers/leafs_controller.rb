@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# leavecontroller
 class LeafsController < InheritedResources::Base
   before_action :authenticate_employee!
 
@@ -7,7 +8,7 @@ class LeafsController < InheritedResources::Base
     @leafs = if current_employee.is_hr?
                Leaf.order('created_at DESC')
              else
-               Leaf.where(employee_id: current_employee.id).order('created_at DESC')
+               current_employee.leafs.order('created_at DESC')
              end
   end
 

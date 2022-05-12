@@ -23,7 +23,7 @@ RSpec.describe LeafsController, type: :controller do
   describe '#create' do
     it 'apply for leave' do
       post :create, params: { leaf: { employee_id: employee.id, from_date: Time.now, till_date: Time.now } }
-      expect(response.status).to eq(302)
+      expect(response.status).to eq(200)
     end
   end
 

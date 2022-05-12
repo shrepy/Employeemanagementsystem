@@ -356,13 +356,13 @@
                   <% @employees.each do |employee| %>
                   <tr>
                     <th scope="row"></th>
-                    <td><%= employee.name %></td>
+                    <td><%= employee.name&.capitalize() %></td>
                     <td><%= employee.designation.name %></td>
                     <% @employee = employee %>
-                    <td> <% unless employee.role.name == "HR" %>
+                    <td> <% unless employee.is_hr? %>
                     <%= link_to 'Details', employee, class: "btn btn-primary"%>
                     <% end %></td>
-                     <td><%= link_to 'Attendence',  hr_show_attendance_path(@employee), class: "btn btn-primary"%></td>
+                     <td><%= link_to 'Attendence',  hr_show_attendance_path(@employee), class: "btn btn-primary"%></td>   
                   </tr>
                   <% end %>
                 </tbody>
