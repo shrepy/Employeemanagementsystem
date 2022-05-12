@@ -17,7 +17,7 @@ RSpec.describe Employee, type: :model do
   end
 
   it 'search employee' do
-    search = 'xyz'
+    search = {name: 'xyz'}
     expect(Employee.search(search)).to eq([employee])
   end
 

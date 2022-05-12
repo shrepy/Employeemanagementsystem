@@ -77,7 +77,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-          <% if current_employee.role.name == "HR" %>
+          <% if current_employee.is_hr?%>
           <%= link_to profile_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
               <%= 'Profile' %>
@@ -88,7 +88,7 @@
       <li class="nav-item">
           <%= link_to employees_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
-          <% unless current_employee.role.name == "HR" %>
+          <% unless current_employee.is_hr? %>
               <%= 'Profile' %>
           <% else %>
               <%= 'Employees' %>

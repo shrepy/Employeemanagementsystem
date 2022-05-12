@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# employeemodel
+# employeecontroller
 class Employee < ApplicationRecord
   self.inheritance_column = 'not_sti'
   has_many :performances, dependent: :destroy
@@ -55,9 +55,25 @@ class Employee < ApplicationRecord
   # end
   #===========salary module=========#
 
-  def self.search(search)
-    if search
-      where(['name LIKE ? OR father_name LIKE ?', "%#{search}%", "%#{search}%"])
+  def leave_total
+    count = 0
+    leafs.each do |leaf|
+      count += leaf.total_days if leaf.leave_status == 'accept'
+    end
+    return count - leave_count unless count.zero?
+
+    count
+  end
+
+  def self.search(params)
+    if params.nil?
+      all
+    elsif params[:name]&.present?
+      where(['name LIKE ?', "%#{params[:name]}%"])
+    elsif params[:father_name]&.present?
+      where(['father_name LIKE ?', (params[:father_name]).to_s])
+    elsif params[:designation]&.present?
+      where('designation_id = ?', params[:designation])
     else
       all
     end

@@ -19,7 +19,7 @@
                     <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
                     <td><%= ticket.employee.name %></td>
                     <td><%= ticket.ticket_type %></td>
-                    <% if current_employee.role.name == 'HR' %>
+                    <% if current_employee.is_hr? %>
                       <td><% if ticket.status == 'accept' %>
                             <%= link_to 'Accepted', ticket_path(ticket), method: :patch, class: 'btn btn-success disabled' %>
                           <% elsif ticket.status == 'decline' %>

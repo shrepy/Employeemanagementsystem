@@ -28,7 +28,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                     <% if current_employee.role.name == "HR" %>
+                     <% if current_employee.is_hr? %>
                     <th>Employee Name</th>
                      <% end %>
                     <th scope="col">Leave type</th>
@@ -43,7 +43,7 @@
                   <% @leafs.each do |leaf| %>
                   <tr>
                       <th scope="row"></th>
-                      <% if current_employee.role.name == "HR" %>
+                      <% if current_employee.is_hr?%>
                       <td><%= leaf.employee&.name&.capitalize() %></td>
                       <% end %>
                       <td><%= leaf.leave_type %></td>

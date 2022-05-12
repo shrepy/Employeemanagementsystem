@@ -38,6 +38,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.all
   end
 
+  def search
+    @employees = Employee.search(params)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
