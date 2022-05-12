@@ -1,11 +1,19 @@
 class DailyTasksController < ApplicationController
 
 	def index
-		@daily_tasks = current_employee.daily_tasks.order(created_at: :desc)
+		if current_employee.role.name == "HR"
+			@daily_tasks = DailyTask.all.order(created_at: :desc)
+		else
+			@daily_tasks = current_employee.daily_tasks.order(created_at: :desc)
+		end
 	end
 
 	def show 
-		@daily_task = DailyTask.find(params[:id])
+		if current_employee.role&.name == "HR"
+			@daily_task = DailyTask.find(params[:id])
+		else
+			@daily_task = current_employee.daily_tasks.find(params[:id])
+		end
 	end
 
 	def new
@@ -27,8 +35,12 @@ class DailyTasksController < ApplicationController
 	end	
 
 	def edit
-		@daily_task = current_employee.daily_tasks.last
-		#@@daily_task = DailyTask.find(params[:id])
+		@daily_task = current_employee.daily_tasks.where("EXTRACT(DAY FROM created_at) = ?", Date.current.day).first
+		if @daily_task.present?
+			render :edit
+		else
+			redirect_to daily_tasks_path
+		end
 	end
 
 	def update

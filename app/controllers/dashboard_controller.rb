@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_employee!
   skip_before_action :authenticate_employee!, only: [:set_ip]
   def index
-    @employees = Employee.search(params[:search])
+    @employees = Employee.all
   end
  
 
