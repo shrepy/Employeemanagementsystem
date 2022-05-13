@@ -71,8 +71,7 @@
                                 </div>
                             </div>
                         </div><!-- End Revenue Card -->
-                        <% @today_birthday = @employees.where("EXTRACT(DAY FROM date_of_birth) = ?", Date.current.day) %>
-                        <%= render partial: "employee", collection: @today_birthday %>
+                        <%= render partial: "employee", collection: @employees %>
                     </div>
                 </div>
             </div>
