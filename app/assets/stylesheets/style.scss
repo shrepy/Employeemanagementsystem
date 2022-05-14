@@ -1087,6 +1087,27 @@ a:active{
   float: right;
 }
 .size-image{
-  width: 25%;
-  height: 100px;
+  width: 125px;
+  height: 125px;
+  border-radius: 10px;
+  border: 2px solid grey;
 }
+.happy-birthday{
+  display: flex;
+  flex-direction: row;
+  margin: -10px;
+}
+.happy-birthdays{
+  display: flex;
+  flex-direction: column;
+  margin: -10px;
+}
+.card-happy-birth{
+   margin: -10px;
+}
+.card-width{
+  width: 210px;
+  margin-inline-end: -54px;
+  color: #2196f3;
+  font-family: "Poppins", sans-serif;
+  }

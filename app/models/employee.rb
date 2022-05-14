@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Employee < ApplicationRecord
-  self.inheritance_column = "not_sti"
+  self.inheritance_column = 'not_sti'
   has_many :performances, dependent: :destroy
   has_many :salaries, dependent: :destroy
   has_many :attendences, dependent: :destroy
@@ -8,24 +10,27 @@ class Employee < ApplicationRecord
   belongs_to  :role, dependent: :destroy
   has_many :tickets, dependent: :destroy
   has_many :daily_tasks
-  #validates :name, :father_name, :mother_name, :age, :phone_number, :address, :trainer_id, :destination, :password, :password_confirmation, :image, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, presence: true
+  # validates :name, :father_name, :mother_name, :age, :phone_number, :address, :trainer_id, :destination, :password, :password_confirmation, :image, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  
+
   mount_uploader :image
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #before_validation :date_of_birth_validation
-  validates :account_number, :aadhar_card_number, :pan_card_number,  format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
-  validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' }, format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
+  # before_validation :date_of_birth_validation
+  validates :joining_date, presence: true
+  validate :check_joining_date
+  # validates :joining_date, presence: { greater_than: Time.now.to_date - 1.year }
+  validates :account_number, :aadhar_card_number, :pan_card_number,
+            format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
+  validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' },
+                           format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
   def recalculate_leave_balance
     leafs.each do |leave|
-      if leave.updated_at.min == Time.zone.now.min
-        if leave.leave_status == "accept" && leave_count > 0
-          update_attribute(:leave_count, leave_count - 1)
-        end
-      end
+      next unless leave.updated_at.min == Time.zone.now.min
+
+      update_attribute(:leave_count, leave_count - 1) if leave.leave_status == 'accept' && leave_count.positive?
     end
   end
 
@@ -43,28 +48,25 @@ class Employee < ApplicationRecord
   def leave_total
     count = 0
     leafs.each do |leaf|
-      if leaf.leave_status == "accept"
-        count = count + leaf.total_days 
-      end
+      count += leaf.total_days if leaf.leave_status == 'accept'
     end
-    unless count == 0
-      return count - leave_count
-    end
-    return count
+    return count - leave_count unless count.zero?
 
+    count
   end
 
   def self.search(search)
-        if search 
-            where(["name LIKE ? OR father_name LIKE ?","%#{search}%", "%#{search}%"])
-        else
-            all
-        end
-  end 
+    if search
+      where(['name LIKE ? OR father_name LIKE ?', "%#{search}%", "%#{search}%"])
+    else
+      all
+    end
+  end
 
   def todays_last_attendence
-    todays_attendences = attendences.where('checkin_time > ? AND checkin_time < ?', Date.today.beginning_of_day, Date.today.end_of_day)
-    todays_attendences.sort.last
+    todays_attendences = attendences.where('checkin_time > ? AND checkin_time < ?', Date.today.beginning_of_day,
+                                           Date.today.end_of_day)
+    todays_attendences.max
   end
 
   def show_checkin?
@@ -72,7 +74,7 @@ class Employee < ApplicationRecord
     if attendence.present?
       return true if attendence.checkout_time.present?
     else
-      return true
+      true
     end
   end
 
@@ -81,6 +83,13 @@ class Employee < ApplicationRecord
   # end
 
   def date_of_birth_validation
-    return errors.add :base, "Employee Should be 18 " unless date_of_birth < Time.now.to_date - 18.years
+    return errors.add :base, 'Employee Should be 18 ' unless date_of_birth < Time.now.to_date - 18.years
+  end
+
+  def check_joining_date
+    unless joining_date > Time.now.to_date - 2.year
+      errors.add :base,
+                 "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year}  "
+    end
   end
 end
