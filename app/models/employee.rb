@@ -21,7 +21,7 @@ class Employee < ApplicationRecord
   # before_validation :date_of_birth_validation
   validates :joining_date, presence: true
   validate :check_joining_date
-  # validates :joining_date, presence: { greater_than: Time.now.to_date - 1.year }
+  
   validates :account_number, :aadhar_card_number, :pan_card_number,
             format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
   validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' },
@@ -78,16 +78,12 @@ class Employee < ApplicationRecord
     end
   end
 
-  # def check_salary_amount
-  #   return errors.add :base, "Salary not Valid :)"  unless salary <= 50000
-  # end
-
   def date_of_birth_validation
     return errors.add :base, 'Employee Should be 18 ' unless date_of_birth < Time.now.to_date - 18.years
   end
 
   def check_joining_date
-    unless joining_date.present? && joining_date > Time.now.to_date - 2.year
+    unless joining_date.present? && joining_date > 2.years.ago
       errors.add :base,
                  "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year}  "
     end

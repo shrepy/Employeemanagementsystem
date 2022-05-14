@@ -2,11 +2,7 @@
         <div class=" recent-sales overflow-auto">
             <div class="card-body ">
                 <div class="tab-content pt-3 pb-2 text-center">
-                    <% unless employee.image.blank? %>
-                    <%= image_tag employee.image_url, class: " size-image" %>
-                    <% else %>
-                    <%= image_tag "blank-profile.png" , class: "size-image"%>
-                    <% end %>
+                    <%= image_tag  (employee.image.blank? ? "blank-profile.png" : employee.image_url), class: "size-image" %>
                 </div>
                 <div class="text-center">
                     <div class=" m-0"><%= employee.name&.capitalize() %>
