@@ -87,7 +87,7 @@ class Employee < ApplicationRecord
   end
 
   def check_joining_date
-    unless joining_date > Time.now.to_date - 2.year
+    unless joining_date.present? && joining_date > Time.now.to_date - 2.year
       errors.add :base,
                  "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year}  "
     end
