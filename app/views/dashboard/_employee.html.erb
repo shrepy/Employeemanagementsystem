@@ -1,17 +1,13 @@
-<div class="col-6">
-        <div class="card recent-sales overflow-auto">
-            <div class="card-body">
-                <div class="tab-content pt-2">
-                    <div class="row mt-2">
-                        <div class="col-lg-6 col-md-6">Name</div>
-                        <div class="col-lg-6 col-md-6"><%= employee.name.capitalize() %></div>
+<div class="card-width ">
+        <div class=" recent-sales overflow-auto">
+            <div class="card-body ">
+                <div class="tab-content pt-3 pb-2 text-center">
+                    <%= image_tag  (employee.image.blank? ? "blank-profile.png" : employee.image_url), class: "size-image" %>
+                </div>
+                <div class="text-center">
+                    <div class=" m-0"><%= employee.name&.capitalize() %>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col-lg-9 col-md-8">
-                            <% unless employee.image.blank? %>
-                            <%= image_tag employee.image_url, class: " size-image" %>
-                            <% end %>
-                            </div>
+                    <div class=""><%= employee.designation.name&.capitalize() %>
                     </div>
                 </div>
             </div>
