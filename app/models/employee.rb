@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# employeemodel
 class Employee < ApplicationRecord
   self.inheritance_column = 'not_sti'
   has_many :performances, dependent: :destroy
@@ -10,9 +11,6 @@ class Employee < ApplicationRecord
   belongs_to  :role, dependent: :destroy
   has_many :tickets, dependent: :destroy
   has_many :daily_tasks
-  # validates :name, :father_name, :mother_name, :age, :phone_number, :address, :trainer_id, :destination, :password, :password_confirmation, :image, :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, presence: true
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   mount_uploader :image
   devise :database_authenticatable, :registerable,
@@ -21,7 +19,7 @@ class Employee < ApplicationRecord
   # before_validation :date_of_birth_validation
   validates :joining_date, presence: true
   validate :check_joining_date
-  
+
   validates :account_number, :aadhar_card_number, :pan_card_number,
             format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
   validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' },
@@ -87,5 +85,9 @@ class Employee < ApplicationRecord
       errors.add :base,
                  "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year}  "
     end
+  end
+
+  def is_hr?
+    role&.name.upcase == 'HR'
   end
 end
