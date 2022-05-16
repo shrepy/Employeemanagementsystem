@@ -18,14 +18,13 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # before_validation :date_of_birth_validation
   validates :joining_date, presence: true
-  validate :check_joining_date
+  validate :check_joining_date, on: :update
   
   validates :account_number, :aadhar_card_number, :pan_card_number,
-            format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
+            format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
   validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' },
-                           format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }
+                           format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
   def recalculate_leave_balance
     leafs.each do |leave|
       next unless leave.updated_at.min == Time.zone.now.min
