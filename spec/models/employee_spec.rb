@@ -21,4 +21,8 @@ RSpec.describe Employee, type: :model do
     employee.joining_date = nil
     expect(employee.save).to eq(false)
   end
+
+  it 'check role is hr' do
+    expect(employee.is_hr?).to eq(false)
+  end
 end
