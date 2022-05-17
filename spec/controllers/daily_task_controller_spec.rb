@@ -3,14 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe DailyTasksController, type: :controller do
+  fixtures :all
+
   let!(:designation) { FactoryBot.create(:designation) }
-  let!(:role) { FactoryBot.create(:role) }
-  let!(:role_one) { FactoryBot.create(:role, name: 'Employee') }
   let!(:employee) do
-    FactoryBot.create(:employee, role_id: role.id, designation_id: designation.id, joining_date: '2022-5-14')
+    FactoryBot.create(:employee, role_id: roles(:role_one).id, designation_id: designation.id,
+                                 joining_date: '2022-5-14')
   end
   let!(:employee_one) do
-    FactoryBot.create(:employee, role_id: role_one.id, designation_id: designation.id, joining_date: '2022-5-14')
+    FactoryBot.create(:employee, role_id: roles(:role_two).id, designation_id: designation.id,
+                                 joining_date: '2022-5-14')
   end
   let!(:daily_task) { FactoryBot.create(:daily_task, employee_id: employee_one.id) }
   let!(:daily_task_one) { FactoryBot.create(:daily_task, employee_id: employee.id) }
@@ -50,7 +52,7 @@ RSpec.describe DailyTasksController, type: :controller do
 
     it 'Employee can see our daily task' do
       get :show, params: { id: daily_task.id }
-      expect(assigns(:daily_task)).to eq(daily_task)
+      expect(response.status).to eq(200)
     end
 
     it 'render 404 when daily task not exit' do
