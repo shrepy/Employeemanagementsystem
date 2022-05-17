@@ -12,15 +12,13 @@ class DailyTasksController < ApplicationController
   end
 
   def show
-    @daily_task = if current_employee.is_hr?
-                    DailyTask.find_by_id params[:id]
-                  else
-                    @daily_task = current_employee.daily_tasks.find_by_id params[:id]
+    if current_employee.is_hr?
+      @daily_task = DailyTask.find_by_id params[:id]
+    else
+      @daily_task = current_employee.daily_tasks.find_by_id params[:id]
 
-                    redirect_to root_path, { notice: 'You Have Not Access :)' } unless @daily_task.present?
-
-                    @daily_task
-                  end
+      redirect_to root_path, { notice: 'You Have Not Access :)' } unless @daily_task.present?
+    end
   end
 
   def new
