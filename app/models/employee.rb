@@ -18,7 +18,7 @@ class Employee < ApplicationRecord
 
   validates :joining_date, presence: true
   validate :check_joining_date, on: :update
-  
+
   validates :account_number, :aadhar_card_number, :pan_card_number,
             format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
   validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' },
