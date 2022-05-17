@@ -49,9 +49,8 @@ class DailyTasksController < ApplicationController
   end
 
   def update
-    @daily_task = DailyTask.find(params[:id])
+    @daily_task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day).first
     if @daily_task.update(params_daily_task)
-
       redirect_to @daily_task
     else
       render :edit

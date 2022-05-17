@@ -35,4 +35,46 @@ RSpec.describe Employee, type: :model do
   it 'return false if employee role is Employee' do
     expect(employee_one.is_hr?).to eq(false)
   end
+
+  it 'on update return false when joining_date validate failed' do
+    expect(employee.update(joining_date: nil)).to eq(false)
+  end
+
+  it 'on update return true when joining_date validate pass' do
+    expect(employee.update(joining_date: '2022-05-14s')).to eq(true)
+  end
+
+  describe 'Phone number validation on update' do
+    it 'phone number should be present' do
+      expect(employee.update(phone_number: '1234567890')).to eq(true)
+    end
+
+    it 'phone number should not be nil' do
+      expect(employee.update(phone_number: nil)).to eq(false)
+    end
+
+    it 'phone number should be 10 digits' do
+      expect(employee.update(phone_number: '1234567890')).to eq(true)
+    end
+
+    it 'phone number should be not 10 digits' do
+      expect(employee.update(phone_number: '1234567')).to eq(false)
+    end
+  end
+
+  describe 'validation for on update' do
+    it 'account number aadhar card number pan card number not be nil' do
+      expect(employee.update(account_number: nil, pan_card_number: nil, aadhar_card_number: nil)).to eq(false)
+    end
+
+    it 'account number aadhar card number pan card number should be present' do
+      expect(employee.update(account_number: '23132425', pan_card_number: '1324443',
+                             aadhar_card_number: '8452835')).to eq(true)
+    end
+
+    it 'account number aadhar card number pan card number should be only numbers' do
+      expect(employee.update(account_number: '23fdg132425', pan_card_number: '1324dg443',
+                             aadhar_card_number: '8452sd835')).to eq(false)
+    end
+  end
 end

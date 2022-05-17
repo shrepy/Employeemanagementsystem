@@ -16,7 +16,6 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :joining_date, presence: true
   validate :check_joining_date, on: :update
 
   validates :account_number, :aadhar_card_number, :pan_card_number,
