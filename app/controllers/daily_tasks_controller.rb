@@ -22,7 +22,7 @@ class DailyTasksController < ApplicationController
   end
 
   def new
-    task = current_employee.daily_tasks.map { |t| t if t.created_at.to_date == Time.now.to_date }.compact
+    task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day)
     if task.blank?
       @daily_task = DailyTask.new
     else
