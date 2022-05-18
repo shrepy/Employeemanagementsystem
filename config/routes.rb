@@ -27,18 +27,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/set_ip', to: 'dashboard#set_ip'
-  get '/profile', to: 'employees#profile'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
-  patch '/accept/:id', to: 'tickets#decline_ticket', as: 'decline_ticket'
-
-
-  concern :api_emp do
-    resources :employees
-  end
-
-  namespace :v1 do
-    concerns :api_emp
+  namespace :'api' do
+    namespace :'v1' do
+      resources :employees
+    end
   end
 end
