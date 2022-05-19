@@ -3,28 +3,34 @@
 # Attendence controller
 class AttendencesController < InheritedResources::Base
   # load_and_authorize_resource
+  before_action :set_attendance, only: %i[show edit]
   def index
-    @attendences = if current_employee&.role&.name == 'HR'
-                     Attendence.order(created_at: :desc)
-                   else
-                     current_employee.attendences.order(created_at: :desc)
-                   end
+    @attendences = current_employee.attendences.order(created_at: :desc)
   end
 
   def show
-    @attendence = Attendence.find(params[:id])
-    @attendences = Attendence.where(params[:employee_id])
+    @attendence = if current_employee.is_hr?
+                    Attendence.find_by_id params[:id]
+                  else
+                    current_employee.attendences.find_by_id params[:id]
+                  end
+    @attendences = Attendence.where(employee_id: @attendence.employee_id)
   end
 
   def edit
-    @attendence = Attendence.find(params[:id])
+    if current_employee.is_hr?
+      @attendence = Attendence.find(params[:id])
+    else
+      redirect_to root_path, { notice: 'You Have Not Access :)' }
+    end
   end
 
   def create
-    last_attendance = Attendence.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now, employee_id: current_employee.id).last
+    last_attendance = Attendence.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now,
+                                       employee_id: current_employee.id).last
     if last_attendance.nil?
-        Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now,
-                                     status: 'Present', checkin_ip_address: request.remote_ip)
+      Attendence.create(employee_id: current_employee.id, checkin_time: Time.zone.now,
+                        status: 'Present', checkin_ip_address: request.remote_ip)
     else
       last_attendance.update_column('checkout_time', nil)
     end
@@ -51,7 +57,7 @@ class AttendencesController < InheritedResources::Base
   end
 
   def search
-    if current_user.role.name == 'HR'
+    if current_employee.is_hr?
       @attendences = if params[:start_date].blank? && params[:end_date].blank?
                        Attendence.all
                      else
@@ -68,5 +74,10 @@ class AttendencesController < InheritedResources::Base
 
   def attendence_params
     params.require(:attendence).permit(:checkout_time)
+  end
+
+  def set_attendance
+    @attendence = Attendence.find_by_id params[:id]
+    redirect_to root_path, { notice: 'NOT FOUND :)' } unless @attendence.present?
   end
 end

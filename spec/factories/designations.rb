@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :designation do
-    name { "MyString" }
+    name { "web developer" }
   end
 end

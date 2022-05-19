@@ -37,23 +37,23 @@
                   <button type="button" onClick="refreshPage()" class="btn btn-primary">Clear</button>
                 </div>
               </div>
-                   <%= link_to 'Back', root_path, class: "right btn btn-primary" %>
+                   <%#= link_to 'Back', root_path, class: "right btn btn-primary" %>
 
             </div>
           <% end %>
+                   <%= link_to 'Back', employees_path,  class: "right btn btn-primary" %>
+              <th>Employee Name - <%= @employee&.name&.capitalize()%> </th>
+              <hr>
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">Checkin Time</th>
                     <th scope="col">Checkout Time</th>
                     <th scope="col">Working Hours</th>
-                    <% if current_employee.is_hr? %>
-                    <th scope="col">Employee Name</th>
-                    <% end %>
                   </tr>
                 </thead>
                 <tbody class="search-data">
-                 <%= render 'search' %>
+                 <%= render 'attendences/search' %>
                 </tbody>
               </table>
              
