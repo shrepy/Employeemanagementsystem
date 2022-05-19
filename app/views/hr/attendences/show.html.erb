@@ -1,0 +1,52 @@
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1 class="mb-4">Attendence List</h1>
+    </div><!-- End Page Title -->
+    <section class="section">
+      <div class="row">
+        
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+             
+
+              <!-- Table with stripped rows -->
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Checkin Time</th>
+                    <th scope="col">Checkout Time</th>
+                    <th scope="col">Working Hours</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <%= link_to 'Back', :back,  class: "right btn btn-primary m-4" %>
+                  <% @attendence %>
+                  <% @attendences.each do |attendence| %>
+                    <% if @attendence.created_at.strftime('%d-%m-%Y') == attendence.created_at.strftime('%d-%m-%Y') %>
+                      <tr>
+                        <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                        <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                        <td><%= attendence.hour %></td>
+                      </tr> 
+                    <% end %> 
+                  <% end %>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+            <%#= link_to 'Back', attendences_path, class: "right btn btn-primary" %>
+            </div>
+          </div>
+         </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+
+
