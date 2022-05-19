@@ -29,11 +29,7 @@ module Hr
     end
 
     def search
-      @attendences = if params[:start_date].blank? && params[:end_date].blank?
-                       Attendence.all
-                     else
-                       Attendence.where(created_at: params[:start_date]..params[:end_date], employee_id: params[:id])
-                     end
+      @attendences = Attendence.search(params)
     end
 
     private

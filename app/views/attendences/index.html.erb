@@ -24,7 +24,7 @@
                   </tr>
                 </thead>
                 <tbody class="search-data">
-                 <%= render 'attendence' %>
+                 <%= render partial: "attendence", locals: { attendences: @attendences} %>
                 </tbody>
               </table>
              

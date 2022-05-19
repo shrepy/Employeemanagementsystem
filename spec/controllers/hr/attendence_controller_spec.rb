@@ -35,7 +35,7 @@ RSpec.describe Hr::AttendencesController, type: :controller do
   describe '#edit' do
     it 'response successfully when attendence exit' do
       get :edit, params: { id: employee.id }
-      expect(response.status).to eq(302)
+      expect(response.status).to eq(200)
     end
 
     it 'return root path when attendence not exit' do
