@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
-# attendencecontroller
+# attendence controller
 module Hr
+  # attendence controller we are use for hr
   class AttendencesController < ApplicationController
     before_action :set_attendance, only: %i[show edit update]
 
     def show_attendence
       @employee = Employee.find(params[:id])
-      @attendences = Attendence.where(employee_id: @employee.id)
+      employee_attendence(@employee.id)
     end
 
     def show
-      @attendences = Attendence.where(employee_id: @attendence.employee_id)
+      employee_attendence(@attendence.employee_id)
     end
 
     def edit; end
@@ -41,6 +42,10 @@ module Hr
 
     def attendence_params
       params.require(:attendence).permit(:checkout_time)
+    end
+
+    def employee_attendence(employee_id)
+      @attendences = Attendence.where(employee_id: employee_id)
     end
   end
 end
