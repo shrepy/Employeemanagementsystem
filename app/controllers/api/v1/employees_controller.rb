@@ -11,16 +11,14 @@ module Api
       # GET /employees/1 or /employees/1.json
       def show
         @employee = get_employee
-        render json: EmployeeSerializer.new(employee, {} ) 
-        # render json: {
-        #   data: serializer_data(@employee),
-        #   message: ['employee profile successfully update'], status: 200, type: 'Success'
-        # }
+        render json: {
+          data: serializer_data(@employee),
+          message: ['employee profile '], status: 200, type: 'Success'
+        }
       end
 
       # PATCH /employees/1 or /employees/1.json
       def update
-        @employee = Employee.find_by_id params[:id]
         if @employee.update(employee_params)
           render json: {
             data: serializer_data(@employee),
@@ -35,13 +33,8 @@ module Api
 
       # Use callbacks to share common setup or constraints between actions.
       def set_employee
-        @employee = Employee.find(params[:id])
+        @employee = Employee.find_by_id(params[:id])
         render json: { message: ['Employee not found'] }, status: 404 unless @employee.present?
-      end
-
-      def serializer_data(employee)
-        byebug
-        ActiveModelSerializers::SerializableResource.new(employee, serializer: EmployeeSerializer)
       end
 
       def employee_params
