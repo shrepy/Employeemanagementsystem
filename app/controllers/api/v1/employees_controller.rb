@@ -10,9 +10,9 @@ module Api
 
       # GET /employees/1 or /employees/1.json
       def show
-        @employee = get_employee
+        employee = get_employee
         render json: {
-          data: serializer_data(@employee),
+          data: serializer_data(employee),
           message: ['employee profile '], status: 200, type: 'Success'
         }
       end
