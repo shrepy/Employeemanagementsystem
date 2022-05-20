@@ -27,6 +27,16 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :hr do
+    resources :employees
+    resources :attendences
+    get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'
+    get '/search', to: 'attendences#search'
+  end
+  get '/set_ip', to: 'dashboard#set_ip'
+  get '/profile', to: 'employees#profile'
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   namespace :api do
     namespace :v1 do
       resources :employees

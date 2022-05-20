@@ -1,4 +1,3 @@
-
 </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -13,7 +12,8 @@
 
           <div class="card">
             <div class="card-body">
-             <h5 class="card-title"></h5>
+             
+
               <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>
@@ -23,16 +23,25 @@
                     <th scope="col">Working Hours</th>
                   </tr>
                 </thead>
-                <tbody class="search-data">
-                 <%= render partial: "attendence", locals: { attendences: @attendences} %>
+                <tbody>
+                <%= link_to 'Back', :back,  class: "right btn btn-primary m-4" %>
+                  <% @attendence %>
+                  <% @attendences.each do |attendence| %>
+                    <% if @attendence.created_at.strftime('%d-%m-%Y') == attendence.created_at.strftime('%d-%m-%Y') %>
+                      <tr>
+                        <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                        <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
+                        <td><%= attendence.hour %></td>
+                      </tr> 
+                    <% end %> 
+                  <% end %>
                 </tbody>
               </table>
-             
               <!-- End Table with stripped rows -->
+            <%#= link_to 'Back', attendences_path, class: "right btn btn-primary" %>
             </div>
           </div>
-
-        </div>
+         </div>
       </div>
     </section>
 
