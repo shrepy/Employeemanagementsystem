@@ -8,7 +8,6 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def index
-        current_employee
         data = Ticket.where(employee_id: current_employee)
         render json: {
           data: serializer_data(data, serializer),
