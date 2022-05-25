@@ -61,7 +61,7 @@ class DailyTasksController < ApplicationController
 
   def set_daily_task
     @daily_task =  DailyTask.find_by_id params[:id]
-    render json: { alert: 'Not Found' }, status: 404 unless @daily_task.present?
+    redirect_to root_path, alert: I18n.t('employee.not_found') unless @daily_task.present?
   end
 
   def params_daily_task
