@@ -30,6 +30,11 @@ Rails.application.routes.draw do
   namespace :hr do
     resources :employees
     resources :attendences
+    resources :leafs do 
+      member do 
+        get :employee_leave_index
+      end
+    end
     get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'
     get '/search', to: 'attendences#search'
   end
