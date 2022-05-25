@@ -6,7 +6,7 @@ describe Api::V1::LeafsController, type: :controller do
   let(:role) { FactoryBot.create(:role) }
   let(:designation) { FactoryBot.create(:designation) }
   let(:employee) { FactoryBot.create(:employee, designation_id: designation.id, role_id: role.id) }
-  let(:leaf) { FactoryBot.create(:leaf, employee_id: employee.id, from_date: Time.now, till_date: Time.now) }
+  let!(:leaf) { FactoryBot.create(:leaf, employee_id: employee.id, from_date: Time.now, till_date: Time.now) }
   let(:leaf_one) do
     FactoryBot.create(:leaf, employee_id: employee.id, from_date: Time.now + 1.day, till_date: Time.now + 1.day)
   end
@@ -18,6 +18,7 @@ describe Api::V1::LeafsController, type: :controller do
   describe '#index' do
     it 'show all leave ' do
       get :index
+      expect(assigns(:leaf_data)).to eq([leaf])
       expect(response.status).to eq(200)
     end
   end
@@ -41,10 +42,11 @@ describe Api::V1::LeafsController, type: :controller do
       it 'renders a successful response when leave status update' do
         patch :update,
               params: { leaf: { leave_status: 'cancel' }, id: leaf_one.id }
+        expect(assigns(:leaf_data)).to eq(leaf_one)
         assert_response(200)
       end
 
-      it 'renders a failed response when leave not status update' do
+      it 'renders a failed response when leave  status not update' do
         patch :update,
               params: { leaf: { leave_status: 'cancel' }, id: leaf.id }
         assert_response(304)
