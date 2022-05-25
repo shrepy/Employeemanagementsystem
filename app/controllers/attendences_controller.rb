@@ -32,6 +32,6 @@ class AttendencesController < InheritedResources::Base
 
   def set_attendance
     @attendence = current_employee.attendences.find_by_id params[:id]
-    redirect_to root_path, { notice: 'NOT FOUND :)' } unless @attendence.present?
+    redirect_to root_path, { alert: 'NOT FOUND :)' } unless @attendence.present?
   end
 end
