@@ -17,7 +17,7 @@ class DailyTasksController < ApplicationController
     else
       @daily_task = current_employee.daily_tasks.find_by_id params[:id]
 
-      redirect_to root_path, { alert: 'You Have Not Access :)' } unless @daily_task.present?
+      redirect_to root_path, alert: I18n.t('employee.unauthorize_error') unless @daily_task.present?
     end
   end
 
