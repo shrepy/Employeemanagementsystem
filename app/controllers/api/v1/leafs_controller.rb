@@ -7,8 +7,8 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def index
-        employee = get_employee
-        data = Leaf.where(employee_id: employee.id).order('created_at DESC')
+        current_employee
+        data = Leaf.where(employee_id: current_employee.id).order('created_at DESC')
         render json: {
           data: serializer_data(data, serializer),
           message: ['leaf list '], status: 200, type: 'Success'
@@ -23,7 +23,7 @@ module Api
             message: ['Successfully leave applied '], status: 200, type: 'Success'
           }
         else
-          render json: data
+          render json: { message: ['leave not applied'] }, status: 404, type: 'failed'
         end
       end
 
@@ -39,7 +39,7 @@ module Api
             render json: data
           end
         else
-          render json: data
+          render json: { message: ['leave status not update'] }, status: 304, type: 'failed'
         end
       end
 
