@@ -17,21 +17,30 @@ describe Api::V1::LeafsController, type: :controller do
 
   describe '#index' do
     it 'show all leave ' do
-      get :index
-      expect(assigns(:leaf_data)).to eq([leaf])
-      expect(response.status).to eq(200)
+      get :index, params: { format: :json }
+      response_body = JSON.parse(response.body)
+      expect(response_body['data'][0]['id']).to eq(leaf.id)
     end
+  end
+
+  let(:valid_leaf) { attributes_for(:leaf, employee_id: employee.id, from_date: '2022-05-26', till_date: '2022-05-27') }
+  let(:invalid_leaf) do
+    attributes_for(:leaf, employee_id: employee.id, from_date: '2022-05-21', till_date: '2022-05-22')
   end
 
   describe '#create' do
     context 'apply for leave' do
       it 'renders a successful response when leave applied' do
-        post :create, params: { leaf: { employee_id: employee.id, from_date: '2022-05-26', till_date: '2022-05-27' } }
+        post :create, params: { leaf: valid_leaf }
+        expect(Leaf.count).to eq(2)
+        response_body = JSON.parse(response.body)
         expect(response.status).to eq(200)
       end
 
       it 'renders a failed response when leave not created' do
-        post :create, params: { leaf: { employee_id: employee.id, from_date: '2022-05-21', till_date: '2022-05-22' } }
+        post :create, params: { leaf: invalid_leaf }
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response_body[:message]).to eq(['leave not applied'])
         expect(response.status).to eq(404)
       end
     end
@@ -42,14 +51,17 @@ describe Api::V1::LeafsController, type: :controller do
       it 'renders a successful response when leave status update' do
         patch :update,
               params: { leaf: { leave_status: 'cancel' }, id: leaf_one.id }
-        expect(assigns(:leaf_data)).to eq(leaf_one)
-        assert_response(200)
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response_body[:data][:leave_status]).to eq('cancel')
+        expect(response.status).to eq(200)
       end
 
       it 'renders a failed response when leave  status not update' do
         patch :update,
               params: { leaf: { leave_status: 'cancel' }, id: leaf.id }
-        assert_response(304)
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response_body[:message]).to eq(['leave status not update'])
+        expect(response.status).to eq(304)
       end
     end
   end
