@@ -5,8 +5,7 @@ module Hr
   class LeafsController < ApplicationController
     before_action :set_leaves, only: %i[update]
     def index
-      @employee = Employee.find(params[:id])
-      @leafs = @employee.leafs.order('created_at DESC')
+      @leafs = Leaf.where(employee_id: params[:employee_id]).order('created_at DESC')
     end
 
     def update

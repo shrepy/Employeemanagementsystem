@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-body p-5">
                         <!-- Table with stripped rows --> <%= link_to 'Back', employees_path,  class: "right btn btn-primary" %> <th>Employee Name - <%= @employee&.name&.capitalize()%> </th>
-                        <table class="table table-striped mt-3" <thead>
+                        <table class="table table-striped mt-3" ><thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Leave type</th>
@@ -38,7 +38,15 @@
                                     <td><%= leaf.leave_end %></td>
                                     <td><%= leaf.total_days %> Days</td>
                                     <td><%= leaf.resion %></td>
-                                    <td> <% if leaf.leave_status == "accept" %> <%= link_to 'Accepted', root_path, method: :patch, class: 'btn btn-success disabled' %> <% elsif leaf.leave_status == 'decline' %> <%= link_to 'Declined', root_path, method: :patch, class: 'btn btn-danger disabled' %> <% else %> <%= link_to 'Accept', hr_leaf_path(leaf, leave_status: 'accept'), method: :patch, class: 'btn btn-success' %> <%= link_to 'Decline',hr_leaf_path(leaf, leave_status: 'decline'), method: :patch, class: 'btn btn-danger' %> <% end %> </td>
+                                    <td> <% if leaf.leave_status == "accept" %> 
+                                            <%= link_to 'Accepted', root_path, method: :patch, class: 'btn btn-success disabled' %> 
+                                            <% elsif leaf.leave_status == 'decline' %>
+                                                <%= link_to 'Declined', root_path, method: :patch, class: 'btn btn-danger disabled' %> 
+                                            <% else %> 
+                                                <%= link_to 'Accept', hr_employee_leaf_path(id: leaf.id, leave_status: 'accept'), method: :patch, class: 'btn btn-success' %> 
+                                                <%= link_to 'Decline',hr_employee_leaf_path(id: leaf.id, leave_status: 'decline'), method: :patch, class: 'btn btn-danger' %> 
+                                            <% end %> 
+                                    </td>
                                 </tr> <% end %> </tbody>
                         </table> <!-- End Table with stripped rows -->
                     </div>
