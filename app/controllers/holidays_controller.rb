@@ -24,6 +24,6 @@ class HolidaysController < InheritedResources::Base
   private
 
   def holiday_params
-    params.require(:holiday).permit(:holiday_date, :holiday_name)
+    params.require(:holiday).permit(:holiday_date, :holiday_name, :holiday_type)
   end
 end
