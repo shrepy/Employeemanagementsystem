@@ -21,18 +21,18 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :employees
-  resources :employees do 
+  resources :employees do
     collection do
-       get :search
+      get :search
     end
   end
 
   namespace :hr do
     resources :employees
     resources :attendences
-    resources :leafs do 
-      member do 
-        get :employee_leave_index
+    resources :leafs, only: :update do
+      member do
+        get :index
       end
     end
     get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'

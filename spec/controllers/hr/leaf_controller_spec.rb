@@ -17,7 +17,7 @@ RSpec.describe Hr::LeafsController, type: :controller do
 
   describe '#employee leave index' do
     it 'Hr can see all employee leave' do
-      get :employee_leave_index, params: { id: employee.id }
+      get :index, params: { id: employee.id }
       expect(assigns(:leafs)).to eq([leaf])
     end
   end
@@ -33,6 +33,12 @@ RSpec.describe Hr::LeafsController, type: :controller do
       leaf.leave_status = 'decline'
       patch :update, params: { id: leaf.id }
       expect(assigns(:leaf)).to eq(leaf)
+    end
+
+    it 'Hr can decline leave' do
+      patch :update, params: { id: '' }
+      expect(assigns(:leaf)).to eq(nil)
+      expect(response.status).to eq(302)
     end
   end
 end
