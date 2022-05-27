@@ -14,9 +14,9 @@ describe Api::V1::DailyTasksController, type: :controller do
 
   describe '#index' do
     it 'show all DailyTasks ' do
-      get :index
-      expect(assigns(:daily_task_data)).to eq([daily_task])
-      expect(response.status).to eq(200)
+      get :index, params: { format: :json }
+      response_body = JSON.parse(response.body)
+      expect(response_body['data'][0]['id']).to eq(daily_task.id)
     end
   end
 
@@ -26,28 +26,43 @@ describe Api::V1::DailyTasksController, type: :controller do
     end
 
     it 'show the DailyTasks details' do
-      expect(assigns(:daily_task_data)).to eq(daily_task)
+      response_body = JSON.parse(response.body)
       expect(response.status).to eq(200)
+    end
+
+    it 'render 404 code if daily_task is not exist' do
+      get :show, params: { id: '' }
+      response_body = JSON.parse(response.body)
+      expect(response.status).to eq(404)
     end
   end
 
+  let(:valid_daily_task) { attributes_for(:daily_task, employee_id: employee.id, description: 'i am working on EMS') }
+
   describe '#create' do
-    it 'created successfully' do
-      post :create, params: { daily_task: { employee_id: employee.id, description: 'xyz' } }
+    it 'renders a successful response when DailyTask create' do
+      post :create, params: { daily_task: valid_daily_task }
+      expect(DailyTask.count).to eq(2)
+      response_body = JSON.parse(response.body)
       expect(response.status).to eq(200)
     end
   end
 
   describe '#update' do
-    it 'update' do
-      put :update, params: { daily_task: { description: 'i am working on EMS' }, id: daily_task.id }
-      expect(assigns(:daily_task_data)).to eq(daily_task)
-      expect(response.status).to eq(200)
-    end
+    context 'update daily_task' do
+      it 'renders a successful response when DailyTask update' do
+        put :update, params: { daily_task: { description: 'i am working on EMS' }, id: daily_task.id }
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response_body[:data][:description]).to eq('i am working on EMS')
+        expect(response.status).to eq(200)
+      end
 
-    it 'render 404 when daily task not exit' do
-      put :update, params: { daily_task: { description: 'i am working on EMS' }, id: '' }
-      expect(response.status).to eq(404)
+      it 'render 404 when daily task not exit' do
+        put :update, params: { daily_task: { description: 'i am working on EMS' }, id: '' }
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response_body[:message]).to eq('Not Found')
+        expect(response.status).to eq(404)
+      end
     end
   end
 end
