@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :employees
-  resources :employees do 
+  resources :employees do
     collection do
-       get :search
+      get :search
     end
   end
 
@@ -36,11 +36,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :performances
+      get '/performances', to: 'performances#index'
     end
   end
 
-  
   get '/set_ip', to: 'dashboard#set_ip'
   get '/profile', to: 'employees#profile'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

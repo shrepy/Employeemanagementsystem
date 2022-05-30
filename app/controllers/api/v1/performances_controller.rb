@@ -8,9 +8,9 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def index
-        data = Performance.all
+        performance_data = Performance.all
         render json: {
-          data: serializer_data(data, serializer),
+          data: serializer_data(performance_data, performance_serializer),
           message: ['show performances '], status: 200, type: 'Success'
         }
       end
@@ -21,7 +21,7 @@ module Api
         params.require(:performance).permit(:points, :month, :from, :to, :employee_id)
       end
 
-      def serializer
+      def performance_serializer
         Api::V1::PerformanceSerializer
       end
     end

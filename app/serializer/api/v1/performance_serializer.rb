@@ -3,7 +3,7 @@
 module Api
   module V1
     class PerformanceSerializer < ActiveModel::Serializer
-      attributes :id, :points, :month, :from, :to, :employee_id
+      attributes :id, :points, :month, :from, :to
     end
   end
 end
