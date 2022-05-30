@@ -29,7 +29,7 @@ RSpec.describe HolidaysController, type: :controller do
   describe '#create' do
     it 'response successfully when holiday created' do
       post :create, params: { holiday: { holiday_name: 'xyz', holiday_date: '2022-04-23', holiday_type: :National } }
-      expect(response.status).to eq(200)
+      expect(response.status).to eq(302)
     end
   end
 

@@ -15,7 +15,7 @@ class HolidaysController < InheritedResources::Base
   def create
     @holiday = Holiday.new(holiday_params)
     if @holiday.save
-      redirect_to holidays_path, status: 200
+      redirect_to holidays_path
     else
       render :new, status: 302
     end
