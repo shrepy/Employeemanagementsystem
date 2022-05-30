@@ -28,10 +28,10 @@ module Api
         if daily_task_data.save
           render json: {
             data: serializer_data(daily_task_data, serializer),
-            message: ['Successfully daily task create '], status: 200, type: 'Success'
+            status: 200, type: 'Success'
           }
         else
-          render json: daily_task_data
+          render json: daily_task_data, status: 302, type:'Found'
         end
       end
 
@@ -45,7 +45,7 @@ module Api
             message: ['Successfully daily task  update'], status: 200, type: 'Success'
           }
         else
-          render json: daily_task_data
+          render json: daily_task_data, status: 404, type:'Not Found'
         end
       end
 
