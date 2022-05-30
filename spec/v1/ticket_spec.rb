@@ -20,25 +20,44 @@ describe Api::V1::TicketsController, type: :controller do
     end
   end
 
-  let(:valid_ticket) { attributes_for(:ticket, employee_id: employee.id) }
-
   describe '#create' do
-    it 'renders a successful response when ticket created' do
-      post :create, params: { ticket: valid_ticket }
-      expect(Ticket.count).to eq(2)
-      response_body = JSON.parse(response.body)
-      expect(response_body['message']).to eq(['Successfully ticket create '])
-      expect(response.status).to eq(200)
+    context 'create ticket' do
+      let(:valid_ticket) { attributes_for(:ticket, employee_id: employee.id) }
+      let(:invalid_ticket) do
+        attributes_for(:ticket, employee_id: employee.id, description: nil, reason: nil, ticket_type: nil, status: nil)
+      end
+      it 'renders a successful response when ticket created' do
+        post :create, params: { ticket: valid_ticket }
+        expect(Ticket.count).to eq(2)
+        response_body = JSON.parse(response.body)
+        expect(response_body['message']).to eq(['Successfully ticket create '])
+        expect(response.status).to eq(200)
+      end
+
+      it 'renders a response when ticket not created' do
+        post :create, params: { ticket: invalid_ticket }
+        response_body = JSON.parse(response.body)
+        expect(response.status).to eq(302)
+      end
     end
   end
 
   describe '#update' do
-    it 'renders a successful response when ticket status update' do
-      patch :update,
-            params: { ticket: { status: 'accept', employee_id: employee.id }, id: ticket.id }
-      response_body = JSON.parse(response.body).deep_symbolize_keys
-      expect(response_body[:data][:status]).to eq('accept')
-      expect(response.status).to eq(200)
+    context 'update ticket' do
+      it 'renders a successful response when ticket status update' do
+        patch :update,
+              params: { ticket: { status: 'accept', employee_id: employee.id }, id: ticket.id }
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response_body[:data][:status]).to eq('accept')
+        expect(response.status).to eq(200)
+      end
+
+      it 'render 404 when ticket not exit' do
+        ticket_one = FactoryBot.create(:ticket, employee_id: employee.id, status: 'accept')
+        put :update, params: { ticket: { status: 'accept', employee_id: employee.id }, id: ticket_one.id }
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response.status).to eq(404)
+      end
     end
   end
 end

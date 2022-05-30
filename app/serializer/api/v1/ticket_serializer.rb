@@ -3,7 +3,7 @@
 module Api
   module V1
     class TicketSerializer < ActiveModel::Serializer
-      attributes :id, :status, :description, :ticket_type, :employee_id, :reason
+      attributes :id, :status, :description, :ticket_type, :reason
     end
   end
 end

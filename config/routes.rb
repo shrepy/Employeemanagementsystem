@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :employees
-  resources :employees do 
+  resources :employees do
     collection do
-       get :search
+      get :search
     end
   end
 
@@ -34,14 +34,11 @@ Rails.application.routes.draw do
     get '/search', to: 'attendences#search'
   end
 
-   namespace :api do
+  namespace :api do
     namespace :v1 do
-      resources :tickets
+      resources :tickets, only: %i[index create update]
     end
   end
-
-
-
 
   get '/set_ip', to: 'dashboard#set_ip'
   get '/profile', to: 'employees#profile'
