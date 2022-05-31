@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :employees
-  resources :employees do 
+  resources :employees do
     collection do
-       get :search
+      get :search
     end
   end
 
@@ -36,8 +36,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :employees
-      resources :holidays
+      resources :holidays, only: %i[index]
     end
   end
 

@@ -6,18 +6,17 @@ module Api
       # before_action :authenticate_employee!
       skip_before_action :verify_authenticity_token
 
-      # GET /employees/1 or /employees/1.json
       def index
-        data = Holiday.all
+        holiday_data = Holiday.all
         render json: {
-          data: serializer_data(data, serializer),
-          message: ['list of holiday '], status: 200, type: 'Success'
+          data: serializer_data(holiday_data, holiday_serializer),
+          status: 200, type: 'Success'
         }
       end
 
       private
 
-      def serializer
+      def holiday_serializer
         Api::V1::HolidaySerializer
       end
 

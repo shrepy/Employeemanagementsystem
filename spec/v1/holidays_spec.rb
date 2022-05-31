@@ -14,8 +14,9 @@ describe Api::V1::HolidaysController, type: :controller do
 
   describe '#index' do
     it 'show all holidays ' do
-      get :index
-      expect(response.status).to eq(200)
+      get :index, params: { format: :json }
+      response_body = JSON.parse(response.body)
+      expect(response_body['data'][0]['id']).to eq(holiday.id)
     end
   end
 end
