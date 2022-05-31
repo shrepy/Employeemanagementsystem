@@ -23,13 +23,14 @@ describe Api::V1::LeafsController, type: :controller do
     end
   end
 
-  let(:valid_leaf) { attributes_for(:leaf, employee_id: employee.id, from_date: '2022-05-26', till_date: '2022-05-27') }
-  let(:invalid_leaf) do
-    attributes_for(:leaf, employee_id: employee.id, from_date: '2022-05-21', till_date: '2022-05-22')
-  end
-
   describe '#create' do
     context 'apply for leave' do
+      let(:valid_leaf) do
+        attributes_for(:leaf, employee_id: employee.id, from_date: '2022-06-20', till_date: '2022-06-22')
+      end
+      let(:invalid_leaf) do
+        attributes_for(:leaf, employee_id: employee.id, from_date: '2022-05-20', till_date: '2022-05-22')
+      end
       it 'renders a successful response when leave applied' do
         post :create, params: { leaf: valid_leaf }
         expect(Leaf.count).to eq(2)
@@ -40,8 +41,7 @@ describe Api::V1::LeafsController, type: :controller do
       it 'renders a failed response when leave not created' do
         post :create, params: { leaf: invalid_leaf }
         response_body = JSON.parse(response.body).deep_symbolize_keys
-        expect(response_body[:message]).to eq(['leave not applied'])
-        expect(response.status).to eq(404)
+        expect(response.status).to eq(302)
       end
     end
   end
@@ -60,7 +60,6 @@ describe Api::V1::LeafsController, type: :controller do
         patch :update,
               params: { leaf: { leave_status: 'cancel' }, id: leaf.id }
         response_body = JSON.parse(response.body).deep_symbolize_keys
-        expect(response_body[:message]).to eq(['leave status not update'])
         expect(response.status).to eq(304)
       end
     end
