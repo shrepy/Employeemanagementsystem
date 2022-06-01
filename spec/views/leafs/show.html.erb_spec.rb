@@ -8,7 +8,7 @@ RSpec.describe "leafs/show", type: :view do
       leave_starts: "Leave Starts",
       leave_end: "Leave End",
       total_days: 3,
-      resion: "Resion",
+      reason: "Reason",
       leave_status: false,
       employee: nil
     ))
@@ -21,7 +21,7 @@ RSpec.describe "leafs/show", type: :view do
     expect(rendered).to match(/Leave Starts/)
     expect(rendered).to match(/Leave End/)
     expect(rendered).to match(/3/)
-    expect(rendered).to match(/Resion/)
+    expect(rendered).to match(/Reason/)
     expect(rendered).to match(/false/)
     expect(rendered).to match(//)
   end
