@@ -3,7 +3,7 @@
 module Api
   module V1
     class DailyTaskSerializer < ActiveModel::Serializer
-      attributes :id, :description, :employee_id
+      attributes :id, :description
     end
   end
 end
