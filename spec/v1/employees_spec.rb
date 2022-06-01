@@ -7,9 +7,9 @@ describe Api::V1::EmployeesController, type: :controller do
   let(:designation) { FactoryBot.create(:designation) }
   let(:employee) { FactoryBot.create(:employee, designation_id: designation.id, role_id: role.id) }
 
-  # before do
-  #   sign_in(employee)
-  # end
+  before do
+    sign_in(employee)
+  end
 
   describe 'GET# employees#show' do
     before do
@@ -17,23 +17,28 @@ describe Api::V1::EmployeesController, type: :controller do
     end
 
     it 'show the employee details' do
+      response_body = JSON.parse(response.body)
       expect(response.status).to eq(200)
     end
   end
 
   describe '#update' do
     context '#with valid parameters' do
-      it 'render to update' do
+      it 'renders a successful response when Employee update' do
         patch :update,
-              params: { employee: { password: 'password', password_confirmation: 'password' }, id: employee.id }
-        assert_response(200)
+              params: {
+                employee: { password: 'password123' }, id: employee.id
+              }
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response_body[:message]).to eq(["password successfully update"])
+        expect(response.status).to eq(200)
       end
-    end
 
-    context 'with invalid parameters' do
-      it 'render 404 when employee is not exist' do
+      it 'render 404 when employee not exit' do
         patch :update, params: { employee: { password: 'password' }, id: '' }
-        assert_response(404)
+        response_body = JSON.parse(response.body).deep_symbolize_keys
+        expect(response_body[:message]).to eq('Not Found')
+        expect(response.status).to eq(404)
       end
     end
   end
