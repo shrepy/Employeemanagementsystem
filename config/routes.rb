@@ -37,5 +37,13 @@ Rails.application.routes.draw do
   get '/profile', to: 'employees#profile'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  namespace :api do
+    namespace :v1 do
+      mount_devise_token_auth_for 'Employee', at: 'auth'
+      resources :employees, only: %i[show update]
+    end
+  end
+
+
   patch '/accept/:id', to: 'tickets#decline_ticket', as: 'decline_ticket'
 end
