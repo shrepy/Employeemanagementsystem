@@ -1,0 +1,14 @@
+# module Api
+#   module V1
+    class Api::V1::EmployeeSerializer < ActiveModel::Serializers
+      attributes :id, :name, :email, :father_name, :mother_name, :phone_number, :address, :image, :leave_count,
+                 :department, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :salary, :primary_skill, :date_of_birth, :role_id, :designation
+
+      def designation
+        {
+          name: object.designation.name
+        }
+      end
+    end
+#   end
+# end
