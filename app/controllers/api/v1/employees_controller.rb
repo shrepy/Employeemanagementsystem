@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class EmployeesController < ApplicationController
-      # before_action :authenticate_employee!
+      before_action :authenticate_employee!
       before_action :set_employee, only: %i[show update]
       # skip_before_action :verify_authenticity_token
-      # protect_from_forgery with: :null_session, 
 
       # GET /employees/1 or /employees/1.json
       def show
@@ -31,12 +32,11 @@ module Api
       # Use callbacks to share common setup or constraints between actions.
       def set_employee
         @employee_data = Employee.find_by_id(params[:id])
-        byebug
         render json: { message: 'Not Found' }, status: 404 unless @employee_data.present?
       end
 
       def employee_params
-        params.require(:employee).permit(:password, :password_confirmation)
+        params.require(:employee).permit(:email, :password, :password_confirmation)
       end
 
       def employee_serializer

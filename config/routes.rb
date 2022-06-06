@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :employees
-  resources :employees do 
+  resources :employees do
     collection do
-       get :search
+      get :search
     end
   end
 
@@ -40,10 +40,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       mount_devise_token_auth_for 'Employee', at: 'auth'
-      resources :employees, only: %i[show update]
+      resources :employees
     end
   end
-
 
   patch '/accept/:id', to: 'tickets#decline_ticket', as: 'decline_ticket'
 end
