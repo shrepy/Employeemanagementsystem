@@ -41,23 +41,4 @@ describe Api::V1::TicketsController, type: :controller do
       end
     end
   end
-
-  describe '#update' do
-    context 'update ticket' do
-      it 'renders a successful response when ticket status update' do
-        patch :update,
-              params: { ticket: { status: 'accept', employee_id: employee.id }, id: ticket.id }
-        response_body = JSON.parse(response.body).deep_symbolize_keys
-        expect(response_body[:data][:status]).to eq('accept')
-        expect(response.status).to eq(200)
-      end
-
-      it 'render 404 when ticket not exit' do
-        ticket_one = FactoryBot.create(:ticket, employee_id: employee.id, status: 'accept')
-        put :update, params: { ticket: { status: 'accept', employee_id: employee.id }, id: ticket_one.id }
-        response_body = JSON.parse(response.body).deep_symbolize_keys
-        expect(response.status).to eq(404)
-      end
-    end
-  end
 end

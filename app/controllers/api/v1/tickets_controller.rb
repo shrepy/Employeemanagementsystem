@@ -7,7 +7,7 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def index
-        ticket_data = Ticket.where(employee_id: current_employee)
+        ticket_data = current_employee.tickets
         render json: {
           data: serializer_data(ticket_data, ticket_serializer),
           message: ['show tickets '], status: 200, type: 'Success'
@@ -23,22 +23,6 @@ module Api
           }
         else
           render json: ticket_data, status: 302, type: 'Found'
-        end
-      end
-
-      def update
-        ticket_data = Ticket.find(params[:id])
-        if ticket_data.status.nil?
-          if ticket_data.update(status: 'accept', updated_by: current_employee.name)
-            render json: {
-              data: serializer_data(ticket_data, ticket_serializer),
-              message: ['Successfully ticket create '], status: 200, type: 'Success'
-            }
-          else
-            render :index
-          end
-        else
-          render json: ticket_data, status: 404, type: 'Not Found'
         end
       end
 
