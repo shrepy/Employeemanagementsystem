@@ -10,7 +10,7 @@ module Api
         holiday_data = Holiday.all
         render json: {
           data: serializer_data(holiday_data, holiday_serializer),
-          status: 200, type: 'Success'
+          status: 200
         }
       end
 
@@ -18,10 +18,6 @@ module Api
 
       def holiday_serializer
         Api::V1::HolidaySerializer
-      end
-
-      def holiday_params
-        params.require(:holiday).permit(:holiday_date, :holiday_name)
       end
     end
   end
