@@ -5,12 +5,10 @@
     </aside><!-- End Sidebar-->
     <main id="main" class="main">
         <% if flash.any? %>
-        <% flash.each do |type, msg| %>
-          <div class="alert alert-danger">
-          <%= msg %>
-          </div>
+            <% flash.each do |key, value| %>
+                <div class="<%= flash_class(key.to_sym) %> show" ><%= value %></div>
+            <% end %>
         <% end %>
-      <% end %>
         <div class="pagetitle">
             <h1>Dashboard</h1>
             <nav>

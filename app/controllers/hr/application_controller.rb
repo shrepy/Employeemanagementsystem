@@ -9,7 +9,7 @@ module Hr
     layout 'application'
 
     def authorize_hr
-      redirect_to root_path, notice: I18n.t('employee.unauthorize_error') unless current_employee.is_hr?
+      redirect_to root_path, alert: I18n.t('employee.unauthorize_error') unless current_employee.is_hr?
     end
   end
 end
