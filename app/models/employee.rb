@@ -2,6 +2,8 @@
 
 # employeemodel
 class Employee < ApplicationRecord
+  include DeviseTokenAuth::Concerns::User
+
   self.inheritance_column = 'not_sti'
   has_many :performances, dependent: :destroy
   has_many :salaries, dependent: :destroy
@@ -13,9 +15,9 @@ class Employee < ApplicationRecord
   has_many :daily_tasks
 
   mount_uploader :image
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :token_authenticatable
-
 
   validate :check_joining_date, on: :update
 
@@ -85,7 +87,7 @@ class Employee < ApplicationRecord
       errors.add :base,
                  "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year}  "
     end
-  end 
+  end
 
   def is_hr?
     role&.name.upcase == 'HR'

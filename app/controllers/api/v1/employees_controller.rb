@@ -3,9 +3,9 @@
 module Api
   module V1
     class EmployeesController < ApplicationController
-      # before_action :authenticate_employee!
+      before_action :authenticate_employee!
       before_action :set_employee, only: %i[show update]
-      skip_before_action :verify_authenticity_token
+      # skip_before_action :verify_authenticity_token
 
       # GET /employees/1 or /employees/1.json
       def show
@@ -36,7 +36,7 @@ module Api
       end
 
       def employee_params
-        params.require(:employee).permit(:password, :password_confirmation)
+        params.require(:employee).permit(:email, :password, :password_confirmation)
       end
 
       def employee_serializer
