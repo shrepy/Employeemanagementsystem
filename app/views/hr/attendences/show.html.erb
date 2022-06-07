@@ -32,6 +32,7 @@
                         <td><%= attendence.checkin_time.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                         <td><%= attendence.checkout_time&.strftime("%a %b %d %y %I:%M:%S %p") %></td>
                         <td><%= attendence.hour %></td>
+                        <td><%= link_to 'Edit', edit_hr_attendence_path(attendence), class: "btn btn-primary" %></td>
                       </tr> 
                     <% end %> 
                   <% end %>

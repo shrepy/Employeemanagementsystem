@@ -17,16 +17,16 @@ class DailyTasksController < ApplicationController
     else
       @daily_task = current_employee.daily_tasks.find_by_id params[:id]
 
-      redirect_to root_path, { notice: 'You Have Not Access :)' } unless @daily_task.present?
+      redirect_to root_path, alert: I18n.t('employee.unauthorize_error') unless @daily_task.present?
     end
   end
 
   def new
-    task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day)
+    task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day).first
     if task.blank?
       @daily_task = DailyTask.new
     else
-      redirect_to edit_daily_task_path(task)
+      redirect_to edit_daily_task_path(task.id)
     end
   end
 
@@ -49,7 +49,6 @@ class DailyTasksController < ApplicationController
   end
 
   def update
-    @daily_task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day).first
     if @daily_task.update(params_daily_task)
       redirect_to @daily_task
     else
@@ -61,7 +60,7 @@ class DailyTasksController < ApplicationController
 
   def set_daily_task
     @daily_task =  DailyTask.find_by_id params[:id]
-    render json: { message: 'Not Found' }, status: 404 unless @daily_task.present?
+    redirect_to root_path, alert: I18n.t('employee.not_found') unless @daily_task.present?
   end
 
   def params_daily_task
