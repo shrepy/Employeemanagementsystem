@@ -78,8 +78,6 @@ gem 'wicked_pdf'
 gem "wkhtmltopdf-binary", group: :development
 gem "wkhtmltopdf-heroku", group: :production
 gem 'cancancan'
-gem 'devise_token_auth'
-gem 'active_model_serializers', '~> 0.10.2'
 group :production do
   
 end

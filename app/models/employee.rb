@@ -5,8 +5,6 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  include DeviseTokenAuth::Concerns::User
-
   self.inheritance_column = 'not_sti'
   has_many :performances, dependent: :destroy
   has_many :salaries, dependent: :destroy
