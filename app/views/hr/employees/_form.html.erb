@@ -10,6 +10,11 @@
     <div class="col-lg-2"> <%= form.label :mother_name %> </div>
     <div class="col-lg-10"> <%= form.text_field :mother_name, class: "form-control" %> </div>
 </div>
+
+<div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :gender %> </div>
+    <div class="col-lg-10"> <%= form.radio_button :gender, 'Male' %> Male <%= form.radio_button :gender, 'Female' %> Female </div>
+</div>
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :date_of_birth %> </div>
     <div class="col-lg-10"> <%= form.date_field :date_of_birth, class: "form-control" %> </div>
