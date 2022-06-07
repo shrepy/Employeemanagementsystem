@@ -2,6 +2,11 @@
 
 # employeemodel
 class Employee < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
+  include DeviseTokenAuth::Concerns::User
+
   self.inheritance_column = 'not_sti'
   has_many :performances, dependent: :destroy
   has_many :salaries, dependent: :destroy
@@ -13,8 +18,6 @@ class Employee < ApplicationRecord
   has_many :daily_tasks
 
   mount_uploader :image
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
 
   validate :check_joining_date, on: :update
 

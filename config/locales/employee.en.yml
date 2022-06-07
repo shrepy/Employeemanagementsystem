@@ -32,3 +32,4 @@
 en:
   employee: 
     unauthorize_error: 'You Have Not Access :)'
+    not_found: 'Not Found'
