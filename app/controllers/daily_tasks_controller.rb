@@ -22,11 +22,11 @@ class DailyTasksController < ApplicationController
   end
 
   def new
-    task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day)
+    task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day).first
     if task.blank?
       @daily_task = DailyTask.new
     else
-      redirect_to edit_daily_task_path(task.ids)
+      redirect_to edit_daily_task_path(task.id)
     end
   end
 
@@ -49,7 +49,6 @@ class DailyTasksController < ApplicationController
   end
 
   def update
-    @daily_task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day).first
     if @daily_task.update(params_daily_task)
       redirect_to @daily_task
     else
