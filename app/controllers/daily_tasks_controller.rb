@@ -26,7 +26,7 @@ class DailyTasksController < ApplicationController
     if task.blank?
       @daily_task = DailyTask.new
     else
-      redirect_to edit_daily_task_path(task)
+      redirect_to edit_daily_task_path(task.ids)
     end
   end
 
