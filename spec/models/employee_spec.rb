@@ -7,8 +7,7 @@ RSpec.describe Employee, type: :model do
 
   let!(:designation) { create :designation, name: 'Hr' }
   let!(:employee) do
-    create :employee, leave_count: 1, role_id: roles(:role_one).id, designation_id: designation.id,
-                      joining_date: '2022-05-22'
+    create :employee, leave_count: 1, role_id: roles(:role_one).id, designation_id: designation.id
   end
   let!(:employee_one) do
     create :employee, leave_count: 1, role_id: roles(:role_two).id, designation_id: designation.id,
@@ -36,12 +35,16 @@ RSpec.describe Employee, type: :model do
     expect(employee_one.is_hr?).to eq(false)
   end
 
-  it 'on update return false when joining_date validate failed' do
+  it 'on update return false when joining date nil' do
     expect(employee.update(joining_date: nil)).to eq(false)
   end
 
-  it 'on update return true when joining_date validate pass' do
-    expect(employee.update(joining_date: '2022-05-14s')).to eq(true)
+  it 'on update return false when joining date validate failed' do
+    expect(employee.update(joining_date: '2019-05-14')).to eq(false)
+  end
+
+  it 'on update return true when joining date validate pass' do
+    expect(employee.update(joining_date: '2021-05-14')).to eq(true)
   end
 
   describe 'Phone number validation on update' do
@@ -75,6 +78,24 @@ RSpec.describe Employee, type: :model do
     it 'account number aadhar card number pan card number should be only numbers' do
       expect(employee.update(account_number: '23fdg132425', pan_card_number: '1324dg443',
                              aadhar_card_number: '8452sd835')).to eq(false)
+    end
+
+    it 'employee should be 18+' do
+      expect(employee.update(date_of_birth: '22/08/2006')).to eq(false)
+    end
+  end
+
+  describe 'validation for date of birth on update' do
+    it 'employee date of birth should be not nil' do
+      expect(employee.update(date_of_birth: nil)).to eq(false)
+    end
+
+    it 'employee should not be lessthen 18 years' do
+      expect(employee.update(date_of_birth: '2006/06/20')).to eq(false)
+    end
+
+    it 'employee should be 18 +' do
+      expect(employee.update(date_of_birth: '2003/06/20')).to eq(true)
     end
   end
 end

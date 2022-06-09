@@ -17,7 +17,8 @@ class Employee < ApplicationRecord
 
   mount_uploader :image
 
-  validate :check_joining_date, on: :update
+  before_validation :check_joining_date, on: [:update]
+  before_validation :date_of_birth_validation, on: [:update]
 
   validates :account_number, :aadhar_card_number, :pan_card_number,
             format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
@@ -76,14 +77,11 @@ class Employee < ApplicationRecord
   end
 
   def date_of_birth_validation
-    return errors.add :base, 'Employee Should be 18 ' unless date_of_birth < Time.now.to_date - 18.years
+    return errors.add :base, 'Employee Should be 18 +' unless date_of_birth.present? && date_of_birth < Time.now.to_date - 18.years
   end
 
   def check_joining_date
-    unless joining_date.present? && joining_date > 2.years.ago
-      errors.add :base,
-                 "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year}  "
-    end
+    return errors.add :base, "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year} " unless joining_date.present? && joining_date > 2.years.ago
   end
 
   def is_hr?
