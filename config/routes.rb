@@ -28,7 +28,13 @@ Rails.application.routes.draw do
   end
 
   namespace :hr do
-    resources :employees
+    resources :employees do
+      resources :leafs, only: :update do
+        collection do
+          get :index
+        end
+      end
+    end
     resources :attendences
     get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'
     get '/search', to: 'attendences#search'
