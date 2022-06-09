@@ -40,7 +40,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       mount_devise_token_auth_for 'Employee', at: 'auth'
-      resources :employees
+      resources :employees, only: %i[show] do
+        collection do
+          put 'update_password'
+        end
+      end
     end
   end
 
