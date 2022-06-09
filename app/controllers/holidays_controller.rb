@@ -14,16 +14,16 @@ class HolidaysController < InheritedResources::Base
 
   def create
     @holiday = Holiday.new(holiday_params)
-    if @holiday.save 
+    if @holiday.save
       redirect_to holidays_path
     else
-      render :new 
+      render :new, status: 302
     end
   end
 
   private
 
   def holiday_params
-    params.require(:holiday).permit(:holiday_date, :holiday_name)
+    params.require(:holiday).permit(:holiday_date, :holiday_name, :holiday_type)
   end
 end

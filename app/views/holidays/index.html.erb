@@ -31,6 +31,7 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Holiday Name</th>
+                    <th scope="col">Holiday Type</th>
                     <th scope="col">Date</th>
                   </tr>
                 </thead>
@@ -38,7 +39,8 @@
                   <% @holidays.each do |holiday| %>
                   <tr>
                     <th scope="row"><%= holiday.id %></th>
-                    <td><%= holiday.holiday_name.capitalize() %></td>
+                    <td><%= holiday.holiday_name&.capitalize() %></td>
+                     <td><%= holiday.holiday_type&.capitalize() %></td>
                     <td><%= holiday.holiday_date %></td>
                     <%= link_to 'Show', holiday %>
                   </tr>
