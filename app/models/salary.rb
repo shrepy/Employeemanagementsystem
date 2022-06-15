@@ -3,9 +3,11 @@ class Salary < ApplicationRecord
   before_save :update_total_working_days
   before_save :total_earnings
   before_save :total_deductions
+  before_save :month_of_days
    
   validates :salary, presence: true
   validates :month, presence: true
+
   def update_total_working_days
     self.total_working_days = employee.working_days
     self.leaves = employee.leave_total

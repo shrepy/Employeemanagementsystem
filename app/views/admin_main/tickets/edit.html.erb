@@ -1,0 +1,19 @@
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+		<%#= form_with(model: @ticket) do |form| %>
+		<%= form_with model: @ticket, :url => admin_main_ticket_path(ticket),  :method => "patch"  do |form| %>
+		  <div class="field">
+		    <%= form.label :add_reason%>
+		    <%= form.text_field :add_reason, class: "form-control mt-3 mb-3" %>
+		  </div>
+
+		  
+
+		  <%= form.hidden_field :employee_id, value: current_employee.id %> 
+
+		  <div class="actions">
+		    <%= form.submit 'Send', class: 'btn btn-primary' %>
+		  </div>
+		<% end %>
+</main>

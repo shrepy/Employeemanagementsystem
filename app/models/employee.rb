@@ -87,4 +87,8 @@ class Employee < ApplicationRecord
   def is_hr?
     role&.name.upcase == 'HR'
   end
+
+  def is_admin?
+    role&.name == 'Admin'
+  end
 end

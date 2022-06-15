@@ -19,7 +19,9 @@
 
           <div class="card">
             <div class="card-body">
-              
+              <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                 <%= link_to 'Salary', new_admin_main_salary_path, class: "btn btn-primary mb-3 right "  %>
+              </a>
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
@@ -32,25 +34,24 @@
                     <th scope="col">Earnings</th>
                     <th scope="col">Deductions</th>
                     <th scope="col">Total Working days</th>
-                    <th scope="col">Total</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% @salaries.each do |salary| %>
-                  <% if current_employee.id == salary.employee_id %>
+                <% @salaries.each do |salary| %>
+                  <%# if current_employee.id == salary.employee_id %>
                     <% emp = Employee.find(salary.employee_id) %>
                     <tr>
                       <th><%= salary.id %></th>
                       <td><%= emp.name.capitalize() %></td>
+                      <td><%= salary.month %></td>
                       <td><%= salary.salary %></td>
-                      <td><%= salary.month %></td>
-                      <td><%= salary.month %></td>
-                      <td><%= salary.month %></td>
-                      <td><%= salary.month %></td>
-                      <td><%= salary.month %></td>
-                     <td> <%= link_to 'Show Salary Details', salary_path(salary) %></td>
+                      <td><%= salary.leaves %></td>
+                      <td><%= salary.earnings %></td>
+                      <td><%= salary.deductions %></td>
+                      <td><%= salary.total_working_days %></td>
+                     <td> <%= link_to 'Show Salary Details', "/admin_main/salaries/:id" %></td>
                     </tr>
-                    <% end %>
+                    <%# end %>
                   <% end %>
                 </tbody>
               </table>

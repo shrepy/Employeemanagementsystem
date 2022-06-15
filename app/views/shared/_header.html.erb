@@ -84,18 +84,29 @@
           <% end %>
           <% end %>
       </li>
-      
+
+
       <li class="nav-item">
-          <%= link_to employees_path , class: "nav-link collapsed" do %>
+          <% if current_employee.role.name == "Admin" %>
+          <%= link_to profile_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
-          <% unless current_employee.role.name == "HR" %>
               <%= 'Profile' %>
-          <% else %>
-              <%= 'Employees' %>
           <% end %>
           <% end %>
       </li>
+      
 
+      <li class="nav-item">
+          <%= link_to employees_path , class: "nav-link collapsed" do %>
+          <i class="bi bi-person"></i>
+            <% unless current_employee.role.name == "HR" || current_employee.role.name == "Admin"%>
+              <%= 'Profile' %>
+            <% else %>
+              <%= 'Employees' %>
+            <% end %>
+        <% end %>
+      </li> 
+      
       
       <li class="nav-item">
           <%= link_to  performances_path, class: "nav-link collapsed" do %>
@@ -103,26 +114,50 @@
           <%= 'Performance' %>
           <% end %>
       </li>
+
+    <% if current_employee.role.name == "Admin"%>
+      <li class="nav-item">
+          <%= link_to  admin_main_salaries_path, class: "nav-link collapsed" do %>
+          <i class="bi bi-menu-button-wide"></i>
+          <%= 'Salary' %>
+          <% end %>
+      </li>
+
+    <% else %>
       <li class="nav-item">
           <%= link_to  salaries_path, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Salary' %>
           <% end %>
       </li>
+    <% end %>
+
       <li class="nav-item">
           <%= link_to  leafs_path, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
           <%= 'Leave' %>
           <% end %>
       </li>
+   
+       <% if current_employee.role.name == "Admin"%>
+      <li class="nav-item">
+        <%= link_to  admin_main_attendences_path, method: :get, class: "nav-link collapsed" do %>
+          <%#= link_to  attendences_path, method: :post, class: "nav-link collapsed" do %>
+            <i class="bi bi-menu-button-wide"></i>
+            <%= 'Attendence' %>
+          <% end %> 
+      </li>
+       <% else %>
       <li class="nav-item">
         <%= link_to  attendences_path, method: :get, class: "nav-link collapsed" do %>
           <%#= link_to  attendences_path, method: :post, class: "nav-link collapsed" do %>
             <i class="bi bi-menu-button-wide"></i>
             <%= 'Attendence' %>
-          <% end %>
-        
+          <% end %> 
       </li>
+      <% end %>
+
+
       </li class="nav-item">
           <%= link_to  holidays_path , class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>
@@ -135,12 +170,24 @@
           <%= 'Daily Task' %>
           <% end %>
       </li>
-      <li class="nav-item">
-          <%= link_to  tickets_path, class: "nav-link collapsed" do %>
-          <i class="bi bi-menu-button-wide"></i>
-          <%= 'Ticket' %>
-          <% end %>
-      </li>
+ 
+      <% if current_employee.role.name == "Admin"%>
+
+        <li class="nav-item">
+            <%= link_to  admin_main_tickets_path, class: "nav-link collapsed" do %>
+            <i class="bi bi-menu-button-wide"></i>
+            <%= 'Ticket' %>
+            <% end %>
+        </li> 
+      <% else %>
+        <li class="nav-item">
+            <%= link_to  tickets_path, class: "nav-link collapsed" do %>
+            <i class="bi bi-menu-button-wide"></i>
+            <%= 'Ticket' %>
+            <% end %>
+        </li>
+      <% end %>
+
       <li class="nav-item">
           <%= link_to  destroy_employee_session_path, method: :delete, class: "nav-link collapsed" do %>
           <i class="bi bi-menu-button-wide"></i>

@@ -13,13 +13,14 @@ class EmployeesController < ApplicationController
   end
 
   # GET /employees/1 or /employees/1.json
-  def show
-    @employee = if current_user.is_hr?
-                  Employee.find_by_id params[:id]
-                else
-                  current_user
-                end
-  end
+  # def show
+  #   @employee = if current_user.is_hr?
+    
+  #                 Employee.find_by_id params[:id]
+  #               else
+  #                 current_user
+  #               end
+  # end
 
   def edit 
     set_designations

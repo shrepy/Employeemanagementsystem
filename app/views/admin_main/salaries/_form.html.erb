@@ -1,0 +1,33 @@
+<%#= form_with(url: "/admin_main/salaries", method: "post")  do |form| %>
+<%= form_with(model: salary) do |form| %>
+ <div class="field row mt-5 ">
+    <div class="col-lg-3"> <%= form.label :Month %> </div>
+    <div class="col-lg-5"> <%= form.text_field :month, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-3"> <%= form.label :Salary %> </div>
+    <div class="col-lg-5"> <%= form.number_field  :salary, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-3"> <%= form.label :Employee_id %> </div>
+    <div class="col-lg-5"> <%= form.text_field :employee_id, class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-3"> <%= form.label :Leaves %> </div>
+    <div class="col-lg-5"> <%= form.text_field :leaves, class: "form-control" %> </div>
+</div>
+
+<div class="field row mt-3">
+    <div class="col-lg-3"> <%= form.label :Deductions %> </div>
+    <div class="col-lg-5"> <%= form.text_field :deductions,class: "form-control" %> </div>
+</div>
+<div class="field row mt-3">
+    <div class="col-lg-3"> <%= form.label :total_working_days %> </div>
+    <div class="col-lg-5"> <%= form.text_area :total_working_days, class: "form-control" %> </div>
+</div>
+
+<div class="actions"> <%= form.submit 'Save', class: "btn btn-primary right" %> </div> <% end %>
+
+<%#= f.check_box :tag_ids, {multiple: true}, tag.id, '' %>

@@ -1,5 +1,6 @@
 class Ticket < ApplicationRecord
-  belongs_to :employee
+  belongs_to :employee, dependent: :destroy
+  has_many :comments, dependent: :destroy
    enum ticket_type: {
     management: '0',
     employee: '1',

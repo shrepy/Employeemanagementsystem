@@ -1,0 +1,2 @@
+module AdminMain::CommentsHelper
+end

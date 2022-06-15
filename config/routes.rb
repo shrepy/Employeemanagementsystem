@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   resources :performances
   resources :holidays
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  # ActiveAdmin.routes(self)
   devise_for :employees
   resources :employees do
     collection do
@@ -35,10 +35,25 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    
     resources :attendences
     get '/emp-attendance/:id', to: 'attendences#show_attendence', as: 'show_attendance'
     get '/search', to: 'attendences#search'
   end
+
+  namespace :admin_main do
+    resources :salaries
+    resources :attendences
+    resources :tickets 
+      patch '/admin_main/ticket/:id', to: 'tickets#decline_tickett', as: 'decline_tickett'
+       resources :comments
+    
+    resources :tickets do 
+      resources :comments 
+    end
+  end
+
   get '/set_ip', to: 'dashboard#set_ip'
   get '/profile', to: 'employees#profile'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

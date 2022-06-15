@@ -1,7 +1,9 @@
  </aside><!-- End Sidebar-->
+ </aside><!-- End Sidebar-->
+ </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-    <% unless current_employee.is_hr? %>
+    <% unless current_employee.is_hr? || current_employee.is_admin?  %>
 
     <div class="pagetitle">
       <h1>Profile</h1>

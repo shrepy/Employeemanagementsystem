@@ -1,0 +1,2 @@
+module AdminMain::AttendencesHelper
+end
