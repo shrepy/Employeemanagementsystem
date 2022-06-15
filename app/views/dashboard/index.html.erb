@@ -26,7 +26,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body mt-4">
-                                    <div class="check-in-check-out"> <img src="assets/logo-new.png">
+                                    <div class="check-in-check-out"><%= image_tag("logo-new.png") %>
                                         <% if current_employee.show_checkin? %>
                                             <%= link_to 'Checkin', attendences_path, method: :post, class: "btn btn-success mb-3 right" %>
                                         <% else %>
