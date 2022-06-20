@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   namespace :hr do
+    resources :monthly_salaries
     resources :employees do
       resources :leafs, only: :update do
         collection do
