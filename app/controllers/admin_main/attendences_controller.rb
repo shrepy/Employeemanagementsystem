@@ -2,14 +2,16 @@
 
 module AdminMain
   class AttendencesController < ApplicationController
-    before_action :set_attendance, only: %i[show edit update]
+    before_action :set_attendance, only: %i[edit update]
+    before_action :set_employee, only: %i[show]
 
     def index
-      @attendences = Attendence.order('created_at desc').page(params[:page])
+      @employees = Employee.where(['name LIKE ? ', "%#{params[:search]}%"])
     end
 
     def show
-      employee_attendence(@attendence.employee_id)
+      @employee = Employee.find(params[:id])
+      @attendences = @employee.attendences
     end
 
     def edit; end
@@ -17,7 +19,7 @@ module AdminMain
     def update
       if params[:attendence].present?
         if @attendence.update(attendence_params)
-          redirect_to admin_main_attendence_path
+          redirect_to admin_main_attendences_path
         else
           render :edit
         end
@@ -39,6 +41,11 @@ module AdminMain
 
     def employee_attendence(employee_id)
       @attendences = Attendence.where(employee_id: employee_id)
+    end
+
+    def set_employee
+      @employee = Employee.find_by_id params[:id]
+      redirect_to root_path, { notice: 'NOT FOUND :)' } unless @employee.present?
     end
   end
 end

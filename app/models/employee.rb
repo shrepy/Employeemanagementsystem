@@ -14,6 +14,7 @@ class Employee < ApplicationRecord
   belongs_to  :role, dependent: :destroy
   has_many :tickets, dependent: :destroy
   has_many :daily_tasks
+  scope :all_except, ->(employee) { where.not(id: employee) }
 
   mount_uploader :image
 
@@ -77,18 +78,24 @@ class Employee < ApplicationRecord
   end
 
   def date_of_birth_validation
-    return errors.add :base, 'Employee Should be 18 +' unless date_of_birth.present? && date_of_birth < Time.now.to_date - 18.years
+    unless date_of_birth.present? && date_of_birth < Time.now.to_date - 18.years
+      errors.add :base,
+                 'Employee Should be 18 +'
+    end
   end
 
   def check_joining_date
-    return errors.add :base, "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year} " unless joining_date.present? && joining_date > 2.years.ago
+    unless joining_date.present? && joining_date > 2.years.ago
+      errors.add :base,
+                 "Joining Date Should Be Grether Then #{Time.now.to_date - 2.year} "
+    end
   end
 
   def is_hr?
     role&.name.upcase == 'HR'
   end
 
-   def is_admin?
+  def is_admin?
     role&.name == 'Admin'
   end
 end

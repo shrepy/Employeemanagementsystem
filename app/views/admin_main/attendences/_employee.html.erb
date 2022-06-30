@@ -1,0 +1,25 @@
+  <table class="table table-striped">
+    
+
+    <thead>
+      <tr>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Attendences</th>
+      </tr>
+    </thead>
+
+    <tbody class="search-data">
+      <tr>
+        <% @employees.all_except(current_employee).each do |emp| %>
+          <td><%= emp.name.capitalize() %></td>
+          <td>
+            <% if current_employee.is_admin? %>
+              <%= link_to 'View Attendence',admin_main_attendence_path(emp), class: "btn btn-primary" %>
+            <% else %>
+              <%= link_to 'View Attendence', attendence_path(emp), class: "btn btn-primary" %>
+            <% end %>
+          </td>
+      </tr>
+        <% end %>
+    </tbody>
+  </table>

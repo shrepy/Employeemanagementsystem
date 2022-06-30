@@ -6,7 +6,7 @@ RSpec.describe AdminMain::AttendencesController, type: :controller do
   fixtures :all
 
   let!(:designation) { FactoryBot.create(:designation) }
-  let!(:employee) { FactoryBot.create(:employee, role_id: roles(:role_one).id, designation_id: designation.id) }
+  let!(:employee) { FactoryBot.create(:employee, role_id: roles(:role_three).id, designation_id: designation.id) }
   let!(:attendence) { FactoryBot.create(:attendence, employee_id: employee.id, checkin_time: Time.now) }
 
   before do
@@ -14,16 +14,21 @@ RSpec.describe AdminMain::AttendencesController, type: :controller do
   end
 
   describe 'index' do
-    it 'Get Attendence' do
+    it 'Get Employee' do
       get :index
+      expect(response.status).to eq(200)
+    end
+
+    it 'search employee' do
+      get :index, params: { employee: employee.name }
       expect(response.status).to eq(200)
     end
   end
 
   describe '#show' do
-    it 'Admin can see perticular employee attendence' do
-      get :show, params: { id: attendence.id }
-      expect(assigns(:attendences)).to eq([attendence])
+    it 'show customer' do
+      get :show, params: { id: employee.id }
+      expect(response.status).to eq(200)
     end
 
     it 'return root path when attendence not exit' do

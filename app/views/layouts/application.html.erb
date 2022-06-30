@@ -24,14 +24,15 @@
   </head>
 
   <body>
-
-    <% if employee_signed_in? %>
+    <% if employee_signed_in? && current_employee.is_admin? %>
+      <%= render 'admin_shared/header' %>
+      <%= yield %>
+    <% elsif employee_signed_in? %>
       <%= render 'shared/header' %>
       <%= yield %>
-      <%= render 'shared/footer' %>
     <% else %>
+      <%= render 'shared/footer' %>
       <%= yield %>
     <% end %>
-
   </body>
 </html>
