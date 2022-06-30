@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe AdminMain::AttendencesController, type: :controller do
-  fixtures :all
+  fixtures :roles
 
   let!(:designation) { FactoryBot.create(:designation) }
   let!(:employee) { FactoryBot.create(:employee, role_id: roles(:role_three).id, designation_id: designation.id) }

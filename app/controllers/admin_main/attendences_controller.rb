@@ -10,7 +10,6 @@ module AdminMain
     end
 
     def show
-      @employee = Employee.find(params[:id])
       @attendences = @employee.attendences
     end
 
