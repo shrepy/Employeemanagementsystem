@@ -45,7 +45,7 @@ module AdminMain
 
     def set_holiday
       @holiday = Holiday.find_by_id params[:id]
-      redirect_to root_path, { notic: 'NOT FOUND' } unless @holiday.present?
+      redirect_to root_path, { notice: 'NOT FOUND' } unless @holiday.present?
     end
 
     def holiday_params
