@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe AdminMain::HolidaysController, type: :controller do
@@ -41,7 +40,7 @@ RSpec.describe AdminMain::HolidaysController, type: :controller do
       expect(assigns(:holiday)).to eq(holiday)
     end
 
-    it 'return nil when holiday not exist' do
+    it 'return nil when holiday not exit' do
       get :edit, params: { id: '' }
       expect(assigns(:holiday)).to eq(nil)
     end
