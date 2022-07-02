@@ -10,10 +10,11 @@ class Employee < ApplicationRecord
   has_many :salaries, dependent: :destroy
   has_many :attendences, dependent: :destroy
   has_many :leafs, dependent: :destroy
-  belongs_to  :designation, dependent: :destroy
-  belongs_to  :role, dependent: :destroy
+  belongs_to  :designation
+  belongs_to  :role
   has_many :tickets, dependent: :destroy
-  has_many :daily_tasks
+  has_many :daily_tasks, dependent: :destroy
+  scope :all_except, ->(employee) { where.not(id: employee) }
 
   mount_uploader :image
 
@@ -101,5 +102,9 @@ class Employee < ApplicationRecord
 
   def is_hr?
     role&.name.upcase == 'HR'
+  end
+
+  def is_admin?
+    role&.name == 'Admin'
   end
 end
