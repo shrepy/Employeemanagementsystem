@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
   namespace :admin_main do
     resources :holidays
+    resources :employees
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
