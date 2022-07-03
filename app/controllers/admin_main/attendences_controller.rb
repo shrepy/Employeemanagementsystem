@@ -10,7 +10,7 @@ module AdminMain
     end
 
     def show
-      @attendences = @employee.attendences
+      @attendences = @employee.attendences.order('created_at desc').page(params[:page])
     end
 
     def edit; end
