@@ -18,8 +18,6 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   resources :performances
   resources :holidays
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
   devise_for :employees
   resources :employees do
     collection do
@@ -43,12 +41,15 @@ Rails.application.routes.draw do
   end
 
   namespace :admin_main do
+    resources :tickets, only: %i[index show update] do
+      resources :comments, only: [:create]
+    end
+
     resources :employees
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
   get '/profile', to: 'employees#profile'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   patch '/accept/:id', to: 'tickets#decline_ticket', as: 'decline_ticket'
 end

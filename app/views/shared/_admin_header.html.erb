@@ -58,6 +58,7 @@
   </li>
 
 
+
   <li class="nav-item">
     <% if current_employee.is_admin?  %>
     <%= link_to profile_path , class: "nav-link collapsed" do %>
@@ -66,6 +67,7 @@
     <% end %>
     <% end %>
   </li>
+
 
 
    <li class="nav-item">
@@ -85,6 +87,7 @@
       <%= 'Performance' %>
       <% end %>
   </li>
+
 
   <li class="nav-item">
       <%= link_to  salaries_path, class: "nav-link collapsed" do %>
@@ -106,7 +109,7 @@
     <%= 'Attendence' %>
     <% end %>
   </li>
-  
+
   </li class="nav-item">
     <%= link_to  holidays_path , class: "nav-link collapsed" do %>
     <i class="bi bi-menu-button-wide"></i>
@@ -121,8 +124,9 @@
       <% end %>
   </li>
 
+
   <li class="nav-item">
-      <%= link_to  tickets_path, class: "nav-link collapsed" do %>
+      <%= link_to  admin_main_tickets_path, class: "nav-link collapsed" do %>
       <i class="bi bi-menu-button-wide"></i>
       <%= 'Ticket' %>
       <% end %>
@@ -136,3 +140,4 @@
   </li>
 </ul>
 </aside>
+
