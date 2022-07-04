@@ -21,7 +21,7 @@
       <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
       <td><%= ticket.employee.name %></td>
       <td><%= ticket.ticket_type %></td>
-      <td><%= link_to "Show", admin_main_ticket_path(ticket) %></td>
+      <td><button type="button" class="btn btn-info"><%= link_to "Show", admin_main_ticket_path(ticket) %></button></td>
       <td><% accept, decline = accept_decline(ticket) %></td>
       <td><%= accept %>    <%= decline %></td>
     </tr>
