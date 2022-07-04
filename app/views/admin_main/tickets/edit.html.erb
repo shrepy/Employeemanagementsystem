@@ -1,0 +1,9 @@
+</aside><!-- End Sidebar-->
+<main id="main" class="main">
+	<%= form_with model: @ticket, :url => admin_main_ticket_path(ticket),  :method => "patch"  do |form|%>
+	<%= form.hidden_field :employee_id, value: current_employee.id %>
+	<div class="actions">
+		<%= form.submit 'Send', class: 'btn btn-primary' %>
+	</div>
+	<% end %>
+</main>

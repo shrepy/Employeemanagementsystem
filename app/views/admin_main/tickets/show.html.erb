@@ -1,0 +1,40 @@
+</aside><!-- End Sidebar-->
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Ticket</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item">Employee</li>
+        <li class="breadcrumb-item active">Ticket</li><br>
+      </ol>
+    </nav>
+  </div>
+  <p id="notice"><%= notice %></p>
+  <%= link_to 'Back', tickets_path %>
+
+  <div class="card" style="width: 58rem;">
+    <div class="card-body">
+      <h5 class="card-title", style="font-size: 25px">Description</h5>
+      <p class="card-text"><%=raw @ticket.description%></p><hr>
+      <h5 class="card-title">Comment:</h5>
+      <% @ticket.comments.each do |comment| %>
+        <p class="card-text"><b><%= comment.employee.name %>:</b> &nbsp;&nbsp; <%= comment.description %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card w-52">
+    <div class="card-body">
+      <p class="card-text">Add a comment: </p>
+      <%= form_with(url: "/admin_main/tickets/#{@ticket.id}/comments", method: "post")do |form| %>
+      <div>
+        <%= form.text_field :description %>
+      </div>
+      <div><%= form.submit %>
+      </div>
+      <%= form.hidden_field :employee_id, value: current_employee.id %>
+      <% end %>
+    </div>
+  </div>
+</main>
