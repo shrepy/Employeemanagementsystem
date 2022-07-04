@@ -2,24 +2,9 @@
 
 module AdminMain
   class HolidaysController < ApplicationController
+    include AdminHoliday
+
     before_action :set_holiday, only: %i[edit update destroy show]
-
-    def index
-      @holidays = Holiday.all
-    end
-
-    def new
-      @holiday = Holiday.new
-    end
-
-    def create
-      @holiday = Holiday.new(holiday_params)
-      if @holiday.save
-        redirect_to admin_main_holidays_path
-      else
-        render :new
-      end
-    end
 
     def edit; end
 
@@ -46,10 +31,6 @@ module AdminMain
     def set_holiday
       @holiday = Holiday.find_by_id params[:id]
       redirect_to root_path, { notice: 'NOT FOUND' } unless @holiday.present?
-    end
-
-    def holiday_params
-      params.require(:holiday).permit(:holiday_date, :holiday_name, :holiday_type)
     end
   end
 end
