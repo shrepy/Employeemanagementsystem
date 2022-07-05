@@ -6,26 +6,6 @@ module AdminMain
 
     before_action :set_holiday, only: %i[edit update destroy show]
 
-    def edit; end
-
-    def show; end
-
-    def update
-      if @holiday.update(holiday_params)
-        redirect_to admin_main_holidays_path
-      else
-        render :edit
-      end
-    end
-
-    def destroy
-      if @holiday.destroy
-        redirect_to admin_main_holidays_path
-      else
-        render :index
-      end
-    end
-
     private
 
     def set_holiday
