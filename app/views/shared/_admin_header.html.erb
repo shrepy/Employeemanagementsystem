@@ -49,14 +49,12 @@
 </header>
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
-
-  <li class="nav-item">
+    <li class="nav-item">
     <%= link_to root_path, class: "nav-link collapsed a" do %> 
     <i class="bi bi-grid"></i>
     Dashboard
     <% end %>
   </li>
-
 
   <li class="nav-item">
     <% if current_employee.is_admin?  %>
@@ -120,11 +118,11 @@
     Daily Task
     <% end %>
   </li>
-
+  
   <li class="nav-item">
-    <%= link_to  tickets_path, class: "nav-link collapsed" do %>
-    <i class="bi bi-menu-button-wide"></i>
-    Ticket
+    <%= link_to  admin_main_tickets_path, class: "nav-link collapsed" do %>
+      <i class="bi bi-menu-button-wide"></i>
+      Ticket
     <% end %>
   </li>
 
@@ -136,3 +134,4 @@
   </li>
 </ul>
 </aside>
+
