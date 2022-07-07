@@ -51,5 +51,16 @@ Rails.application.routes.draw do
   get '/set_ip', to: 'dashboard#set_ip'
   get '/profile', to: 'employees#profile'
 
+  namespace :api do
+    namespace :v1 do
+      mount_devise_token_auth_for 'Employee', at: 'auth'
+      resources :employees, only: %i[show] do
+        collection do
+          put 'update_password'
+        end
+      end
+    end
+  end
+
   patch '/accept/:id', to: 'tickets#decline_ticket', as: 'decline_ticket'
 end
