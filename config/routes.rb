@@ -41,10 +41,10 @@ Rails.application.routes.draw do
   end
 
   namespace :admin_main do
+    resources :holidays
     resources :tickets, only: %i[index show update] do
       resources :comments, only: [:create]
     end
-
     resources :employees
   end
 
