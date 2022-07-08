@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
     resources :employees
+    resources :attendences
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
