@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin_main do
+    resources :daily_tasks, only: %i[index show]
     resources :holidays
     resources :tickets, only: %i[index show update] do
       resources :comments, only: [:create]
