@@ -16,19 +16,20 @@ RSpec.describe AdminMain::AttendencesController, type: :controller do
   describe 'index' do
     it 'Get Employee' do
       get :index
-      expect(response.status).to eq(200)
+      expect(assigns(:employees)).to eq([employee])
+      # expect(response.status).to eq(200)
     end
 
     it 'search employee' do
-      get :index, params: { employee: employee.name }
-      expect(response.status).to eq(200)
+      get :index, params: { ticket: employee.name }
+      expect(assigns(:employees)).to eq([employee])
     end
   end
 
   describe '#show' do
-    it 'show customer' do
+    it 'Show Employee' do
       get :show, params: { id: employee.id }
-      expect(response.status).to eq(200)
+      expect(assigns(:employee)).to eq(employee)
     end
 
     it 'return root path when attendence not exit' do

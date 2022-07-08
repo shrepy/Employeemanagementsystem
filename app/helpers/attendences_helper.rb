@@ -29,7 +29,7 @@ module AttendencesHelper
 		unless hours.include?(nil)
 			hours.sum do |s|
   				h, m = s.split(':').map(&:to_i)
-  				 60*h + m
+  				 60*h + m 
 			end.divmod(60).join(':')
 		end
 	end

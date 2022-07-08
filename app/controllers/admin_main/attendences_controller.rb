@@ -42,10 +42,6 @@ module AdminMain
       params.require(:attendence).permit(:checkout_time)
     end
 
-    def employee_attendence(employee_id)
-      @attendences = Attendence.where(employee_id: employee_id)
-    end
-
     def set_employee
       @employee = Employee.find_by_id params[:id]
       redirect_to root_path, { notice: 'NOT FOUND :)' } unless @employee.present?
