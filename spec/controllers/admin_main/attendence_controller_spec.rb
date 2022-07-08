@@ -17,11 +17,10 @@ RSpec.describe AdminMain::AttendencesController, type: :controller do
     it 'Get Employee' do
       get :index
       expect(assigns(:employees)).to eq([employee])
-      # expect(response.status).to eq(200)
     end
 
     it 'search employee' do
-      get :index, params: { ticket: employee.name }
+      get :index, params: { attendence: employee.name }
       expect(assigns(:employees)).to eq([employee])
     end
   end
