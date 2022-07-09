@@ -100,8 +100,4 @@ class Employee < ApplicationRecord
   def is_admin?
     role&.name == 'Admin'
   end
-
-  def full_name
-    "#{first_name} #{last_name}"
-  end
 end

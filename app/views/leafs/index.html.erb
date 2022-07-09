@@ -43,7 +43,7 @@
                   <% @leafs.each do |leaf| %>
                   <tr>
                       <th scope="row"></th>
-                      <td><%= leaf&.employee&.full_name %></td>
+                      <td><%= leaf&.employee&.name %></td>
                       <td><%= leaf.leave_type %></td>
                       <td><%= leaf.from_date %></td>
                       <td><%= leaf.till_date %></td>
