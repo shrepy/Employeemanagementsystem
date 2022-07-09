@@ -46,7 +46,7 @@ class TicketsController < InheritedResources::Base
   private
 
     def ticket_params
-      params.require(:ticket).permit(:status, :description, :ticket_type, :employee_id, :resion)
+      params.require(:ticket).permit(:status, :description, :ticket_type, :employee_id, :reason)
     end
 
 end
