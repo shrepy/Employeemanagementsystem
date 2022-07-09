@@ -21,7 +21,6 @@ module AttendencesHelper
 
     total_time << ((end_time - at.last.checkout_time) / 1.minutes).abs
     persent = []
-
     (0...total_time.length).each do |i|
       persent[i] = (total_time[i] / 720) * 100
     end
