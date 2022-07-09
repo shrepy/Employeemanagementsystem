@@ -7,7 +7,6 @@ class TicketsController < InheritedResources::Base
     end
   end
   
-
   def create
     @ticket = Ticket.new(ticket_params)
     if @ticket.save
