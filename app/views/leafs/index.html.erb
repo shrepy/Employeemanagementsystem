@@ -28,6 +28,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Employee</th>
                     <th scope="col">Leave type</th>
                     <th scope="col">From date</th>
                     <th scope="col">Till date</th>
@@ -42,13 +43,14 @@
                   <% @leafs.each do |leaf| %>
                   <tr>
                       <th scope="row"></th>
+                      <td><%= leaf&.employee&.name %></td>
                       <td><%= leaf.leave_type %></td>
                       <td><%= leaf.from_date %></td>
                       <td><%= leaf.till_date %></td>
                       <td><%= leaf.leave_starts %></td>
                       <td><%= leaf.leave_end %></td>
                       <td><%= leaf.total_days %> Days</td>
-                      <td><%= leaf.resion %></td>
+                      <td><%= leaf.reason %></td>
                       <td>
                       <% if leaf.leave_status == "accept" %>
                         <button type="button" class="btn btn-success disabled">Accepted</button>

@@ -40,6 +40,12 @@ Rails.application.routes.draw do
     get '/search', to: 'attendences#search'
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :leafs, only: %i[index create update]
+    end
+  end
+
   namespace :admin_main do
     resources :holidays
     resources :tickets, only: %i[index show update] do
