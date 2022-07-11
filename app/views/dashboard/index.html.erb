@@ -77,35 +77,15 @@
                     </div>
                 </div>
             </div>
-        
+    
             <div class="container-fluid">
-                <div class="card-happy-birth card mt-5"><h1 class=" card-title p-4 happy-birthdays">Upcoming Holidays</h1>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Holiday Name</th>
-                                <th scope="col">Holiday Type</th>
-                                <th scope="col">Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for i in 0...@upcoming_holidays.length%>
-                                <tr>
-                                    <td><%= @upcoming_holidays[i].holiday_name.capitalize() %></td>
-                                    <td><%= @upcoming_holidays[i].holiday_type.capitalize() %></td>
-                                    <td><%= @upcoming_holidays[i].holiday_date %></td>
-                                </tr>    
-                            <% end %>
-                        </tbody>
-                    </table>
-                </div>
+                <%= render partial: "holiday" %>
                 <br><br>
                 <div class="card-happy-birth card"><h1 class=" card-title p-4 happy-birthdays">Today's Birthdays</h1>
                     <div class="happy-birthday p-3">
                         <%= render partial: "employee", collection: @employees %>
                     </div>
                 </div>
-
                 <div class="card-happy-birth card mt-5"><h1 class=" card-title p-4 happy-birthdays">Recent Joinings</h1>
                     <div class= "happy-birthday p-3">
                         <%= render partial: "employee", collection: @recent_join_employees %>

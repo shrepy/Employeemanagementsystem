@@ -1,0 +1,20 @@
+<% unless @upcoming_holidays.blank? %>
+    <div class="card-happy-birth card mt-2"><h1 class=" card-title p-4 bi bi-emoji-smile">&nbsp; Upcoming Holidays</h1>
+        <table class="table table-striped" style="width:80%" align="center" style="margin: 0px auto;" bgcolor="#F8F8FF">
+            <thead>
+                <tr>
+                    <th style="width:80%" >Date</th>
+                    <th scope="col">Holiday Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @upcoming_holidays.each do |holiday|%>
+                    <tr>
+                      <td><%= holiday.holiday_date %></td>
+                      <td><%= holiday.holiday_name.capitalize() %></td>
+                    </tr>    
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+<% end %>
