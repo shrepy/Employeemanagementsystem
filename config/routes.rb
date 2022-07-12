@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :leafs, only: %i[index create update]
       resources :attendences, only: %i[index show create update]
+      resources :performances, only: [:index]
     end
   end
 
