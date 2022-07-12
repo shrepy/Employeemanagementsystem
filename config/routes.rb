@@ -46,8 +46,10 @@ Rails.application.routes.draw do
       resources :attendences, only: %i[index show create update]
       resources :performances, only: [:index]
       resources :daily_tasks, only: %i[index show create update]
+      resources :holidays, only: %i[index]
     end
   end
+
 
   namespace :admin_main do
     resources :holidays
