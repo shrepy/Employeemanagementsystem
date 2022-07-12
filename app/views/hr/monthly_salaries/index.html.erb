@@ -1,0 +1,66 @@
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Monthly Salary</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item">Employee</li>
+          <li class="breadcrumb-item">Salary</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+             <div class="mt-3 p-4">
+            <%= link_to 'Create Monthly Salary', new_hr_monthly_salary_path , class: "btn btn-primary"  %>
+          </div>
+            <div class="card-body">
+              
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Working Days</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @monthly_salaries.each do |monthly_salary| %>
+                    <tr>
+                      <th></th>
+                      <% month = Date::MONTHNAMES %>
+                      <td><%= month[monthly_salary.month.to_i] %></td>
+                      <td><%= monthly_salary.monthly_working_days %></td>
+                      <td><% if monthly_salary.company_level == false %>
+                          <%= link_to 'Enable', hr_monthly_salary_path(id: monthly_salary.id, company_level: true), method: :patch, class: "btn btn-success"%>
+                          <% else %>
+                            <%= link_to 'Disable', hr_monthly_salary_path(id: monthly_salary.id, company_level: false), method: :patch, class: "btn btn-danger"%>
+                          <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+  <style type="text/css">
+        .text-decoration{
+          text-decoration-line: underline;
+}
+  </style>

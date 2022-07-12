@@ -8,7 +8,7 @@ RSpec.describe "leafs/new", type: :view do
       leave_starts: "MyString",
       leave_end: "MyString",
       total_days: 1,
-      resion: "MyString",
+      reason: "MyString",
       leave_status: false,
       employee: nil
     ))
@@ -29,7 +29,7 @@ RSpec.describe "leafs/new", type: :view do
 
       assert_select "input[name=?]", "leaf[total_days]"
 
-      assert_select "input[name=?]", "leaf[resion]"
+      assert_select "input[name=?]", "leaf[reason]"
 
       assert_select "input[name=?]", "leaf[leave_status]"
 
