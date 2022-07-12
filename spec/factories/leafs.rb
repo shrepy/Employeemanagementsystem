@@ -6,8 +6,8 @@ FactoryBot.define do
     leave_starts { "MyString" }
     leave_end { "MyString" }
     total_days { 1 }
-    resion { "MyString" }
+    reason { "MyString" }
     leave_status { nil }
-    employee { nil }
+    employee_id { 1 }
   end
 end

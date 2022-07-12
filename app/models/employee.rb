@@ -36,15 +36,6 @@ class Employee < ApplicationRecord
   end
 
   def working_days(salary)
-    # created_at_time = []
-    # attendences.each do |attendence|
-    #   if attendence.created_at.strftime('%m-%y') == Time.now.strftime('%m-%y')
-    #     created_at_time << attendence.created_at.strftime('%d-%m-%y')
-    #   end
-    # end
-    # days = created_at_time.uniq
-    # working_days = days.count
-
     attendence = attendences.where('EXTRACT(MONTH FROM created_at) = ?', salary.month).where(employee_id: id)
     hours = attendence.pluck(:hour)
     unless hours.include?(nil)

@@ -1,2 +1,0 @@
-module Hr::EmployeesHelper
-end

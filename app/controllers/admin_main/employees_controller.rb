@@ -46,7 +46,7 @@ module AdminMain
 
     def employee_params
       params.require(:employee).permit(:designation_id, :role_id, :name, :father_name, :mother_name, :date_of_birth,
-                                       :phone_number, :email, :address, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :primary_skill, :password, :password_confirmation, :joining_date, :gender)
+                                       :phone_number, :email, :address, :bank_name, :account_number, :pan_card_number, :aadhar_card_number, :primary_skill, :password, :password_confirmation, :joining_date, :gender, :image)
     end
   end
 end
