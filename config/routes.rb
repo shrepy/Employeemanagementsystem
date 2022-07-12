@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :leafs, only: %i[index create update]
       resources :attendences, only: %i[index show create update]
       resources :performances, only: [:index]
+      resources :daily_tasks, only: %i[index show create update]
     end
   end
 
