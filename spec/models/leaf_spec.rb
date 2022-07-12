@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Leaf, type: :model do
-  let!(:employee) { create :employee }
+  fixtures :all
+
+  let!(:designation) { create :designation, name: 'Hr' }
+  let!(:employee) { create :employee, role_id: roles(:role_one).id, designation_id: designation.id }
   let!(:leaf) { create :leaf, employee_id: employee.id, from_date: Time.zone.now, till_date: Time.zone.now }
 
   it 'count total days when leave starts and leave end with Half day' do
@@ -60,5 +63,36 @@ RSpec.describe Leaf, type: :model do
       leaf.validate
       expect(leaf.check_past_date.type).to eq('Please select right date :)')
     end
+
+    it "validation true for check past date on create" do
+      leaf = Leaf.create(from_date: Time.now.to_date, till_date: Time.now.to_date, employee_id: employee.id )
+      expect(leaf.valid?).to eq(true)
+    end
+
+    it "validation false for check past date on create" do
+      leaf = Leaf.create(from_date: Time.now.to_date - 1.day, till_date: Time.now.to_date, employee_id: employee.id )
+      expect(leaf.valid?).to eq(false)
+    end
+
+    it "validation true for check year on create" do
+      leaf = Leaf.create(from_date: Time.now.to_date, till_date: Time.now.to_date, employee_id: employee.id )
+      expect(leaf.valid?).to eq(true)
+    end
+
+    it "validation false for check year on create" do
+      leaf = Leaf.create(from_date: Time.now.to_date + 2.years, till_date: Time.now.to_date, employee_id: employee.id )
+      expect(leaf.valid?).to eq(false)
+    end
+
+    it "validation true for leave days on create" do
+      leaf = Leaf.create(from_date: Time.now.to_date, till_date: Time.now.to_date + 26.days, employee_id: employee.id )
+      expect(leaf.valid?).to eq(true)
+    end
+
+    it "validation false for leave days on create" do
+      leaf = Leaf.create(from_date: Time.now.to_date, till_date: Time.now.to_date + 2.months, employee_id: employee.id )
+      expect(leaf.valid?).to eq(false)
+    end
+
   end
 end

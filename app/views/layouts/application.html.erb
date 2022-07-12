@@ -25,13 +25,13 @@
 
   <body>
 
-    <% if employee_signed_in? %>
+    <% if current_employee.is_admin? %>
+      <%= render 'shared/admin_header' %>
+    <% else employee_signed_in? %>
       <%= render 'shared/header' %>
-      <%= yield %>
+    <% end if employee_signed_in?%>
       <%= render 'shared/footer' %>
-    <% else %>
-      <%= yield %>
-    <% end %>
+    <%= yield %>
 
   </body>
 </html>
