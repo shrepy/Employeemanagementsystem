@@ -28,21 +28,28 @@
                     <th scope="col">Employee Name</th>
                     <th scope="col">Salary</th>
                     <th scope="col">Month</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Download PDF</th>
                   </tr>
                 </thead>
                 <tbody>
                   <% @salaries.each do |salary| %>
-                  <% if current_employee.id == salary.employee_id %>
-                    <% emp = Employee.find(salary.employee_id) %>
                     <tr>
-                      <th><%= salary.id %></th>
-                      <td><%= emp.name.capitalize() %></td>
+                      <th></th>
+                      <td><%= salary.employee.name.capitalize() %></td>
                       <td><%= salary.salary %></td>
-                      <td><%= salary.month %></td>
-                     <td> <%= link_to 'Show Salary Details', salary_path(salary) %></td>
+                      <% month = Date::MONTHNAMES %>
+                      <td><%= month[salary.month.to_i]%></td>
+                      <td>
+                      <% if salary&.monthly_salary&.company_level == true %>
+                      <% show_pdf =  pdf(salary.monthly_salary) %>
+                      <% if salary.download_status == true %>
+                        <% if show_pdf %>
+                        <%= link_to 'Download PDF', salary_path(salary, :format => :pdf), target: "_blank", class: "text-black text-decoration", data: { confirm: 'You can download pdf only one time. Now you are ready to Download'} %>
+                        <% end %>
+                      <% end %>
+                      <% end %>
+                    </td>
                     </tr>
-                    <% end %>
                   <% end %>
                 </tbody>
               </table>
@@ -56,4 +63,8 @@
     </section>
 
   </main><!-- End #main -->
-  
+  <style type="text/css">
+        .text-decoration{
+          text-decoration-line: underline;
+}
+  </style>

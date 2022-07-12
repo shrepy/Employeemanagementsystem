@@ -26,6 +26,7 @@ class EmployeesController < ApplicationController
   end
 
   def update
+    set_designations
     @employee = Employee.find_by_id params[:id]
     if @employee.update(employee_params)
       redirect_to @employee

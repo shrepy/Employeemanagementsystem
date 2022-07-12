@@ -1,0 +1,53 @@
+</aside><!-- End Sidebar-->
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Leave List</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Leave</li>
+                <li class="breadcrumb-item active">List</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body p-5">
+                        <!-- Table with stripped rows --> <%= link_to 'Back', employees_path,  class: "right btn btn-primary" %> <th>Employee Name - <%= @employee&.name&.capitalize()%> </th>
+                        <table class="table table-striped mt-3" ><thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Leave type</th>
+                                <th scope="col">From date</th>
+                                <th scope="col">Till date</th>
+                                <th scope="col">Leave starts</th>
+                                <th scope="col">Leave end</th>
+                                <th scope="col">Total days</th>
+                                <th scope="col">Reason</th>
+                                <th scope="col">Leave status</th>
+                            </tr>
+                            </thead>
+                            <tbody> <% @leafs.each do |leaf| %> <tr>
+                                    <th scope="row"></th>
+                                    <td><%= leaf.leave_type %></td>
+                                    <td><%= leaf.from_date %></td>
+                                    <td><%= leaf.till_date %></td>
+                                    <td><%= leaf.leave_starts %></td>
+                                    <td><%= leaf.leave_end %></td>
+                                    <td><%= leaf.total_days %> Days</td>
+                                    <td><%= leaf.reason %></td>
+                                    <td> <% if leaf.leave_status == "accept" %> 
+                                            <%= link_to 'Accepted', root_path, method: :patch, class: 'btn btn-success disabled' %> 
+                                            <% elsif leaf.leave_status == 'decline' %>
+                                                <%= link_to 'Declined', root_path, method: :patch, class: 'btn btn-danger disabled' %> 
+                                            <% else %> 
+                                                <%= link_to 'Accept', hr_employee_leaf_path(id: leaf.id, leave_status: 'accept'), method: :patch, class: 'btn btn-success' %> 
+                                                <%= link_to 'Decline',hr_employee_leaf_path(id: leaf.id, leave_status: 'decline'), method: :patch, class: 'btn btn-danger' %> 
+                                            <% end %> 
+                                    </td>
+                                </tr> <% end %> </tbody>
+                        </table> <!-- End Table with stripped rows -->
+                    </div>
+                </div>

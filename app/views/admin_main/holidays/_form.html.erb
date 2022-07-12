@@ -1,0 +1,21 @@
+<h1 style="width: 300px;"></h1>
+<%=  form_with model: [:admin_main, @holiday ] do |form| %>
+  <div class="field">
+  <%= form.label :holiday_name %>
+  <%= form.text_field :holiday_name, class: 'form-control'%>
+  </div>
+
+  <div class="field mt-3 mb-3">
+    <%= form.label :holiday_type %>
+    <%= form.select :holiday_type, Holiday.holiday_types.keys, {}, class: 'form-control' %>
+  </div>
+
+  <div class="field mt-3 mb-3">
+    <%= form.label :holiday_date %>
+    <%= form.date_field :holiday_date, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
