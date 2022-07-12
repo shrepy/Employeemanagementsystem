@@ -9,7 +9,7 @@ class DeviseTokenAuthCreateEmployees < ActiveRecord::Migration[6.1]
       #t.timestamps
     end
 
-    add_index :employees, [:uid, :provider],     unique: true
+     add_index :employees, [:uid, :provider],     unique: true
 
     # add_index :employees, :unlock_token,         unique: true
   end

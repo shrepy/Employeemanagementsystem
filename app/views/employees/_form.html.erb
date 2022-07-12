@@ -1,4 +1,16 @@
-<%= form_with(model: employee) do |form| %> <div class="field row">
+<%= form_with(model: employee) do |form| %>
+<% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this attendence from being saved:</h2>
+
+      <ul>
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <div class="field row">
     <div class="col-lg-2"> <%= form.label :name %> </div>
     <div class="col-lg-10"> <%= form.text_field :name, class: "form-control" %> </div>
 </div>
@@ -26,9 +38,7 @@
 </div>
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :phone_number %> </div>
-    <div class="col-lg-10"> <%= form.text_field :phone_number, class: "form-control" %>  <% @employee.errors.full_messages_for(:phone_number).each do |message| %>
-      <div><%= message %></div>
-    <% end %></div>
+    <div class="col-lg-10"> <%= form.text_field :phone_number, class: "form-control" %></div>
 </div>
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :email %> </div>
@@ -44,21 +54,15 @@
 </div>
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :account_number %> </div>
-    <div class="col-lg-10"> <%= form.text_field :account_number, class: "form-control" %>  <% @employee.errors.full_messages_for(:account_number).each do |message| %>
-      <div><%= message %></div>
-    <% end %> </div>
+    <div class="col-lg-10"> <%= form.text_field :account_number, class: "form-control" %> </div>
 </div>
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :pan_card_number %> </div>
-    <div class="col-lg-10"> <%= form.text_field :pan_card_number, class: "form-control" %>  <% @employee.errors.full_messages_for(:pan_card_number).each do |message| %>
-      <div><%= message %></div>
-    <% end %> </div>
+    <div class="col-lg-10"> <%= form.text_field :pan_card_number, class: "form-control" %></div>
 </div>
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :aadhar_card_number %> </div>
-    <div class="col-lg-10"> <%= form.text_field :aadhar_card_number, class: "form-control" %>  <% @employee.errors.full_messages_for(:aadhar_card_number).each do |message| %>
-      <div><%= message %></div>
-    <% end %> </div>
+    <div class="col-lg-10"> <%= form.text_field :aadhar_card_number, class: "form-control" %></div>
 </div>
 <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :primary_skill %> </div>

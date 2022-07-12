@@ -1,0 +1,58 @@
+</aside><!-- End Sidebar-->
+<main id="main" class="main">
+
+  <h1>Tickets</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Employee Name</th>
+      <th scope="col">Ticket Type</th>
+    </thead>
+    <tbody>
+      </tr>
+        <%= form_with(url: '/admin_main/tickets', method: 'get', local: true) do %>
+          <div>
+            <%= text_field_tag :search%>
+            <%= submit_tag("Search") %>
+          </div>
+        <% end %>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
+            <td><%= ticket.employee.name %></td>
+            <td><%= ticket.ticket_type %></td>
+            <td><a class="btn btn-primary" href="<%= admin_main_ticket_path(ticket) %>" role="button">Show</a></td>
+            <% if current_employee.is_admin? %>
+              <td><% accept, decline = admin_status(ticket) %></td>
+              <td><%= accept %>    <%= decline %></td>
+            <% else %>
+              <td><% accept, decline = accept_decline(ticket) %></td>
+            <% end %>
+          </tr>
+        
+          <div class="container">
+            <div class="modal fade" id="myModal-<%=ticket.id%>" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                  </div>
+                  <div class="p-5">
+                    <%= raw ticket.description %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </tbody>
+  </table>
+</main>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
