@@ -4,8 +4,8 @@ module Api
   module V1
     class EmployeesController < ApplicationController
       before_action :authenticate_employee!
-      before_action :set_employee, only: %i[show update]
-      # skip_before_action :verify_authenticity_token
+      before_action :set_employee, only: %i[show]
+      skip_before_action :verify_authenticity_token, only: [:update_password]
 
       # GET /employees/1 or /employees/1.json
       def show
@@ -16,8 +16,12 @@ module Api
       end
 
       # PATCH /employees/1 or /employees/1.json
-      def update
-        if @employee_data.update(employee_params)
+      def update_password
+        @employee_data = current_employee
+        @employee_data.password = employee_params[:password]
+        @employee_data.password_confirmation = employee_params[:password_confirmation]
+
+        if @employee_data.save(validate: false)
           render json: {
             data: serializer_data(@employee_data, employee_serializer),
             message: ['password successfully update'], status: 200, type: 'Success'

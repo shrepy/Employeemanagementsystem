@@ -9,7 +9,7 @@ ActiveAdmin.register Leaf do
   # or
   #
    permit_params do
-     permitted = [:leave_type, :from_date, :till_date, :leave_starts, :leave_end, :total_days, :resion, :leave_status, :employee_id]
+     permitted = [:leave_type, :from_date, :till_date, :leave_starts, :leave_end, :total_days, :reason, :leave_status, :employee_id]
      permitted << :other if params[:action] == 'create' && current_admin_user
      permitted
    end
@@ -23,12 +23,12 @@ ActiveAdmin.register Leaf do
       column :leave_starts
       column :leave_end
       column :total_days
-      column :resion
+      column :reason
       actions
   end
 
   
-  permit_params :leave_type, :from_date, :till_date, :leave_starts, :leave_end, :total_days, :resion, :leave_status, :employee_id
+  permit_params :leave_type, :from_date, :till_date, :leave_starts, :leave_end, :total_days, :reason, :leave_status, :employee_id
 
   form do |f|
     f.inputs do   
