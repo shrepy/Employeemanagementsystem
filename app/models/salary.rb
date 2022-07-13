@@ -33,8 +33,7 @@ class Salary < ApplicationRecord
   end
 
   def employee_working_days
-    salary = self
-    hour = employee.working_days(salary)
+    hour = employee.working_days(self)
     working_hour = hour&.split(':')
     working_hour.join('.').to_f
   end

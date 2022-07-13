@@ -1,0 +1,41 @@
+</aside>
+  <main id="main" class="main">
+      <% if flash.any? %>
+          <% flash.each do |key, value| %>
+            <div class="<%= flash_class(key.to_sym) %> show" ><%= value %></div>
+          <% end %>
+      <% end %>
+      <%= form_with(model: @monthly_salary,  url: admin_main_monthly_salaries_path) do |form| %>
+        <% if @monthly_salary.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@monthly_salary.errors.count, "error") %> prohibited this holiday from being saved:</h2>
+          <ul>
+            <% @monthly_salary.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="card text-center">
+        <div class="card-header">
+          <div class="field">
+            <%= form.label :month %><br>
+            <%= form.select :month, options_for_select((1..12).map {|m| [Date::MONTHNAMES[m], m]}), class: 'form-control'%>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="field mt-3 mb-3">
+            <%= form.label :monthly_working_days %><br>
+            <%= form.number_field :monthly_working_days, min: 01, max: 26 %>
+          </div>
+        <div class="field mt-3 mb-3">
+          <%= form.label :company_level %><br>
+          <%= form.radio_button :company_level, true %> Enable <%= form.radio_button :company_level, false %> Disable
+        </div>
+        <div class="actions">
+          <%= form.submit class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </main>

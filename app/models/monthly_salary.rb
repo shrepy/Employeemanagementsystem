@@ -4,6 +4,8 @@
 class MonthlySalary < ApplicationRecord
   has_many :salaries, dependent: :destroy
   after_create :salary_create
+  validates :monthly_working_days, presence: true
+  validates :month, uniqueness: true
 
   def salary_create
     employees = Employee.all
