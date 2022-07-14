@@ -35,9 +35,9 @@ RSpec.describe DailyTasksController, type: :controller do
       expect(assigns(:daily_task)).to eq(daily_task)
     end
 
-    it 'render 404 when daily task not exit' do
+    it 'return nil when daily task not exist' do
       get :show, params: { id: '' }
-      expect(response.status).to eq(404)
+      expect(assigns(:daily_task)).to eq(nil)
     end
   end
 
@@ -55,9 +55,9 @@ RSpec.describe DailyTasksController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it 'render 404 when daily task not exit' do
+    it 'return nil when daily task not exist' do
       get :show, params: { id: '' }
-      expect(response.status).to eq(404)
+      expect(assigns(:daily_task)).to eq(nil)
     end
   end
 
@@ -84,9 +84,9 @@ RSpec.describe DailyTasksController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it 'render 404 when daily task not exit' do
+    it 'return nil when daily task not exist' do
       get :edit, params: { id: '' }
-      expect(response.status).to eq(404)
+      expect(assigns(:daily_task)).to eq(nil)
     end
   end
 
@@ -96,9 +96,14 @@ RSpec.describe DailyTasksController, type: :controller do
       expect(response.status).to eq(302)
     end
 
-    it 'render 404 when daily task not exit' do
+    it 'response successfully when daily task exit' do
+      patch :update, params: { daily_task: { description: 'i am working on EMS'}, id: daily_task.id}
+      expect(assigns(:daily_task)).to eq(daily_task)
+    end
+
+    it 'return nil when daily task not exist' do
       put :update, params: { daily_task: { description: 'i am working on EMS' }, id: '' }
-      expect(response.status).to eq(404)
+      expect(assigns(:daily_task)).to eq(nil)
     end
   end
 end
