@@ -5,7 +5,7 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  include DeviseTokenAuth::Concerns::User       
+  include DeviseTokenAuth::Concerns::User
 
   self.inheritance_column = 'not_sti'
   has_many :performances, dependent: :destroy
@@ -36,7 +36,8 @@ class Employee < ApplicationRecord
   end
 
   def working_days(salary)
-    attendence = attendences.where('EXTRACT(MONTH FROM created_at) = ?', salary.month).where(employee_id: id)
+    attendence = attendences.where('EXTRACT(MONTH FROM created_at) = ?',
+                                   salary.month).where(employee_id: salary.employee_id)
     hours = attendence.pluck(:hour)
     unless hours.include?(nil)
       hours.sum do |s|

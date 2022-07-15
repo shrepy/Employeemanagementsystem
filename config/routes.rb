@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
     resources :employees
-    resources :monthly_salaries, except: %i[destroy show edit]
+    resources :monthly_salaries, except: %i[destroy edit]
   end
 
   get '/set_ip', to: 'dashboard#set_ip'

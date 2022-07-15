@@ -23,7 +23,7 @@ class Salary < ApplicationRecord
 
   def total_earnings
     hours = monthly_salary.monthly_working_days * 8
-    salary_of_hours = salary / hours
+    salary_of_hours = salary / hours.to_f
     total_earning = employee_working_days * salary_of_hours
     self.earnings = total_earning
   end
@@ -33,7 +33,8 @@ class Salary < ApplicationRecord
   end
 
   def employee_working_days
-    hour = employee.working_days(self)
+    salary = self
+    hour = employee.working_days(salary)
     working_hour = hour&.split(':')
     working_hour.join('.').to_f
   end
