@@ -18,7 +18,6 @@ class Salary < ApplicationRecord
 
   def update_total_working_days
     self.total_working_days = employee_working_days / 8.ceil
-    self.leaves = employee.leave_total
   end
 
   def total_earnings
