@@ -11,7 +11,7 @@ module AdminMain
 
     def show
       @attendences = if params[:month].blank?
-                       @employee.attendences
+                       @employee.attendences.order('created_at desc').page(params[:page])
                      else
                        @employee.attendences.where('EXTRACT(MONTH FROM created_at) = ?', params[:month])
                      end

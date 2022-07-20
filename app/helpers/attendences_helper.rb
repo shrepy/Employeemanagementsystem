@@ -33,7 +33,7 @@ module AttendencesHelper
       hours.sum do |s|
         h, m = s.split(':').map(&:to_i)
         60 * h + m
-      end.divmod(60).join(':')
+      end.divmod(60).join(' hours ')
     end
   end
 

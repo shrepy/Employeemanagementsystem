@@ -4,8 +4,8 @@
     <% attendance << attendence.created_at.strftime('%d-%m-%y') %>
     <tr>
       <%at = @attendences.map{|a| a if (a.checkin_time.to_date == attendence.checkin_time.to_date )}.compact%>
-        <td><%= at.first.checkin_time.to_date %></td>
-        <td><%= at.first.checkin_time&.strftime(" %I:%M:%S %p") %></td>
+        <td style="width:400px"><%= at.first.checkin_time.to_date %></td>
+        <td style="width:400px"><%= at.first.checkin_time&.strftime(" %I:%M:%S %p") %></td>
         <td style="width:600px">
           <% persent = attendence_graph(at)%>
           <div class="container skills">
@@ -19,8 +19,8 @@
             <% end %>
           </div><br/>
         </td>
-        <td><%= at.last.checkout_time&.strftime(" %I:%M:%S %p") %></td>
-        <td><%= hours = working_hour(at)%></td>
+        <td style="width:500px"><%= at.last.checkout_time&.strftime(" %I:%M:%S %p") %></td>
+        <td style="width:500px"><%= hours = working_hour(at) %> minutes</td>
         <% unless attendence.employee.is_admin? %>
           <td><%= link_to 'Edit', edit_admin_main_attendence_path(at.last.id), class: "btn btn-primary" %></td>
         <% end %>
