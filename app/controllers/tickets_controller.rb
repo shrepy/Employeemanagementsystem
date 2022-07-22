@@ -1,13 +1,12 @@
 class TicketsController < InheritedResources::Base
   def index 
-    if current_user.role.name == 'HR'
+    if current_employee.is_hr? || current_employee.is_admin?
       @tickets = Ticket.order(created_at: :desc)
     else
       @tickets = Ticket.where(employee_id: current_employee)
     end
   end
   
-
   def create
     @ticket = Ticket.new(ticket_params)
     if @ticket.save
@@ -46,7 +45,7 @@ class TicketsController < InheritedResources::Base
   private
 
     def ticket_params
-      params.require(:ticket).permit(:status, :description, :ticket_type, :employee_id, :resion)
+      params.require(:ticket).permit(:status, :description, :ticket_type, :employee_id, :reason)
     end
 
 end

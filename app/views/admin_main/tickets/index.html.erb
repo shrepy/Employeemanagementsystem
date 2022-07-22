@@ -5,8 +5,9 @@
   <table class="table table-striped">
     <thead>
       <tr>
-      <th scope="col">Description</th>
+      <th scope="col">Date</th>
       <th scope="col">Employee Name</th>
+      <th scope="col">Description</th>
       <th scope="col">Ticket Type</th>
     </thead>
     <tbody>
@@ -16,11 +17,13 @@
             <%= text_field_tag :search%>
             <%= submit_tag("Search") %>
           </div>
-        <% end %>
+        <% end %><br>
+
         <% @tickets.each do |ticket| %>
           <tr>
-            <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
+            <td><%= ticket.created_at.to_date.strftime("%d %h %Y")  %></td>
             <td><%= ticket.employee.name %></td>
+            <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
             <td><%= ticket.ticket_type %></td>
             <td><a class="btn btn-primary" href="<%= admin_main_ticket_path(ticket) %>" role="button">Show</a></td>
             <% if current_employee.is_admin? %>

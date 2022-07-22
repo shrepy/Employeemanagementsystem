@@ -9,7 +9,7 @@ RSpec.describe "leafs/index", type: :view do
         leave_starts: "Leave Starts",
         leave_end: "Leave End",
         total_days: 3,
-        resion: "Resion",
+        reason: "Reason",
         leave_status: false,
         employee: nil
       ),
@@ -19,7 +19,7 @@ RSpec.describe "leafs/index", type: :view do
         leave_starts: "Leave Starts",
         leave_end: "Leave End",
         total_days: 3,
-        resion: "Resion",
+        reason: "Reason",
         leave_status: false,
         employee: nil
       )
@@ -33,7 +33,7 @@ RSpec.describe "leafs/index", type: :view do
     assert_select "tr>td", text: "Leave Starts".to_s, count: 2
     assert_select "tr>td", text: "Leave End".to_s, count: 2
     assert_select "tr>td", text: 3.to_s, count: 2
-    assert_select "tr>td", text: "Resion".to_s, count: 2
+    assert_select "tr>td", text: "Reason".to_s, count: 2
     assert_select "tr>td", text: false.to_s, count: 2
     assert_select "tr>td", text: nil.to_s, count: 2
   end

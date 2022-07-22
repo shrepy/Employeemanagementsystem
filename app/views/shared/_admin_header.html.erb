@@ -50,7 +50,7 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <%= link_to root_path, class: "nav-link collapsed a" do %> 
+      <%= link_to root_path, class: "nav-link collapsed a" do %>
         <i class="bi bi-grid"></i>
         Dashboard
       <% end %>
@@ -60,11 +60,10 @@
       <% if current_employee.is_admin?  %>
         <%= link_to profile_path , class: "nav-link collapsed" do %>
           <i class="bi bi-person"></i>
-         Profile
+           Profile
         <% end %>
       <% end %>
     </li>
-
 
     <li class="nav-item">
       <%= link_to admin_main_employees_path , class: "nav-link collapsed" do  %>
@@ -88,6 +87,10 @@
       <%= link_to  salaries_path, class: "nav-link collapsed" do %>
         <i class="bi bi-menu-button-wide"></i>
         Salary
+
+      <%= link_to  admin_main_monthly_salaries_path, class: "nav-link collapsed" do %>
+        <i class="bi bi-menu-button-wide"></i>
+        Monthly Salary
       <% end %>
     </li>
 
@@ -104,7 +107,7 @@
         Attendence
       <% end %>
     </li>
-    
+
     </li class="nav-item">
       <%= link_to  admin_main_holidays_path , class: "nav-link collapsed" do %>
         <i class="bi bi-menu-button-wide"></i>
@@ -118,7 +121,7 @@
         Daily Task
       <% end %>
     </li>
-    
+
     <li class="nav-item">
       <%= link_to  admin_main_tickets_path, class: "nav-link collapsed" do %>
         <i class="bi bi-menu-button-wide"></i>
