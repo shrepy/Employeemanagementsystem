@@ -4,7 +4,7 @@
     <% attendance << attendence.created_at.strftime('%d-%m-%y') %>
     <tr>
       <%at = @attendences.map{|a| a if (a.checkin_time.to_date == attendence.checkin_time.to_date )}.compact%>
-        <td style="width:400px"><%= at.first.checkin_time.to_date %></td>
+        <td style="width:400px"><%= date_formate(at.first.checkin_time) %></td>
         <td style="width:400px"><%= at.first.checkin_time&.strftime(" %I:%M:%S %p") %></td>
         <td style="width:600px">
           <% persent = attendence_graph(at)%>
