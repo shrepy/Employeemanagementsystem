@@ -3,7 +3,7 @@
 module Api
   module V1
     class HolidaysController < ApplicationController
-      # before_action :authenticate_employee!
+      before_action :authenticate_employee!
       skip_before_action :verify_authenticity_token
 
       def index

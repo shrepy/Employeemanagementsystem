@@ -3,7 +3,7 @@
 module Api
   module V1
     class AttendencesController < ApplicationController
-      # before_action :authenticate_employee!
+      before_action :authenticate_employee!
       before_action :set_attendance, only: %i[show]
       skip_before_action :verify_authenticity_token
 
@@ -16,7 +16,7 @@ module Api
       end
 
       def show
-        @attendence_data = current_employee.attendences # Attendence.where(employee_id: attendence.employee_id)
+        attendence_data = current_employee.attendences #Attendence.where(employee_id: attendence.employee_id)
         render json: {
           data: serializer_data(@attendence_data, attendence_serializer),
           message: ['show daily attendence  '], status: 302, type: 'Success'
@@ -48,8 +48,7 @@ module Api
       end
 
       def set_attendance
-        @attendence_data = current_employee.attendences.find_by_id params[:id]
-        render json: { message: 'Not Found' }, status: 404 unless @attendence_data.present?
+        attendence = current_employee.attendences.find_by_id params[:id]
       end
 
       private
