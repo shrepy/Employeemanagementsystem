@@ -24,4 +24,8 @@ module ApplicationHelper
     def flash_class(level)
       FLASH_CLASSES[level]
     end
+
+    def date_formate(date)
+      date.strftime("%d %b %Y")
+    end
 end

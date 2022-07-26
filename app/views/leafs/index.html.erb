@@ -45,8 +45,8 @@
                       <th scope="row"></th>
                       <td><%= leaf&.employee&.name %></td>
                       <td><%= leaf.leave_type %></td>
-                      <td><%= leaf.from_date %></td>
-                      <td><%= leaf.till_date %></td>
+                      <td><%=  date_formate(leaf.from_date) %></td>
+                      <td><%=  date_formate(leaf.till_date) %></td>
                       <td><%= leaf.leave_starts %></td>
                       <td><%= leaf.leave_end %></td>
                       <td><%= leaf.total_days %> Days</td>
