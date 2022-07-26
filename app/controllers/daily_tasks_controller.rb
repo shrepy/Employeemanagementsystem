@@ -22,7 +22,7 @@ class DailyTasksController < ApplicationController
   end
 
   def new
-    task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day).first
+    task = current_employee.daily_tasks.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).first
     if task.blank?
       @daily_task = DailyTask.new
     else
@@ -40,7 +40,7 @@ class DailyTasksController < ApplicationController
   end
 
   def edit
-    @daily_task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?', Date.current.day).first
+    @daily_task = current_employee.daily_tasks.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).first
     if @daily_task.present?
       render :edit
     else

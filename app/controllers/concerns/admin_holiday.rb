@@ -2,7 +2,7 @@
 
 module AdminHoliday
   def index
-    @holidays = Holiday.all
+    @holidays = Holiday.all.order("holiday_date ASC")
   end
 
   def new

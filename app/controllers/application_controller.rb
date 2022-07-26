@@ -2,7 +2,7 @@
 
 # application controller
 class ApplicationController < ActionController::Base
-
+  protect_from_forgery with: :null_session, if: :devise_controller?
   add_flash_types :danger, :info, :warning, :success, :messages, :notice
   # before_action :get_ip
 
