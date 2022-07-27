@@ -15,7 +15,7 @@
       <tbody>
         <% @tickets.each do |ticket| %>
                     <tr>
-                      <td><%=  date_formate(ticket.created_at)  %></td>
+                      <td><%=  date_format(ticket.created_at)  %></td>
                       <td><%= ticket.employee.name %></td>
                       <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
                       <td><%= ticket.ticket_type %></td>
