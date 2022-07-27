@@ -1,73 +1,68 @@
 </aside><!-- End Sidebar-->
-
   <main id="main" class="main">
+    <h1>Tickets</h1>
+    <%= link_to 'Add Ticket', new_ticket_path, class: "btn btn-primary"%>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Ticket Type</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <% @tickets.each do |ticket| %>
+                    <tr>
+                      <td><%=  date_formate(ticket.created_at)  %></td>
+                      <td><%= ticket.employee.name %></td>
+                      <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
+                      <td><%= ticket.ticket_type %></td>
+                      <% if current_employee.is_hr? || current_employee.is_admin? %>
+                        <td><% if ticket.status == 'accept' %>
+                              <%= link_to 'Accepted', ticket_path(ticket), method: :patch, class: 'btn btn-success disabled' %>
+                            <% elsif ticket.status == 'decline' %>
+                              <%= link_to 'Declined', decline_ticket_path(ticket), method: :patch, class: 'btn btn-danger disabled' %>
+                            <% else %>
+                              <%= link_to 'Accept', ticket_path(ticket), method: :patch, class: 'btn btn-success' %>
+                              <%= link_to 'Decline', decline_ticket_path(ticket), method: :patch, class: 'btn btn-danger' %>
+                            <% end %>
+                        </td>
+                      <% else %>
+                         <% if ticket.status == nil %>
+                            <td><button type="button" class="btn btn-warning disabled">Pending</button></td>
+                         <% elsif ticket.status == 'accept' %>
+                            <td><button type="button" class="btn btn-success disabled">Accepted</button> by <%= ticket.updated_by%></td>
+                         <% else %>
+                            <td><button type="button" class="btn btn-danger disabled">Rejected</button> by <%= ticket.updated_by%></td>
+                         <% end%>
+                      <% end %>
+                    </tr>
+                    <div class="container">
+                      <div class="modal fade" id="myModal-<%=ticket.id%>" role="dialog">
+                        <div class="modal-dialog">
 
-<h1>Tickets</h1>
-<%= link_to 'Add Ticket', new_ticket_path, class: "btn btn-primary"%>
- <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Employee Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Ticket Type</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @tickets.each do |ticket| %>
-                  <tr>
-                    <td><%= ticket.created_at.to_date.strftime("%d %h %Y")  %></td>
-                    <td><%= ticket.employee.name %></td>
-                    <th scope="row"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=ticket.id%>"><%= raw ticket.description.slice(0,15)+ "..." %></button></th>
-                    <td><%= ticket.ticket_type %></td>
-                    <% if current_employee.is_hr? || current_employee.is_admin? %>
-                      <td><% if ticket.status == 'accept' %>
-                            <%= link_to 'Accepted', ticket_path(ticket), method: :patch, class: 'btn btn-success disabled' %>
-                          <% elsif ticket.status == 'decline' %>
-                            <%= link_to 'Declined', decline_ticket_path(ticket), method: :patch, class: 'btn btn-danger disabled' %>
-                          <% else %>
-                            <%= link_to 'Accept', ticket_path(ticket), method: :patch, class: 'btn btn-success' %>
-                            <%= link_to 'Decline', decline_ticket_path(ticket), method: :patch, class: 'btn btn-danger' %>
-                          <% end %>
-                      </td>
-                    <% else %>
-                       <% if ticket.status == nil %>
-                          <td><button type="button" class="btn btn-warning disabled">Pending</button></td>
-                       <% elsif ticket.status == 'accept' %>
-                          <td><button type="button" class="btn btn-success disabled">Accepted</button> by <%= ticket.updated_by%></td>
-                       <% else %>
-                          <td><button type="button" class="btn btn-danger disabled">Rejected</button> by <%= ticket.updated_by%></td>
-                       <% end%>
-                    <% end %>
-                  </tr>
-                  <div class="container">
-                    <div class="modal fade" id="myModal-<%=ticket.id%>" role="dialog">
-                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title"></h4>
+                            </div>
+                            <div class="p-5">
+                              <%= raw ticket.description %>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
 
-                      <!-- Modal content-->
-                        <div class="modal-content">
-                          <div class="modal-header">
-                          <h4 class="modal-title"></h4>
-                          </div>
-                          <div class="p-5">
-                            <%= raw ticket.description %>
-                          </div>
-                          <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          </div>
                         </div>
-
                       </div>
                     </div>
-                  </div>
-                  <% end %>
-                </tbody>
-
-
-                
-              </table>
-</main>
+                    <% end %>
+                  </tbody>
+                </table>
+  </main>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

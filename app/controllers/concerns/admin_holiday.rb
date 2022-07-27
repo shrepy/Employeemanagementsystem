@@ -2,7 +2,7 @@
 
 module AdminHoliday
   def index
-    @holidays = Holiday.all
+    @holidays = Holiday.all.order("holiday_date ASC")
   end
 
   def new
@@ -18,7 +18,12 @@ module AdminHoliday
     end
   end
 
-  def edit; end
+  def edit
+    @holiday = Holiday.find_by_id params[:id]
+    if @holiday.present? && @holiday&.holiday_date < Date.today
+      redirect_to admin_main_holidays_path
+    end
+  end
 
   def show; end
 
