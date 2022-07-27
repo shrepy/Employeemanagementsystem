@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Employee Name</th>
+      <th scope="col">Attendences</th>
+    </tr>
+  </thead>
+  <tbody class="search-data">
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name.capitalize() %></td>
+        <td>
+          <%= link_to 'View Attendence',admin_main_attendence_path(employee), class: "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
