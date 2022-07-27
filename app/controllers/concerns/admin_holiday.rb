@@ -2,7 +2,7 @@
 
 module AdminHoliday
   def index
-    @holidays = Holiday.all.order("holiday_date ASC")
+    @holidays = Holiday.all.order('holiday_date ASC')
   end
 
   def new
@@ -41,7 +41,7 @@ module AdminHoliday
   private
 
   def holiday_params
-    params.require(:holiday).permit(:holiday_date, :holiday_name, :holiday_type)
+    params.require(:holiday).permit(:holiday_date, :holiday_name)
   end
 
   def set_holiday
