@@ -16,7 +16,7 @@ module Api
       end
 
       def show
-        attendence_data = current_employee.attendences #Attendence.where(employee_id: attendence.employee_id)
+        # attendence_data = current_employee.attendences #Attendence.where(employee_id: attendence.employee_id)
         render json: {
           data: serializer_data(@attendence_data, attendence_serializer),
           message: ['show daily attendence  '], status: 302, type: 'Success'
@@ -48,7 +48,7 @@ module Api
       end
 
       def set_attendance
-        attendence = current_employee.attendences.find_by_id params[:id]
+        @attendence_data = current_employee.attendences.find_by_id params[:id]
       end
 
       private
