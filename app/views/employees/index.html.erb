@@ -1,6 +1,5 @@
  </aside><!-- End Sidebar-->
-
-  <main id="main" class="main">
+ <main id="main" class="main">
     <% unless current_employee.is_hr? %>
 
     <div class="pagetitle">
@@ -342,17 +341,23 @@
 
           <div class="card">
 
-          <div class="mt-3 p-4">
-            <%= link_to 'Add New Employee', new_hr_employee_path , class: "btn btn-primary"  %>
-          </div>
+            <div class="mt-3 p-4">
+              <%= link_to 'Add New Employee', new_hr_employee_path , class: "btn btn-primary"  %>
+            </div>
+
+            <div style="text-align: right;">
+             <%= button_to 'add leave',  hr_employee_update_leave_balance_path(@employees),method: :get, class: "btn btn-primary "  %>
+            </div>
 
             <div class="card-body mt-3">
-          <%= form_with(url: '/employees', method: 'get', local: true) do %>
+              <%= form_with(url: '/employees', method: 'get', local: true) do %>
+            <div>
+
             <div>
               <%= text_field_tag :search%>
               <%= submit_tag("Search") %>
             </div>
-          <% end %>
+              <% end %>
               <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>
