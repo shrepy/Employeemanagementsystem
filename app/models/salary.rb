@@ -4,10 +4,10 @@
 class Salary < ApplicationRecord
   belongs_to :employee, dependent: :destroy
   belongs_to :monthly_salary, dependent: :destroy
-  before_save :update_total_working_days
-  before_save :total_earnings
-  before_save :total_leaves
-  before_save :total_deductions
+  before_create :update_total_working_days
+  before_create :total_earnings
+  before_create :total_leaves
+  before_create :total_deductions
   before_validation :validates_salary
   validates :salary, presence: true
   validates :month, presence: true
@@ -41,5 +41,13 @@ class Salary < ApplicationRecord
   def total_leaves
     leave = monthly_salary.monthly_working_days - total_working_days
     self.leaves = leave
+  end
+
+  def self.search(search)
+    if search
+      Salary.joins(:employee).where('employees.name LIKE ? OR month LIKE ? ', "%#{search}%", "%#{search}%")
+    else
+      all
+    end
   end
 end
