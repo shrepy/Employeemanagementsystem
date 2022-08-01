@@ -48,7 +48,12 @@ module Api
       end
 
       def set_attendance
-        @attendence_data = current_employee.attendences.find_by_id params[:id]
+        attendence = current_employee.attendences.find_by_id params[:id]
+        return render json: { message: 'Not Found' }, status: 404 if attendence.nil?
+
+        day = attendence.created_at
+        @attendence_data = current_employee.attendences.where('created_at > ? AND created_at < ?', day.beginning_of_day,
+                                                              day.end_of_day)
       end
 
       private
