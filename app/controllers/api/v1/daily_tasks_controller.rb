@@ -23,20 +23,27 @@ module Api
       end
 
       def create
-        daily_task_data = DailyTask.new(params_daily_task)
-        if daily_task_data.save
-          render json: {
-            data: serializer_data(daily_task_data, daily_task_serializer),
-            status: 200, type: 'Success'
-          }
+        task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?',
+                                                              Date.current.day).first
+        if task.blank?
+          daily_task_data = current_employee.daily_tasks.new(params_daily_task)
+          byebug
+          if daily_task_data.save
+            render json: {
+              data: serializer_data(daily_task_data, daily_task_serializer),
+              status: 200, type: 'Success'
+            }
+          else
+            render json: daily_task_data, status: 302, type: 'Found'
+          end
         else
-          render json: daily_task_data, status: 302, type: 'Found'
-        end
+          render json:  { message: 'you have already created daily task'}
+        end  
       end
 
       def update
-        @daily_task_data = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?',
-                                                              Date.current.day).first
+        # @daily_task_data = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?',
+                                                              # Date.current.day).first
         if @daily_task_data.present?
           @daily_task_data.update(params_daily_task)
           render json: {
