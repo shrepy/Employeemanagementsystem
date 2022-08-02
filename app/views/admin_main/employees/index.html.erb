@@ -360,25 +360,24 @@
             </thead>
             <tbody>
               <% @employees.all_except(current_employee).each do |employee| %>
-              <tr>
-                <th scope="row"></th>
-                <td><%= employee.name %></td>
-                <td><%= employee.designation.name %></td>
-                <td><% unless employee.is_admin? %>
-                  <%= link_to 'Details',  admin_main_employee_path(employee), class: "btn btn-primary"%>
-                  <% end %>
-                </td>
-                <td>
-                  <% if current_employee.is_admin? %>
-                  <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
-                      <% end %>
-                </td>
-                <td>
-                  <% if current_employee.is_admin? %>
-                    <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary"%> 
-                  <% end %>
-                </td>
-              </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td><%= employee.name %></td>
+                  <td><%= employee.designation.name %></td>
+                  <td><% unless employee.is_admin? %>
+                    <%= link_to 'Details',  admin_main_employee_path(employee), class: "btn btn-primary"%>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if current_employee.is_admin? %>
+                    <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
+                  </td>
+                  <td>
+                      <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary"%>
+                  </td>
+                  <td>
+                     <div id="popup"> <%= link_to 'Generate Password', admin_main_path(employee), class: "btn btn-primary", remote: true, method: "post" %></td></div>
+                    <% end %>
               <% end %>
             </tbody>
           </table>
@@ -390,10 +389,3 @@
 </section>
 <% end %>
 </main><!-- End #main -->
-
-
-
-
-
-
-
