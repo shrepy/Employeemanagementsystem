@@ -17,7 +17,7 @@ module Api
         dashboard_serializer[:upcoming_holidays] = serializer_data(upcoming_holidays, holiday_serializer)
         render json: {
           data: dashboard_serializer,
-          message: ['Your are no dashboard Page '], status: 200, type: 'Success'
+          message: ['Your are on dashboard Page '], status: 200, type: 'Success'
         }
       end
 

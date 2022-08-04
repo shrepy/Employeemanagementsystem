@@ -15,7 +15,7 @@ module Api
       end
 
       def create
-        ticket_data = Ticket.new(ticket_params)
+        ticket_data = current_employee.tickets.new(ticket_params)
         if ticket_data.save
           render json: {
             data: serializer_data(ticket_data, ticket_serializer),
