@@ -21,6 +21,11 @@ module AdminMain
                     end
     end
 
+    def pending_daily_task
+      employee_ids = DailyTask.where("DATE(created_at) = ?", Date.yesterday).pluck(:employee_id)
+      @employees = Employee.all.map {|emp| emp unless employee_ids.include?(emp.id) }.compact
+    end
+
     private
 
     def set_daily_task

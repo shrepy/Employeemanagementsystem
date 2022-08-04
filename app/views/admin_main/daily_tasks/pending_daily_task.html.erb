@@ -1,0 +1,12 @@
+</aside>
+  <main id="main" class="main">
+<h1>Employees:</h1>
+
+<ul>
+  <% @employees.each do |employee| %>
+    <li>
+      <%= employee.name %>
+    </li>
+  <% end %>
+</ul>
+</main>

@@ -8,11 +8,14 @@
             <div class="pagetitle">
               <div class="card-body mt-3">
                 <%= form_with(url: '/admin_main/daily_tasks', method: 'get') do |form| %>
-
                 <%= select_tag "dailytask", options_for_select(@employees.collect{|employee| [employee.name,employee.id]}), :multiple => true, class: "selectpicker " %>
-
                 <%= form.submit "Search"%>
                 <% end %>
+
+                <div style="text-align: right;">
+                  <%= button_to 'Pending DailyTask',pending_daily_task_admin_main_daily_task_path(@daily_tasks),method: :get, class: "btn btn-primary "  %>
+                </div>
+
                 <h1>Daily Status</h1>
               </div>
             <table class="table table-striped">
