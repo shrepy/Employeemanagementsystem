@@ -28,9 +28,13 @@ module Hr
     end
 
     def update_leave_balance
-      leaves = Employee.all
-      leaves.each do |leave|
-        leave.increment!(:leave_count)
+      singleton_leave = SingletonLeave.instance
+      unless singleton_leave.leave_increment_date == Date.today.beginning_of_month
+        leaves = Employee.all
+        leaves.each do |leave|
+          leave.increment!(:leave_count)
+        end
+        GlobelSetting.update(leave_increment_date: Date.today.beginning_of_month)
       end
       redirect_to root_path
     end
