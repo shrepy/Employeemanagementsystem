@@ -7,11 +7,7 @@ class DailyTask < ApplicationRecord
 
   def self.search(search)
     if search
-      daily_task = []
-      search.each do |s|
-        daily_task << DailyTask.joins(:employee).where('employees.name LIKE ?', "%#{s}%")
-      end
-      daily_task.flatten
+      daily_task = DailyTask.where(employee_id: [search])
     else
       all
     end
