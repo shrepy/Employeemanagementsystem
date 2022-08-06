@@ -1,12 +1,21 @@
 </aside>
-  <main id="main" class="main">
-<h1>Employees:</h1>
-
-<ul>
-  <% @employees.each do |employee| %>
-    <li>
-      <%= employee.name %>
-    </li>
-  <% end %>
-</ul>
+<main id="main" class="main">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Days</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee, value| %>
+        <tr>
+          <td><%= employee.keys.first %></td>
+          <td> <%= employee.values.first %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </main>

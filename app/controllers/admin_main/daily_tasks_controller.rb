@@ -4,28 +4,23 @@ module AdminMain
   class DailyTasksController < ApplicationController
     before_action :set_daily_task, only: %i[show]
     def index
-      @daily_tasks = if current_employee.is_admin?
-                       DailyTask.all.order(created_at: :desc).page params[:page]
-                     else
-                       current_employee.daily_tasks.order(created_at: :desc).page params[:page]
-                     end
+      @daily_tasks = DailyTask.all.order(created_at: :desc).page params[:page]
       @daily_task = DailyTask.search(params[:dailytask])
       @employees = Employee.all
     end
 
     def show
-      @daily_task = if current_employee.is_admin?
-                      DailyTask.find_by_id params[:id]
-                    else
-                      current_employee.daily_tasks.find_by_id params[:id]
-                    end
+      @daily_task = DailyTask.find_by_id params[:id]
     end
 
     def pending_daily_task
-      employee_ids = DailyTask.where("DATE(created_at) = ?", Date.yesterday).pluck(:employee_id)
-      @employees = Employee.all.map {|emp| emp unless employee_ids.include?(emp.id) }.compact
+      # byebug
+      # employee_ids = DailyTask.where("DATE(created_at) = ?", Date.yesterday).pluck(:employee_id)
+      # @employees = Employee.all.map {|emp| emp unless employee_ids.include?(emp.id) }.compact
+      # byebug
+      daily_tasks = Employee.all.map{|emp| emp.daily_tasks.last }.compact
+      @employees = daily_tasks.map{|daily_task| {daily_task.employee.name => (Date.today - daily_task.created_at.to_date).to_i}}
     end
-
     private
 
     def set_daily_task
