@@ -17,17 +17,13 @@ module Api
 
       # PATCH /employees/1 or /employees/1.json
       def update_password
-        @employee_data = current_employee
-        @employee_data.password = employee_params[:password]
-        @employee_data.password_confirmation = employee_params[:password_confirmation]
-
-        if @employee_data.save(validate: false)
+        if current_employee.update_with_password(employee_params)
           render json: {
-            data: serializer_data(@employee_data, employee_serializer),
+            data: serializer_data(current_employee, employee_serializer),
             message: ['password successfully update'], status: 200, type: 'Success'
           }
         else
-          render json: @employee_data, status: 404
+          render json: current_employee.errors.full_messages, status: 404
         end
       end
 
@@ -40,7 +36,7 @@ module Api
       end
 
       def employee_params
-        params.require(:employee).permit(:email, :password, :password_confirmation)
+        params.require(:employee).permit(:email, :password, :password_confirmation, :current_password)
       end
 
       def employee_serializer
