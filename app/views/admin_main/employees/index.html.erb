@@ -339,7 +339,7 @@
       <div class="card">
         <% if current_employee.is_admin? %> 
         <div class="mt-3 p-4">
-          <%= link_to 'Add New Employee', new_admin_main_employee_path , class: "btn btn-primary"  %>
+          <%= link_to 'Add New Employee', new_admin_main_employee_path , class: "btn btn-primary btn-sm"  %>
         </div>
         <% end %>
         <div class="card-body mt-3">
@@ -365,18 +365,18 @@
                 <td><%= employee.name %></td>
                 <td><%= employee.designation.name %></td>
                 <td><% unless employee.is_admin? %>
-                  <%= link_to 'Details',  admin_main_employee_path(employee), class: "btn btn-primary"%>
+                  <%= link_to 'Details',  admin_main_employee_path(employee), class: "btn btn-primary btn-sm"%>
                   <% end %>
                 </td>
                 <td>
                   <% if current_employee.is_admin? %>
-                  <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
+                    <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary btn-sm"%> 
+                  <% end %>
+                </td>
+                <td>
+                  <% if current_employee.is_admin? %>
+                  <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm"%>
                       <% end %>
-                </td>
-                <td>
-                  <% if current_employee.is_admin? %>
-                    <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary"%> 
-                  <% end %>
                 </td>
               </tr>
               <% end %>
