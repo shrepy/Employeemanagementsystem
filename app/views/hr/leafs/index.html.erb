@@ -37,7 +37,7 @@
                                     <td><%= leaf.leave_starts %></td>
                                     <td><%= leaf.leave_end %></td>
                                     <td><%= leaf.total_days %> Days</td>
-                                    <td><%= leaf.resion %></td>
+                                    <td><%= leaf.reason %></td>
                                     <td> <% if leaf.leave_status == "accept" %> 
                                             <%= link_to 'Accepted', root_path, method: :patch, class: 'btn btn-success disabled' %> 
                                             <% elsif leaf.leave_status == 'decline' %>
