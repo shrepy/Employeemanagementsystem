@@ -34,7 +34,7 @@ module Hr
         leaves.each do |leave|
           leave.increment!(:leave_count)
         end
-        GlobelSetting.update(leave_increment_date: Date.today.beginning_of_month)
+        singleton_leave.update(leave_increment_date: Date.today.beginning_of_month)
       end
       redirect_to root_path
     end
