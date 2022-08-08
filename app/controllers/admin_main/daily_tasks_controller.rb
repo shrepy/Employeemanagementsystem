@@ -4,22 +4,12 @@ module AdminMain
   class DailyTasksController < ApplicationController
     before_action :set_daily_task, only: %i[show]
     def index
-      @daily_tasks = if current_employee.is_admin?
-                       DailyTask.all.order(created_at: :desc).page params[:page]
-                     else
-                       current_employee.daily_tasks.order(created_at: :desc).page params[:page]
-                     end
+      @daily_tasks = DailyTask.all.order(created_at: :desc).page params[:page]
       @daily_task = DailyTask.search(params[:dailytask])
       @employees = Employee.all
     end
 
-    def show
-      @daily_task = if current_employee.is_admin?
-                      DailyTask.find_by_id params[:id]
-                    else
-                      current_employee.daily_tasks.find_by_id params[:id]
-                    end
-    end
+    def show; end
 
     private
 
