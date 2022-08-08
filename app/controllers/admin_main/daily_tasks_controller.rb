@@ -9,14 +9,15 @@ module AdminMain
       @employees = Employee.all
     end
 
-    def show
-      @daily_task = DailyTask.find_by_id params[:id]
-    end
+    def show; end
 
     def pending_daily_task
-      daily_tasks = Employee.all.map{|emp| emp.daily_tasks.last }.compact
-      @employees = daily_tasks.map{|daily_task| {daily_task.employee.name => (Date.today - daily_task.created_at.to_date).to_i}}
+      daily_tasks = Employee.all.map { |emp| emp.daily_tasks.last }.compact
+      @employees = daily_tasks.map do |daily_task|
+        { daily_task.employee.name => (Date.today - daily_task.created_at.to_date).to_i }
+      end
     end
+
     private
 
     def set_daily_task

@@ -40,6 +40,12 @@ Rails.application.routes.draw do
     get '/search', to: 'attendences#search'
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :leafs, only: %i[index create update]
+    end
+  end
+
   namespace :admin_main do
     resources :daily_tasks, only: %i[index show pending_daily_task] do
       member do
@@ -52,6 +58,8 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
     resources :employees
+    resources :attendences, except: %i[create new destroy]
+    resources :monthly_salaries, except: %i[destroy edit]
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
