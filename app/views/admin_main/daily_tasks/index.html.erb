@@ -8,8 +8,8 @@
             <div class="pagetitle">
               <div class="card-body mt-3">
                 <%= form_with(url: '/admin_main/daily_tasks', method: 'get') do |form| %>
-                <%= select_tag "dailytask", options_for_select(@employees.collect{|employee| [employee.name,employee.id]}), :multiple => true, class: "selectpicker " %>
-                <%= form.submit "Search"%>
+                  <%= select_tag "dailytask", options_for_select(@employees.collect{|employee| [employee.name,employee.id]}), :multiple => true, class: "selectpicker " %>
+                  <%= form.submit "Search"%>
                 <% end %>
 
                 <div style="text-align: right;">
@@ -18,25 +18,25 @@
 
                 <h1>Daily Status</h1>
               </div>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Daily status</th>
-                  <th scope="col">Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%= render partial: "daily_task", collection: @daily_task %>
-              </tbody>
-            </table>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Daily status</th>
+                    <th scope="col">Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render partial: "daily_task", collection: @daily_task %>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+        <div class="card m-4">
+          <%= paginate @daily_tasks %>
+        </div>
       </div>
-      <div class="card m-4">
-        <%= paginate @daily_tasks %>
-      </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>

@@ -14,10 +14,6 @@ module AdminMain
     end
 
     def pending_daily_task
-      # byebug
-      # employee_ids = DailyTask.where("DATE(created_at) = ?", Date.yesterday).pluck(:employee_id)
-      # @employees = Employee.all.map {|emp| emp unless employee_ids.include?(emp.id) }.compact
-      # byebug
       daily_tasks = Employee.all.map{|emp| emp.daily_tasks.last }.compact
       @employees = daily_tasks.map{|daily_task| {daily_task.employee.name => (Date.today - daily_task.created_at.to_date).to_i}}
     end

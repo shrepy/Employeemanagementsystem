@@ -45,14 +45,13 @@ Rails.application.routes.draw do
       member do
         get :pending_daily_task
       end
-    end 
+    end
 
     resources :holidays
     resources :tickets, only: %i[index show update] do
       resources :comments, only: [:create]
     end
     resources :employees
-
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
