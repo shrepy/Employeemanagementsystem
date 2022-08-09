@@ -1,4 +1,4 @@
-class TicketsController < InheritedResources::Base
+class TicketsController < ApplicationController
   def index 
     if current_employee.is_hr? || current_employee.is_admin?
       @tickets = Ticket.order(created_at: :desc)

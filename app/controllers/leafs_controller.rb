@@ -1,4 +1,4 @@
-class LeafsController < InheritedResources::Base
+class LeafsController < ApplicationController
   before_action :authenticate_employee!
   before_action :set_leaf, only: [:show]
   def index

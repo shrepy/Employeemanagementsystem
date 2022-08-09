@@ -20,13 +20,13 @@ class Employee < ApplicationRecord
 
   mount_uploader :image
 
-  before_validation :check_joining_date, on: [:update]
-  before_validation :date_of_birth_validation, on: [:update]
+  # before_validation :check_joining_date, on: [:update]
+  # before_validation :date_of_birth_validation, on: [:update]
 
-  validates :account_number, :aadhar_card_number, :pan_card_number,
-            format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
-  validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' },
-                           format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
+  # validates :account_number, :aadhar_card_number, :pan_card_number,
+  #           format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
+  # validates :phone_number, presence: true, length: { maximum: 10, minimum: 10, message: 'Should be 10 digits' },
+  #                          format: { with: Regexp.new(/\A[0-9 ()+-]+\z/), message: 'only allows number' }, on: :update
   def recalculate_leave_balance
     leafs.each do |leave|
       next unless leave.updated_at.min == Time.zone.now.min

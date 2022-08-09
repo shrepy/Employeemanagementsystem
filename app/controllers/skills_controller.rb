@@ -1,4 +1,4 @@
-class SkillsController < InheritedResources::Base
+class SkillsController < ApplicationController
   before_action :authenticate_employee!
   private
 

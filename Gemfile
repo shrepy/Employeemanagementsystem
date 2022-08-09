@@ -68,7 +68,6 @@ gem 'devise'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'carrierwave', '~> 2.0'
-gem 'activeadmin'
 gem 'rubocop'
 gem 'font_awesome5_rails'
 gem 'faker'
@@ -86,3 +85,5 @@ end
 gem 'ckeditor'
 gem 'paperclip'
 gem "letter_opener", group: :development
+
+gem 'kaminari'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SalariesController < InheritedResources::Base
+class SalariesController < ApplicationController
   before_action :authenticate_employee!
   before_action :set_salary, only: %i[show edit update]
   after_action :update_download_satus, only: %i[show]
