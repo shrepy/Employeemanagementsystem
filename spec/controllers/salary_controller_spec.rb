@@ -6,7 +6,7 @@ RSpec.describe SalariesController, type: :controller do
   fixtures :all
 
   let!(:designation) { FactoryBot.create(:designation) }
-  let!(:monthly_salaray) { FactoryBot.create(:monthly_salary, month: '6', monthly_working_days: 20) }
+  let!(:monthly_salaray) { FactoryBot.create(:monthly_salary, month: '7', monthly_working_days: 20) }
   let!(:employee) do
     FactoryBot.create(:employee, role_id: roles(:role_one).id, designation_id: designation.id, salary: 10_000)
   end
