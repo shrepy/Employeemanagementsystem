@@ -42,6 +42,14 @@ module AdminMain
       redirect_to admin_main_employees_path
     end
 
+    def update_leave_balance
+      leaves = Employee.all
+      leaves.each do |leave|
+        leave.increment!(:leave_count)
+      end
+      redirect_to root_path
+    end
+
     private
 
     def set_designations

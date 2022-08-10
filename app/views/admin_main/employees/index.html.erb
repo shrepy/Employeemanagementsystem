@@ -1,5 +1,5 @@
- </aside><!-- End Sidebar-->
- <main id="main" class="main">
+</aside>
+<main id="main" class="main">
   <% unless current_employee.is_admin? %>
   <div class="pagetitle">
     <h1>Profile</h1>
@@ -10,7 +10,7 @@
         <li class="breadcrumb-item active">Profile</li>
       </ol>
     </nav>
-  </div><!-- End Page Title -->
+  </div>
   <section class="section profile">
     <div class="row">
       <% @employees.each do |employee| %>
@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
             <% unless current_employee.image.blank? %>
-            <%= image_tag current_employee.image_url, class: "rounded-circle img-width" %>
+              <%= image_tag current_employee.image_url, class: "rounded-circle img-width" %>
             <% end %>
             <h2><%= employee.name&.capitalize() %></h2>
             <h3><%= employee.designation.name&.capitalize() %></h3>
@@ -32,16 +32,13 @@
           </div>
         </div>
       </div>
-
       <div class="col-xl-8">
         <div class="card">
           <div class="card-body pt-3">
-            <!-- Bordered Tabs -->
             <ul class="nav nav-tabs nav-tabs-bordered">
               <li class="nav-item">
                 <%= link_to 'Overview', employee_path(current_employee), class: "nav-link" , remote: true %>
               </li>
-
               <li class="nav-item"><%= link_to 'Change Password', edit_employee_registration_path, class: "nav-link",
                  remote: true %>
               </li>
@@ -65,7 +62,8 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Mother Name</div>
-                  <div class="col-lg-9 col-md-8"><%= employee.mother_name&.capitalize() %></div>
+                  <div class="col-lg-9 col-md-8"><%= employee.mother_name&.capitalize() %>
+                  </div>
                 </div>
 
                 <div class="row">
@@ -75,22 +73,26 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Date Of Birth</div>
-                  <div class="col-lg-9 col-md-8"><%=  date_formate(employee.date_of_birth) %></div>
+                  <div class="col-lg-9 col-md-8"><%=  date_formate(employee.date_of_birth) %>
+                  </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Date Of Joining</div>
-                  <div class="col-lg-9 col-md-8"><%=  date_formate(employee.joining_date) %></div>
+                  <div class="col-lg-9 col-md-8"><%=  date_formate(employee.joining_date) %>
+                  </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Company</div>
-                  <div class="col-lg-9 col-md-8">Simply Alliance Software Solution Private Limited, Indore</div>
+                  <div class="col-lg-9 col-md-8">Simply Alliance Software Solution Private Limited, Indore
+                  </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Designation</div>
-                  <div class="col-lg-9 col-md-8"><%= employee.designation.name&.capitalize() %></div>
+                  <div class="col-lg-9 col-md-8"><%= employee.designation.name&.capitalize() %>
+                  </div>
                 </div>
 
                 <div class="row">
@@ -140,7 +142,6 @@
               </div>
 
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                <!-- Profile Edit Form -->
                 <form>
                   <div class="row mb-3">
                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
@@ -247,16 +248,14 @@
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                   </div>
-                </form><!-- End Profile Edit Form -->
+                </form>
               </div>
               <div class="tab-pane fade pt-3" id="profile-settings">
-                <!-- Settings Form -->
                 <form>
                   <div class="row mb-3">
                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications
                     </label>
                     <div class="col-md-8 col-lg-9">
-                      
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="changesMade" checked>
                         <label class="form-check-label" for="changesMade">
@@ -290,10 +289,9 @@
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                   </div>
-                </form><!-- End settings Form -->
+                </form>
               </div>
               <div class="tab-pane fade pt-3" id="profile-change-password">
-                <!-- Change Password Form -->
                 <form>
                   <div class="row mb-3">
                     <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">
@@ -322,9 +320,9 @@
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Change Password</button>
                 </div>
-              </form><!-- End Change Password Form -->
+              </form>
             </div>
-          </div><!-- End Bordered Tabs -->
+          </div>
         </div>
       </div>
     </div>
@@ -342,6 +340,9 @@
           <%= link_to 'Add New Employee', new_admin_main_employee_path , class: "btn btn-primary"  %>
         </div>
         <% end %>
+        <div style="text-align: right;">
+          <%= button_to 'add leave',  admin_main_update_leave_balance_path(@employees),method: :get, class: "btn btn-primary "  %>
+        </div>
         <div class="card-body mt-3">
           <%= form_with(url: '/admin_main/employees', method: 'get', local: true) do %>
           <div>
@@ -349,7 +350,6 @@
             <%= submit_tag("Search") %>
           </div>
           <% end %>
-          <!-- Table with stripped rows -->
           <table class="table table-striped">
             <thead>
               <tr>
@@ -370,8 +370,8 @@
                 </td>
                 <td>
                   <% if current_employee.is_admin? %>
-                  <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
-                      <% end %>
+                    <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
+                  <% end %>
                 </td>
                 <td>
                   <% if current_employee.is_admin? %>
@@ -384,14 +384,13 @@
               <% end %>
             </tbody>
           </table>
-          <!-- End Table with stripped rows -->
         </div>
       </div>
     </div>
   </div>
 </section>
 <% end %>
-</main><!-- End #main -->
+</main>
 
 
 

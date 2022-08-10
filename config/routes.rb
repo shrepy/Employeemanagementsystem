@@ -59,6 +59,7 @@ Rails.application.routes.draw do
         get :index
       end
     end
+    get '/update_leave', to: 'employees#update_leave_balance', as: 'update_leave_balance'
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
