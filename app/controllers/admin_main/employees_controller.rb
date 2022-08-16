@@ -4,7 +4,7 @@ module AdminMain
   require 'securerandom'
 
   class EmployeesController < ApplicationController
-    before_action :set_employee, only: %i[show destroy edit generate_password]
+    before_action :set_employee, only: %i[show destroy edit password_generate]
     before_action :set_designations, only: %i[new create edit update]
 
     def index
@@ -43,7 +43,7 @@ module AdminMain
       redirect_to admin_main_employees_path
     end
 
-    def generate_password
+    def password_generate
       @password = SecureRandom.alphanumeric(10)
       @employee.password = @password
       @employee.save

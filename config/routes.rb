@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
     resources :employees
-    post '/employees/:id/generate_password', to: 'employees#generate_password'
+    post '/employees/:id/password_generate', to: 'employees#password_generate'
     resources :attendences, except: %i[create new destroy]
     resources :monthly_salaries, except: %i[destroy edit]
   end

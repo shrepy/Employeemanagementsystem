@@ -1,5 +1,5 @@
- </aside><!-- End Sidebar-->
- <main id="main" class="main">
+</aside>
+<main id="main" class="main">
   <% unless current_employee.is_admin? %>
   <div class="pagetitle">
     <h1>Profile</h1>
@@ -10,7 +10,7 @@
         <li class="breadcrumb-item active">Profile</li>
       </ol>
     </nav>
-  </div><!-- End Page Title -->
+  </div>
   <section class="section profile">
     <div class="row">
       <% @employees.each do |employee| %>
@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
             <% unless current_employee.image.blank? %>
-            <%= image_tag current_employee.image_url, class: "rounded-circle img-width" %>
+              <%= image_tag current_employee.image_url, class: "rounded-circle img-width" %>
             <% end %>
             <h2><%= employee.name&.capitalize() %></h2>
             <h3><%= employee.designation.name&.capitalize() %></h3>
@@ -32,11 +32,9 @@
           </div>
         </div>
       </div>
-
       <div class="col-xl-8">
         <div class="card">
           <div class="card-body pt-3">
-            <!-- Bordered Tabs -->
             <ul class="nav nav-tabs nav-tabs-bordered">
               <li class="nav-item">
                 <%= link_to 'Overview', employee_path(current_employee), class: "nav-link" , remote: true %>
@@ -138,9 +136,7 @@
                   <div class="col-lg-9 col-md-8"><%= employee.account_number %></div>
                 </div>
               </div>
-
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                <!-- Profile Edit Form -->
                 <form>
                   <div class="row mb-3">
                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
@@ -247,16 +243,14 @@
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                   </div>
-                </form><!-- End Profile Edit Form -->
+                </form>
               </div>
               <div class="tab-pane fade pt-3" id="profile-settings">
-                <!-- Settings Form -->
                 <form>
                   <div class="row mb-3">
                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications
                     </label>
                     <div class="col-md-8 col-lg-9">
-                      
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="changesMade" checked>
                         <label class="form-check-label" for="changesMade">
@@ -290,102 +284,104 @@
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                   </div>
-                </form><!-- End settings Form -->
+                </form>
               </div>
               <div class="tab-pane fade pt-3" id="profile-change-password">
-                <!-- Change Password Form -->
                 <form>
                   <div class="row mb-3">
                     <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">
-                    Current Password
-                  </label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="password" type="password" class="form-control" id="currentPassword">
+                      Current Password
+                    </label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="password" type="password" class="form-control" id="currentPassword">
+                    </div>
                   </div>
-                </div>
 
-                <div class="row mb-3">
-                  <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="newpassword" type="password" class="form-control" id="newPassword">
+                  <div class="row mb-3">
+                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="newpassword" type="password" class="form-control" id="newPassword">
+                    </div>
                   </div>
-                </div>
 
-                <div class="row mb-3">
-                  <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password
-                  </label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                  <div class="row mb-3">
+                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password
+                    </label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                    </div>
                   </div>
-                </div>
 
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Change Password</button>
-                </div>
-              </form><!-- End Change Password Form -->
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </div><!-- End Bordered Tabs -->
+          </div>
         </div>
       </div>
+      <% end %>
+      <% end %>
     </div>
-    <% end %>
-    <% end %>
-  </div>
-</section>
-<% else %>
-<section class="section">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <% if current_employee.is_admin? %> 
-        <div class="mt-3 p-4">
-          <%= link_to 'Add New Employee', new_admin_main_employee_path , class: "btn btn-primary"  %>
-        </div>
-        <% end %>
-        <div class="card-body mt-3">
-          <%= form_with(url: '/admin_main/employees', method: 'get', local: true) do %>
-          <div>
-            <%= text_field_tag :search%>
-            <%= submit_tag("Search") %>
+  </section>
+  <% else %>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <% if current_employee.is_admin? %> 
+          <div class="mt-3 p-4">
+            <%= link_to 'Add New Employee', new_admin_main_employee_path , class: "btn btn-primary"  %>
           </div>
           <% end %>
-          <!-- Table with stripped rows -->
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Employee Name</th>
-                <th scope="col">Designation</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @employees.all_except(current_employee).each do |employee| %>
+          <div class="card-body mt-3">
+            <%= form_with(url: '/admin_main/employees', method: 'get', local: true) do %>
+            <div>
+              <%= text_field_tag :search%>
+              <%= submit_tag("Search") %>
+            </div>
+            <% end %>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Employee Name</th>
+                  <th scope="col">Designation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @employees.all_except(current_employee).each do |employee| %>
                 <tr>
                   <th scope="row"></th>
                   <td><%= employee.name %></td>
                   <td><%= employee.designation.name %></td>
                   <td><% unless employee.is_admin? %>
-                    <%= link_to 'Details',  admin_main_employee_path(employee), class: "btn btn-primary"%>
-                    <% end %>
+                        <%= link_to 'Details',  admin_main_employee_path(employee), class: "btn btn-primary"%>
+                      <% end %>
                   </td>
+
                   <td>
                     <% if current_employee.is_admin? %>
-                    <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
+                      <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
                   </td>
+
                   <td>
-                      <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary"%>
+                    <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary"%>
                   </td>
+
                   <td>
-                     <div id="popup"> <%= link_to 'Generate Password', admin_main_path(employee), class: "btn btn-primary", remote: true, method: "post" %></td></div>
-                    <% end %>
-              <% end %>
-            </tbody>
-          </table>
-          <!-- End Table with stripped rows -->
+                    <div id="popup"> <%= link_to 'Generate Password', admin_main_path(employee), class: "btn btn-primary", remote: true, method: "post" %>
+                    </div>
+                  </td>
+                  <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<% end %>
-</main><!-- End #main -->
+    </section>
+    <% end %>
+  </main>
