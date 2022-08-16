@@ -7,7 +7,7 @@
           <div class="card-body">
             <div class="pagetitle">
               <div class="card-body mt-3">
-                <%= form_with(url: '/admin_main/daily_tasks', method: 'get') do |form| %>
+                <%= form_with(url: admin_main_daily_tasks_path, method: 'get') do |form| %>
 
                 <%= select_tag "dailytask", options_for_select(@employees.collect{|employee| [employee.name,employee.id]}), :multiple => true, class: "selectpicker " %>
 
