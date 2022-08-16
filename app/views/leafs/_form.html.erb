@@ -11,44 +11,40 @@
     <% end %>
     <div class="form-group mt-3 row">
         <div class="col-lg-2">
-    <%= form.label :leave_type %>
-</div>
-    <div class="col-lg-10">
-    <%= form.select(:leave_type, ['Sick Leave', 'Casual Leave', 'Marriage Leave','Optional Leave', 'Maternity Leave', 'Paternity Leave'], { selected: 'Casual Leave'}, { :class => 'form-control' }) %>
-</div>
-</div>
-<div class="form-group mt-3 row">
-    <div class="col-lg-2"> <%= form.label :from_date %> </div>
-    <div class="col-lg-10"> <%= form.date_field :from_date , class: "form-control"%> </div>
-</div>
-
-<div class="form-group mt-3 row">
-    <div class="col-lg-2"> <%= form.label :till_date %> </div>
-    <div class="col-lg-10"> <%= form.date_field :till_date, class: "form-control" %> </div>
-</div>
-
-<div class="form-group mt-3 row">
-    <div class="col-lg-2">
-    <%= form.label :leave_starts %>
-</div>
-    <div class="col-lg-10">
-    <%= form.select(:leave_starts, ['Full Day', 'Half Day'], {}, { :class => 'form-control' }) %>
-</div>
-</div>
-
-<div class="form-group mt-3 row">
-    <div class="col-lg-2">
-    <%= form.label :leave_end %>
-</div>
-    <div class="col-lg-10">
-    <%= form.select(:leave_end, ['Full Day', 'Half Day'], {}, { :class => 'form-control' }) %>
-</div>
-</div>
-
-
-
-<div class="form-group mt-3 row">
-    <div class="col-lg-2"> <%= form.label :reason %> </div>
-    <div class="col-lg-10"> <%= form.text_area :reason, class: "form-control" %> </div>
-
-</div> <%= form.hidden_field :employee_id, value: current_employee.id %> <div class="actions mt-3"> <%= form.submit 'Submit', class: "btn btn-primary right"%> </div> <% end %>
+            <%= form.label :leave_type %>
+        </div>
+        <div class="col-lg-10">
+            <%= form.select(:leave_type, ['Sick Leave', 'Casual Leave', 'Marriage Leave','Optional Leave', 'Maternity Leave', 'Paternity Leave'], { selected: 'Casual Leave'}, { :class => 'form-control' }) %>
+        </div>
+    </div>
+    <div class="form-group mt-3 row">
+        <div class="col-lg-2"> <%= form.label :from_date %> </div>
+        <div class="col-lg-10"> <%= form.date_field :from_date , class: "form-control"%>
+        </div>
+    </div>
+    <div class="form-group mt-3 row">
+        <div class="col-lg-2"> <%= form.label :till_date %> </div>
+        <div class="col-lg-10"> <%= form.date_field :till_date, class: "form-control" %> </div>
+    </div>
+    <div class="form-group mt-3 row">
+        <div class="col-lg-2">
+            <%= form.label :leave_starts %>
+        </div>
+        <div class="col-lg-10">
+            <%= form.select(:leave_starts, ['Full Day', 'Half Day'], {}, { :class => 'form-control' }) %>
+        </div>
+    </div>
+    <div class="form-group mt-3 row">
+        <div class="col-lg-2">
+            <%= form.label :leave_end %>
+        </div>
+        <div class="col-lg-10">
+            <%= form.select(:leave_end, ['Full Day', 'Half Day'], {}, { :class => 'form-control' }) %>
+        </div>
+    </div>
+    <div class="form-group mt-3 row">
+        <div class="col-lg-2"> <%= form.label :reason %> </div>
+        <div class="col-lg-10"> <%= form.text_area :reason, class: "form-control" %> </div>
+        </div> <%= form.hidden_field :employee_id, value: current_employee.id %> <div class="actions mt-3"> <%= form.submit 'Submit', class: "btn btn-primary right"%> </div>
+    </div>
+<% end %>
