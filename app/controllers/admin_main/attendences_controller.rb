@@ -6,7 +6,7 @@ module AdminMain
     before_action :set_employee, only: %i[show]
 
     def index
-      @employees = Employee.where(['name LIKE ? ', "%#{params[:search]}%"]).all_except(current_employee)
+      @employees = Employee.where(['name LIKE ? ', "%#{params[:search]}%"])
     end
 
     def show
