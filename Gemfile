@@ -67,7 +67,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'bootstrap'
 gem 'jquery-rails'
-gem 'carrierwave', '~> 2.0'
 gem 'activeadmin'
 gem 'rubocop'
 gem 'font_awesome5_rails'
@@ -86,3 +85,4 @@ end
 gem 'ckeditor'
 gem 'paperclip'
 gem "letter_opener", group: :development
+gem "image_processing", ">= 1.2"

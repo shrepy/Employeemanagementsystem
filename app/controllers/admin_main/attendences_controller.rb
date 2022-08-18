@@ -6,12 +6,12 @@ module AdminMain
     before_action :set_employee, only: %i[show]
 
     def index
-      @employees = Employee.where(['name LIKE ? ', "%#{params[:search]}%"]).all_except(current_employee)
+      @employees = Employee.where(['name LIKE ? ', "%#{params[:search]}%"])
     end
 
     def show
       @attendences = if params[:month].blank?
-                       @employee.attendences.order('created_at desc').page(params[:page])
+                       @employee.attendences.order('created_at asc').page(params[:page])
                      else
                        @employee.attendences.where('EXTRACT(MONTH FROM created_at) = ?', params[:month])
                      end

@@ -27,13 +27,19 @@ module AttendencesHelper
     persent
   end
 
+  def work_hour(hour)
+    times = hour.split(':')
+    times = times.size == 1 ? hour.split('hours') : times
+    h, m = times.map(&:to_i)
+    !h.nil? && !m.nil? ? (60 * h + m) : 0
+  end
+
   def working_hour(at)
     hours = at.pluck(:hour)
     unless hours.include?(nil)
-      hours.sum do |s|
-        h, m = s.split(':').map(&:to_i)
-        60 * h + m
-      end.divmod(60).join(' hours ')
+      hours.compact.map do |s|
+        work_hour(s)
+      end.compact.sum.divmod(60).join(' hours ')
     end
   end
 
