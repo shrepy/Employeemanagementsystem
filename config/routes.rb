@@ -33,6 +33,7 @@ Rails.application.routes.draw do
           get :index
         end
       end
+      get '/update_leave', to: 'employees#update_leave_balance', as: 'update_leave_balance'
     end
 
     resources :attendences
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin_main do
+    resources :daily_tasks, only: %i[index show]
     resources :holidays
     resources :tickets, only: %i[index show update] do
       resources :comments, only: [:create]

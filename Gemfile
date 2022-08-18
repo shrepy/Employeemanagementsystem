@@ -85,5 +85,5 @@ end
 gem 'ckeditor'
 gem 'paperclip'
 gem "letter_opener", group: :development
-
 gem 'kaminari'
+gem "image_processing", ">= 1.2"
