@@ -80,11 +80,6 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Company</div>
-                  <div class="col-lg-9 col-md-8">Simply Alliance Software Solution Private Limited, Indore</div>
-                </div>
-
-                <div class="row">
                   <div class="col-lg-3 col-md-4 label">Designation</div>
                   <div class="col-lg-9 col-md-8"><%= employee.designation.name&.capitalize() %></div>
                 </div>
@@ -362,14 +357,16 @@
                       <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary btn-sm"%> 
                     <% end %>
                   </td>
-                  <td>
-                    <% if current_employee.is_admin? %>
-                      <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm"%>
-                    <% end %>
+                  <td><%= link_to 'Leaves',  admin_main_leafs_path(employee), class: "btn btn-primary"%>
                   </td>
                   <td>
                     <div id="popup"> <%= link_to 'Generate Password', admin_main_path(employee), class: "btn btn-primary btn-sm", remote: true, method: "post" %>
                     </div>
+                  </td>
+                  <td>
+                    <% if current_employee.is_admin? %>
+                      <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm"%>
+                    <% end %>
                   </td>
                 </tr>
                 <% end %>
