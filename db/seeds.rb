@@ -10,3 +10,5 @@ r = Role.create!({name: "HR"})
 d = Designation.create!({name: "Web Developer"})
 Employee.create!({email:"payal123@gmail.com", name: "payal", password: 'password', password_confirmation: 'password', role_id: r.id, designation_id: d.id})
 AdminGlobelSetting.create!(leave_increment_date: Date.today.beginning_of_month)
+GlobelSetting.create!(leave_increment_date: Date.today.beginning_of_month)
+
