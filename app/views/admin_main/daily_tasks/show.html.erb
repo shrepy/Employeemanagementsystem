@@ -1,33 +1,30 @@
 </aside>
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Holidays</h1>
-    <nav>
-    <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</li>
-    <li class="breadcrumb-item">Holiday</li>
-    <li class="breadcrumb-item active">List</li>
-    </ol>
-    </nav>
+    <h1>Today Status</h1>
   </div>
   <section class="section">
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
-          <div class="p-3">
-              <%= link_to 'Add Holiday', new_admin_main_holiday_path, class: 'btn btn-primary'%>
-          </div>
           <div class="card-body">
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+              <%= link_to 'Back', admin_main_daily_tasks_path, class: "btn btn-primary mb-3 left "  %>
+            </a>
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Holiday Name</th>
                   <th scope="col">Date</th>
+                  <th scope="col">Daily status</th>
                 </tr>
               </thead>
               <tbody>
-                <%= render 'holiday' %>
+                <tr>
+                  <th scope="row"></th>
+                  <td><%= @daily_task.created_at.to_date%></td>
+                  <td><%= raw @daily_task.description %></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -35,5 +32,4 @@
       </div>
     </div>
   </section>
-</main>
-
+</main> 
