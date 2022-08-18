@@ -4,7 +4,7 @@
 
 module Hr
   # applicationcontroller
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ApplicationController
     before_action :authorize_hr
     layout 'application'
 

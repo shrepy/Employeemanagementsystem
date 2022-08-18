@@ -1123,25 +1123,11 @@ a:active{
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.green {background-color: #04AA6D ;height: 8px;float:left;}
+.blank {background-color:red; height: 8px;float:left;}
+.white {background-color:white; height: 8px;float:left;}
 
-.green {
-  background-color: #04AA6D;
-  height: 8px;
-  float:left;
-}
-
-.blank {
-  background-color:red; 
-  height: 8px;
-  float:left;
-}
-.white {
-  background-color:white; 
-  height: 8px;
-  float:left;
-}
-
-.table-align {
+.table-align{
   text-align: left;
 }
 

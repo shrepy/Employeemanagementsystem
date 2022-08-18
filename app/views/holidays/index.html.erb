@@ -1,5 +1,4 @@
 </aside><!-- End Sidebar-->
-
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -14,10 +13,8 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="row">
-        
+      <div class="row">  
         <div class="col-lg-12">
-
           <div class="card">
             <% if current_employee.is_hr? %>
               <div class="p-3">
@@ -25,36 +22,21 @@
               </div>
             <% end %>
             <div class="card-body">
-             
-
-              <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Holiday Name</th>
-                    <th scope="col">Holiday Type</th>
                     <th scope="col">Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% @holidays.each do |holiday| %>
-                  <tr>
-                    <th scope="row"><%= holiday.id %></th>
-                    <td><%= holiday.holiday_name&.capitalize() %></td>
-                     <td><%= holiday.holiday_type&.capitalize() %></td>
-                    <td><%= holiday.holiday_date %></td>
-                  </tr>
-                  <% end %>
+                  <%= render 'admin_main/holidays/holiday' %>
                 </tbody>
               </table>
-              <!-- End Table with stripped rows -->
-
             </div>
           </div>
-
         </div>
       </div>
     </section>
-
   </main><!-- End #main -->
