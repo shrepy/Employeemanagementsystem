@@ -1,1 +1,38 @@
+</aside>
+  <main id="main" class="main">
+  	<div class="card text-center">
+    	<div class="card-header">
+    		Edit Salary
+  	  </div><br>
+  	  <%= form_with  model: @salary  do |form| %>
 
+	  	  <div>
+	  		 	<%= form.label :salary %> <%= form.text_field :salary %>	  
+			  </div><br>
+
+			  <div>
+			   	<%= form.label :month %> <%= form.text_field :month %>
+			  </div><br>
+
+			  <div>
+			   	<%= form.label :leaves %> <%= form.text_field :leaves %>
+			  </div><br>
+
+			  <div>
+			   	<%= form.label :earnings %>  <%= form.text_field :earnings %>
+			  </div><br>
+
+			  <div>
+			   	<%= form.label :deductions %>  <%= form.text_field :deductions %>
+			  </div><br>
+
+			  <div>
+			   	<%= form.label :total_working_days %> <%= form.text_field :total_working_days %>
+			  </div><br>
+
+			  <div>
+			   	<%= form.submit %>
+			  </div>
+      <% end %>
+    </div>
+  </main>

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module AdminHoliday
+  
   def index
-    @holidays = Holiday.all
+    @holidays = Holiday.all.order("holiday_date ASC")
   end
 
   def new
@@ -18,7 +19,12 @@ module AdminHoliday
     end
   end
 
-  def edit; end
+  def edit
+    @holiday = Holiday.find_by_id params[:id]
+    if @holiday.present? && @holiday&.holiday_date < Date.today
+      redirect_to admin_main_holidays_path
+    end
+  end
 
   def show; end
 
@@ -41,7 +47,7 @@ module AdminHoliday
   private
 
   def holiday_params
-    params.require(:holiday).permit(:holiday_date, :holiday_name, :holiday_type)
+    params.require(:holiday).permit(:holiday_date, :holiday_name)
   end
 
   def set_holiday

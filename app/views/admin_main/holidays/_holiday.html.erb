@@ -1,0 +1,13 @@
+<%  @holidays.each_with_index do |holiday, i| %>
+  <tr>
+    <th scope="row"><%= i+1 %></th>
+    <td><%= holiday.holiday_name.capitalize() %></td>
+    <td><%= holiday.holiday_date %></td>
+    <td>
+      <% if current_employee.is_admin? %>
+        <%= link_to 'Edit Holiday', edit_admin_main_holiday_path(holiday), class: 'btn btn-primary'%>
+        <%= link_to 'Destroy',  admin_main_holiday_path(holiday),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"%>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

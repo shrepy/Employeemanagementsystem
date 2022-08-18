@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
             <% unless current_employee.image.blank? %>
-              <%= image_tag current_employee.image_url, class: "rounded-circle img-width" %>
+            <%= image_tag current_employee.image_url, class: "rounded-circle img-width" %>
             <% end %>
             <h2><%= employee.name&.capitalize() %></h2>
             <h3><%= employee.designation.name&.capitalize() %></h3>
@@ -39,8 +39,9 @@
               <li class="nav-item">
                 <%= link_to 'Overview', employee_path(current_employee), class: "nav-link" , remote: true %>
               </li>
-              <li class="nav-item">
-                <%= link_to 'Change Password', edit_employee_registration_path, class: "nav-link",remote: true %>
+
+              <li class="nav-item"><%= link_to 'Change Password', edit_employee_registration_path, class: "nav-link",
+                 remote: true %>
               </li>
             </ul>
             <div class="tab-content pt-2 show-data">
@@ -60,8 +61,7 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Mother Name</div>
-                  <div class="col-lg-9 col-md-8"><%= employee.mother_name&.capitalize() %>
-                  </div>
+                  <div class="col-lg-9 col-md-8"><%= employee.mother_name&.capitalize() %></div>
                 </div>
 
                 <div class="row">
@@ -118,7 +118,7 @@
                   <div class="col-lg-3 col-md-4 label">Pan Card No.</div>
                   <div class="col-lg-9 col-md-8"><%= employee.pan_card_number %></div>
                 </div>
-                        
+
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Aadhar Card No.</div>
                   <div class="col-lg-9 col-md-8"><%= employee.aadhar_card_number %></div>
@@ -145,6 +145,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="row mb-3">
                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                     <div class="col-md-8 col-lg-9">
@@ -228,6 +229,7 @@
                       <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
                     </div>
                   </div>
+
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                   </div>
@@ -319,47 +321,46 @@
           </div>
 
           <div style="text-align: right;">
-           <%= button_to 'add leave',  hr_employee_update_leave_balance_path(@employees),method: :get, class: "btn btn-primary "  %>
+            <%= button_to 'add leave',  hr_employee_update_leave_balance_path(@employees),method: :get, class: "btn btn-primary "  %>
           </div>
 
           <div class="card-body mt-3">
-            <%= form_with(url: employees_path) do %>
-          <div>
-
-          <div>
-            <%= text_field_tag :search%>
-            <%= submit_tag("Search") %>
-          </div>
-          <% end %>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Employee Name</th>
-                <th scope="col">Designation</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @employees.each do |employee| %>
-              <tr>
-                <th scope="row"></th>
-                <td><%= employee.name %></td>
-                <td><%= employee.designation.name %></td>
-                <td>
-                  <% unless employee.is_hr? %>
-                    <%= link_to 'Details', employee, class: "btn btn-primary"%>
-                  <% end %>
-                </td>
-                <td><%= link_to 'Attendence',  hr_show_attendance_path(employee), class: "btn btn-primary"%></td>
-                <td><%= link_to 'Leaves',  hr_employee_leafs_path(employee), class: "btn btn-primary"%></td>
-              </tr>
+            <%= form_with(url: '/employees', method: 'get', local: true) do %>
+            <div>
+              <div>
+                <%= text_field_tag :search%>
+                <%= submit_tag("Search") %>
+              </div>
               <% end %>
-            </tbody>
-          </table>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Designation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @employees.each do |employee| %>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><%= employee.name %></td>
+                    <td><%= employee.designation.name %></td>
+                    <td><% unless employee.is_hr? %>
+                      <%= link_to 'Details', employee, class: "btn btn-primary"%>
+                      <% end %>
+                    </td>
+                    <td><%= link_to 'Attendence',  hr_show_attendance_path(employee), class: "btn btn-primary"%></td>
+                    <td><%= link_to 'Leaves',  hr_employee_leafs_path(employee), class: "btn btn-primary"%></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
+      <% end %>
     </div>
-  </div>
-</section>
-<% end %>
+  </section>
 </main>

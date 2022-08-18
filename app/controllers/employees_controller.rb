@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Employee controller
 class EmployeesController < ApplicationController
   before_action :authenticate_employee!
   before_action :set_employee, only: %i[show update]
@@ -49,6 +48,6 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:employee).permit(:name, :father_name, :mother_name, :phone_number, :address, :email, :bank_name,
-                                     :account_number, :pan_card_number, :aadhar_card_number, :primary_skill, :password, :password_confirmation, :designation_id, :role_id, :image, :date_of_birth, :joining_date, :gender)
+                                     :account_number, :pan_card_number, :aadhar_card_number, :primary_skill, :password, :password_confirmation, :designation_id, :role_id, :date_of_birth, :joining_date, :gender, :image)
   end
 end
