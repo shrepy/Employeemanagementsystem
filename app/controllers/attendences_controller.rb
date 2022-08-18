@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Attendence controller
-class AttendencesController < InheritedResources::Base
+class AttendencesController< ApplicationController
   # load_and_authorize_resource
   before_action :set_attendance, only: %i[show edit]
   def index

@@ -10,36 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_144306) do
+ActiveRecord::Schema.define(version: 2022_06_20_091254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
-  end
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
 
   create_table "attendences", force: :cascade do |t|
     t.datetime "checkin_time"
@@ -63,6 +37,16 @@ ActiveRecord::Schema.define(version: 2022_06_02_144306) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "description"
+    t.bigint "ticket_id", null: false
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_comments_on_employee_id"
+    t.index ["ticket_id"], name: "index_comments_on_ticket_id"
   end
 
   create_table "daily_tasks", force: :cascade do |t|
@@ -123,6 +107,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_144306) do
     t.date "holiday_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "holiday_type"
   end
 
   create_table "ips", force: :cascade do |t|
@@ -144,6 +129,14 @@ ActiveRecord::Schema.define(version: 2022_06_02_144306) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employee_id"], name: "index_leafs_on_employee_id"
+  end
+
+  create_table "monthly_salaries", force: :cascade do |t|
+    t.string "month"
+    t.integer "monthly_working_days"
+    t.boolean "company_level", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "performances", force: :cascade do |t|
@@ -173,7 +166,10 @@ ActiveRecord::Schema.define(version: 2022_06_02_144306) do
     t.integer "earnings"
     t.integer "deductions"
     t.integer "total_working_days"
+    t.bigint "monthly_salary_id"
+    t.boolean "download_status", default: true
     t.index ["employee_id"], name: "index_salaries_on_employee_id"
+    t.index ["monthly_salary_id"], name: "index_salaries_on_monthly_salary_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -195,6 +191,8 @@ ActiveRecord::Schema.define(version: 2022_06_02_144306) do
   end
 
   add_foreign_key "attendences", "employees"
+  add_foreign_key "comments", "employees"
+  add_foreign_key "comments", "tickets"
   add_foreign_key "daily_tasks", "employees"
   add_foreign_key "employees", "designations"
   add_foreign_key "employees", "roles"

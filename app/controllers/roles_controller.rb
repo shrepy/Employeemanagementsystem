@@ -1,4 +1,4 @@
-class RolesController < InheritedResources::Base
+class RolesController < ApplicationController
   load_and_authorize_resource
   private
 

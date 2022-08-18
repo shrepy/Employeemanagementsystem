@@ -1,4 +1,4 @@
-class DesignationsController < InheritedResources::Base
+class DesignationsController < ApplicationController
   before_action :authenticate_employee!
   load_and_authorize_resource
   private
