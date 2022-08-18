@@ -56,6 +56,11 @@ Rails.application.routes.draw do
     resources :employees
     resources :attendences, except: %i[create new destroy]
     resources :monthly_salaries, except: %i[destroy edit]
+    resources :leafs, only: :update do
+      collection do
+        get :index
+      end
+    end
   end
 
   get '/set_ip', to: 'dashboard#set_ip'

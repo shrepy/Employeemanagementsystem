@@ -373,6 +373,8 @@
                   <%= link_to 'Destroy', admin_main_employee_path(employee),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm"%>
                       <% end %>
                 </td>
+                <td><%= link_to 'Leaves',  admin_main_leafs_path(employee), class: "btn btn-primary"%>
+                </td>
               </tr>
               <% end %>
             </tbody>
