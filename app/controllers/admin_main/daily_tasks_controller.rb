@@ -12,10 +12,7 @@ module AdminMain
     def show; end
 
     def pending_daily_task
-      daily_tasks = Employee.all.map { |emp| emp.daily_tasks.last }.compact
-      @employees = daily_tasks.map do |daily_task|
-        { daily_task.employee.name => (Date.today - daily_task.created_at.to_date).to_i }
-      end
+      @employees = Employee.where('last_task_update < ?', Date.today).order(created_at: :desc)
     end
 
     private

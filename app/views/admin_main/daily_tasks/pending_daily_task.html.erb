@@ -5,14 +5,12 @@
       <thead>
         <tr>
           <th scope="col">Employee Name</th>
-          <th scope="col">Days</th>
         </tr>
       </thead>
       <tbody>
-        <% @employees.each do |employee, value| %>
+        <% @employees.each do |employee| %>
         <tr>
-          <td><%= employee.keys.first %></td>
-          <td> <%= employee.values.first %></td>
+          <td><%= employee.name %></td>
         </tr>
         <% end %>
       </tbody>
