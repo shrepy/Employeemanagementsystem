@@ -39,13 +39,11 @@
                 <li class="nav-item">
                   <%= link_to 'Overview', employee_path(@employee.id), class: "nav-link" , remote: true %>
                 </li>
-                <li class="nav-item">
-                  <%= link_to 'Edit Profile', edit_admin_main_employee_path(@employee), class: "nav-link"%>
-                </li>
 
-                <li class="nav-item">
-                  <%#= link_to 'Change Password', edit_employee_registration_path, class: "nav-link",remote: true %>
+                <li class="nav-item"><%= link_to 'Edit Profile', edit_employee_path,  class: "nav-link" ,
+                 remote: true %>
                 </li>
+                
               </ul>
               <div class="tab-content pt-2 show-data">
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -83,11 +81,6 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Date Of Joining</div>
                     <div class="col-lg-9 col-md-8"><%=  date_format(@employee.joining_date) %></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Company</div>
-                    <div class="col-lg-9 col-md-8">Simply Alliance Software Solution Private Limited, Indore</div>
                   </div>
 
                   <div class="row">
