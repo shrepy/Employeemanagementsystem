@@ -1,0 +1,19 @@
+</aside>
+<main id="main" class="main">
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Employee Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.name %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</main>
