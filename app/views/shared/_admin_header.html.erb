@@ -38,6 +38,7 @@
       <li class="nav-item dropdown pe-3">
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/employees/" >
           <% unless current_employee.image.blank? %>
+
             <%= image_tag current_employee.image_url, class: "rounded-circle" %>
           <% else %>
             <%= image_tag "blank-profile.png", class: "rounded-circle img-width" %>
