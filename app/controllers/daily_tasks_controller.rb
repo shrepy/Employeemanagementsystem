@@ -33,6 +33,8 @@ class DailyTasksController < ApplicationController
   def create
     @daily_task = DailyTask.new(params_daily_task)
     if @daily_task.save
+      employee = @daily_task.employee
+      employee.update_column('last_task_update', Date.today)
       redirect_to daily_tasks_path
     else
       render :new
@@ -59,7 +61,7 @@ class DailyTasksController < ApplicationController
   private
 
   def set_daily_task
-    @daily_task =  DailyTask.find_by_id params[:id]
+    @daily_task = DailyTask.find_by_id params[:id]
     redirect_to root_path, alert: I18n.t('employee.not_found') unless @daily_task.present?
   end
 
