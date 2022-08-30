@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 module AdminMain
+  require 'securerandom'
+
   class EmployeesController < ApplicationController
-    before_action :set_employee, only: %i[show destroy edit]
+    before_action :set_employee, only: %i[show destroy edit generate_password]
     before_action :set_designations, only: %i[new create edit update]
 
     def index
@@ -38,7 +40,6 @@ module AdminMain
 
     def destroy
       @employee.destroy
-
       redirect_to admin_main_employees_path
     end
 
@@ -52,6 +53,12 @@ module AdminMain
         singleton_leave.update(leave_increment_date: Date.today.beginning_of_month)
       end
       redirect_to root_path
+    end
+
+    def generate_password
+      @password = SecureRandom.alphanumeric(10)
+      @employee.password = @password
+      @employee.save
     end
 
     private

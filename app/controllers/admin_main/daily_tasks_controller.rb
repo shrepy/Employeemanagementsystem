@@ -11,6 +11,10 @@ module AdminMain
 
     def show; end
 
+    def pending_daily_task
+      @employees = Employee.where('last_task_update < ?', Date.today).order(last_task_update: :asc)
+    end
+
     private
 
     def set_daily_task
