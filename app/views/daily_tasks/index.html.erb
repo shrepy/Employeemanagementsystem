@@ -1,48 +1,40 @@
-</aside><!-- End Sidebar-->
-
-  <main id="main" class="main">
-
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-         <div class="card">
-            <div class="card-body">
-                <div class="pagetitle">
-                  <h1>Daily Status</h1>
-                </div><!-- End Page Title -->
-                <% daily_task = current_employee.daily_tasks.map{|dt| dt if dt.created_at.to_date == Time.now.to_date}.compact %>
-                <% unless daily_task.blank? %>
-                  <%= link_to 'Add Status', edit_daily_task_path(daily_task), class: "btn btn-primary mb-3 right"  %>
-                <% else %>
-                  <%= link_to 'Today Status', new_daily_task_path, class: "btn btn-primary mb-3 right "  %>
-                <% end %>
-              </a><!-- End Notification Icon -->
-              <!-- Table with stripped rows -->
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Daily status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render partial: "daily_task", collection: @daily_tasks %>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
+</aside>
+<main id="main" class="main">
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="pagetitle">
+              <h1>Daily Status</h1>
             </div>
+            <% daily_task = current_employee.daily_tasks.map{|dt| dt if dt.created_at.to_date == Time.now.to_date}.compact %>
+            <% unless daily_task.blank? %>
+            <%= link_to 'Add Status', edit_daily_task_path(daily_task), class: "btn btn-primary mb-3 right"  %>
+            <% else %>
+            <%= link_to 'Today Status', new_daily_task_path, class: "btn btn-primary mb-3 right "  %>
+            <% end %>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Daily status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: "daily_task", collection: @daily_tasks %>
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="card m-4">
-          <%= paginate @daily_tasks %>
-        </div>
       </div>
-    </section>
-    
-  </main><!-- End #main -->
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <div class="card m-4">
+        <%= paginate @daily_tasks %>
+      </div>
+    </div>
+  </section>
+</main>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
