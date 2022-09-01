@@ -39,7 +39,9 @@
       <li class="nav-item dropdown pe-3">
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/employees/" >
           <% unless current_employee.image.blank? %>
-            <%= image_tag current_employee.image_url, class: "rounded-circle" %>
+            <%= image_tag current_employee.image, class: "rounded-circle" %>
+          <% else %>
+            <%= image_tag "blank-profile.png", class: "rounded-circle img-width" %>
           <% end %>
           <span class="d-none d-md-block"><%= current_employee.email %></span>
         </a>
