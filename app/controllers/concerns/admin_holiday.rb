@@ -22,6 +22,8 @@ module AdminHoliday
   def edit
     @holiday = Holiday.find_by_id params[:id]
     if @holiday.present? && @holiday&.holiday_date < Date.today
+      render :edit
+    else
       redirect_to admin_main_holidays_path
     end
   end
