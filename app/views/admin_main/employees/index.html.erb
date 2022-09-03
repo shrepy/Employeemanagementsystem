@@ -359,7 +359,7 @@
                       <%= link_to 'Attendence', admin_main_attendence_path(employee), class: "btn btn-primary btn-sm"%> 
                     <% end %>
                   </td>
-                  <td><%= link_to 'Leaves',  admin_main_leafs_path(employee), class: "btn btn-primary"%>
+                  <td><%= link_to 'Leaves',  admin_main_leafs_path(employee_id: employee.id), class: "btn btn-primary"%>
                   </td>
                   <td>
                     <div id="popup"> <%= link_to 'Generate Password', admin_main_path(employee), class: "btn btn-primary btn-sm", remote: true, method: "post" %>
