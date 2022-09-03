@@ -85,9 +85,12 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Designation</div>
-                  <div class="col-lg-9 col-md-8"><%= employee.designation.name&.capitalize() %>
-                  </div>
+                <div class="col-lg-3 col-md-4 label">Designation</div>
+                </div>
+
+                <div class="row">
+                <div class="col-lg-9 col-md-8"><%= employee.designation.name&.capitalize() %>
+                </div>
                 </div>
 
                 <div class="row">
@@ -332,6 +335,9 @@
             <%= link_to 'Add New Employee', new_admin_main_employee_path , class: "btn btn-primary btn-sm"  %>
           </div>
           <% end %>
+          <div style="text-align: right;">
+            <%= button_to 'add leave',  admin_main_update_leave_balance_path(@employees),method: :get, class: "btn btn-primary "  %>
+          </div>
           <div class="card-body mt-3">
             <%= form_with(url: '/admin_main/employees', method: 'get', local: true) do %>
             <div>
@@ -384,4 +390,3 @@
   </section>
   <% end %>
 </main>
->>>>>>> master
