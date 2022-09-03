@@ -1,6 +1,6 @@
 <tr>
    <th scope="row"></th>
- 		<td><%=  date_formate(daily_task.created_at.to_date)%></td>
+ 		<td><%=  date_format(daily_task.created_at.to_date)%></td>
   	<td ><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal-<%=daily_task.id%>"><%= raw daily_task.description.slice(0,15) + "..." %></button>
   	</td> 
   	<td>

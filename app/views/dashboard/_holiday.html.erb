@@ -10,7 +10,7 @@
             <tbody>
                 <% @upcoming_holidays.each do |holiday|%>
                     <tr>
-                      <td class="holiday"><%= date_formate (holiday.holiday_date) %></td>
+                      <td class="holiday"><%= date_format (holiday.holiday_date) %></td>
                       <td class="holiday"><%= holiday.holiday_name.capitalize() %></td>
                     </tr>    
                 <% end %>

@@ -25,7 +25,7 @@ module ApplicationHelper
       FLASH_CLASSES[level]
     end
 
-    def date_formate(date)
-      date.strftime("%d %b %Y")
+    def date_format(date)
+      date.nil? ? '' : date.strftime("%d %b %Y")
     end
 end
