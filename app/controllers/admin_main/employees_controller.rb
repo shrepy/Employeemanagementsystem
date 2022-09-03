@@ -43,6 +43,14 @@ module AdminMain
       redirect_to admin_main_employees_path
     end
 
+    def update_leave_balance
+      leaves = Employee.all
+      leaves.each do |leave|
+        leave.increment!(:leave_count)
+      end
+      redirect_to root_path
+    end
+
     def generate_password
       @password = SecureRandom.alphanumeric(10)
       @employee.password = @password

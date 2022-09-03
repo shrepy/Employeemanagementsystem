@@ -62,7 +62,12 @@ Rails.application.routes.draw do
     post '/employees/:id/generate_password', to: 'employees#generate_password'
     resources :attendences, except: %i[create new destroy]
     resources :monthly_salaries, except: %i[destroy edit]
-    resources :leafs
+    resources :leafs, only: :update do
+      collection do
+        get :index
+      end
+    end
+    get '/update_leave', to: 'employees#update_leave_balance', as: 'update_leave_balance'
   end
 
   get '/set_ip', to: 'dashboard#set_ip'
