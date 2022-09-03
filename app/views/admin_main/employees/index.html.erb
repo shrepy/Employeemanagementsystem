@@ -63,7 +63,8 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Mother Name</div>
-                  <div class="col-lg-9 col-md-8"><%= employee.mother_name&.capitalize() %></div>
+                  <div class="col-lg-9 col-md-8"><%= employee.mother_name&.capitalize() %>
+                  </div>
                 </div>
 
                 <div class="row">
@@ -73,17 +74,20 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Date Of Birth</div>
-                  <div class="col-lg-9 col-md-8"><%=  date_formate(employee.date_of_birth) %></div>
+                  <div class="col-lg-9 col-md-8"><%=  date_formate(employee.date_of_birth) %>
+                  </div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Date Of Joining</div>
-                  <div class="col-lg-9 col-md-8"><%=  date_formate(employee.joining_date) %></div>
+                  <div class="col-lg-9 col-md-8"><%=  date_formate(employee.joining_date) %>
+                  </div>
                 </div>
 
-                <div class="row">
+                </div><div class="row">
                   <div class="col-lg-3 col-md-4 label">Designation</div>
-                  <div class="col-lg-9 col-md-8"><%= employee.designation.name&.capitalize() %></div>
+                  <div class="col-lg-9 col-md-8"><%= employee.designation.name&.capitalize() %>
+                  </div>
                 </div>
 
                 <div class="row">
@@ -329,6 +333,9 @@
             <%= link_to 'Add New Employee', new_admin_main_employee_path , class: "btn btn-primary btn-sm"  %>
           </div>
           <% end %>
+          <div style="text-align: right;">
+            <%= button_to 'add leave',  admin_main_update_leave_balance_path(@employees),method: :get, class: "btn btn-primary "  %>
+          </div>
           <div class="card-body mt-3">
             <%= form_with(url: '/admin_main/employees', method: 'get', local: true) do %>
             <div>
