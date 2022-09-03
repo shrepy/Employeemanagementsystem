@@ -1,0 +1,2 @@
+class AdminGlobelSetting < ApplicationRecord
+end
