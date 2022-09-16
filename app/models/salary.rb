@@ -4,10 +4,10 @@
 class Salary < ApplicationRecord
   belongs_to :employee, dependent: :destroy
   belongs_to :monthly_salary, dependent: :destroy
-  before_create :update_total_working_days
-  before_create :total_earnings
-  before_create :total_leaves
-  before_create :total_deductions
+  before_save :update_total_working_days
+  before_save :total_earnings
+  before_save :total_leaves
+  before_save :total_deductions
   before_validation :validates_salary
   validates :salary, presence: true
   validates :month, presence: true
@@ -17,17 +17,19 @@ class Salary < ApplicationRecord
   end
 
   def update_total_working_days
-    self.total_working_days = if monthly_salary.monthly_working_days * 8 < employee_working_days
-                                monthly_salary.monthly_working_days
-                              else
-                                employee_working_days / 8.ceil
-                              end
+    unless total_working_days.present?
+      self.total_working_days = if monthly_salary.monthly_working_days * 8 < employee_working_days
+                                  monthly_salary.monthly_working_days
+                                else
+                                  employee_working_days / 8.ceil
+                                end
+    end
   end
 
   def total_earnings
     hours = monthly_salary.monthly_working_days * 8
     salary_of_hours = salary / hours.to_f
-    total_earning = (self.total_working_days * 8) * salary_of_hours
+    total_earning = (total_working_days * 8) * salary_of_hours
     self.earnings = total_earning
   end
 

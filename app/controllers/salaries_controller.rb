@@ -3,6 +3,7 @@
 class SalariesController < InheritedResources::Base
   before_action :authenticate_employee!
   before_action :set_salary, only: %i[show edit update]
+  before_action :can_show_salary, only: %i[show]
   after_action :update_download_satus, only: %i[show]
   load_and_authorize_resource
 
@@ -32,13 +33,21 @@ class SalariesController < InheritedResources::Base
 
   private
 
+  def can_show_salary
+    request.format = :pdf unless current_employee.is_admin?
+    return if (@salary.monthly_salary.company_level && current_employee.is_admin?) || @salary.download_status
+      redirect_to root_path, alert: 'access denied'
+  end
+
   def set_salary
     @salary = Salary.find_by_id params[:id]
-    redirect_to root_path, alert: I18n.t('employee.not_found') unless @salary.present?
+    redirect_to root_path, alert: I18n.t('employee.not_found') unless @salary.present? && (@salary.employee == current_employee || current_employee.is_admin?) 
   end
 
   def update_download_satus
-    @salary.update(download_status: false)
+    unless current_employee.is_admin? 
+      @salary.update(download_status: false)
+    end
   end
 
   def salary_params

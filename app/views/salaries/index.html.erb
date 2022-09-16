@@ -28,9 +28,15 @@
                   </tr>
                 </thead>
                 <br>
-                <%= form_with(url: '/salaries', method: 'get') do |form| %>
-                  <%= form.select :employee_id,Employee.all.pluck(:name, :id),{prompt:'select'}%>
-                  <%= form.submit "Search"%>
+                <% if current_employee.is_admin? %>
+                <div class="card-body mt-6">
+                  <%= form_with(url: '/salaries', method: 'get') do |form| %>
+                    <div>
+                      <%= form.select :employee_id,Employee.all.pluck(:name, :id),{prompt:'select'}%>
+                      <%= form.submit "Search"%>
+                    </div>
+                  <% end %>
+                </div>
                 <% end %>
                 <tbody>
                   <% @salaries.each do |salary| %>
