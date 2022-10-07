@@ -1,5 +1,6 @@
 </aside><!-- End Sidebar-->
-<main id="main" class="main"> <% if current_employee.id == @salary.employee_id %> <div class="col-lg-12">
+<main id="main" class="main"> 
+    <%# if current_employee.id == @salary.employee_id %> <div class="col-lg-12">
         <table border="1">
             <tr class="heading-align">
                 <td colspan='4' style="color: black;"><%= wicked_pdf_image_tag asset_url('/assets/logo-new.png') %><br>Simply Alliance Software Solution Private Limited, Indore</td>
@@ -12,35 +13,40 @@
                 <th>Phone Number:</th>
                 <td><%= @salary.employee.phone_number %></td>
             </tr>
-            <!-----2 row--->
+   
             <tr>
                 <th>Email:</th>
                 <td><%= @salary.employee.email %></td>
                 <th>Bank Name:</th>
                 <td><%= @salary.employee.bank_name %></td>
             </tr>
-            <!------3 row---->
+
             <tr>
                 <th>Address:</th>
                 <td><%= @salary.employee.address %></td>
                 <th>Bank Account No.</th>
                 <td><%= @salary.employee.account_number %></td>
             </tr>
-            <!------4 row---->
-            <!------5 row---->
+
             <tr>
                 <th>Location</th>
                 <td>India</td>
                 <th>Designation</th>
                 <td><%= @salary.employee.designation.name.capitalize()%></td>
             </tr>
-            <!------6 row---->
+            
+            <tr>
+                <th>Monthly working days</th>
+                <td><%= @salary.monthly_salary.monthly_working_days %></td>
+            </tr>
+
             <tr>
                 <th>Working Days</th>
                 <td><%= @salary.total_working_days %></td>
                 <th>Leaves</th>
                 <td><%= @salary.leaves %></td>
             </tr>
+
         </table>
         <tr></tr> <br />
         <table border="1">
@@ -69,7 +75,9 @@
                 <td>Rs <%= @salary.earnings%>\-</td>
             </tr>
         </table>
-    </div> <% end %> </main>
+    </div> 
+    <%# end %>
+    </main>
 <style type="text/css">
     th {
     	text-align: left;
