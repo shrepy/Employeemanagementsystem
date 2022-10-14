@@ -1,95 +1,134 @@
 <%= form_with(model: employee, url: hr_employees_path) do |form| %> <div class="field row">
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :name %> </div>
     <div class="col-lg-10"> <%= form.text_field :name, class: "form-control" %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :father_name %> </div>
     <div class="col-lg-10"> <%= form.text_field :father_name, class: "form-control" %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :mother_name %> </div>
     <div class="col-lg-10"> <%= form.text_field :mother_name, class: "form-control" %> </div>
-</div>
+  </div>
 
-<div class="field row mt-3">
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :gender %> </div>
     <div class="col-lg-10"> <%= form.radio_button :gender, 'Male' %> Male <%= form.radio_button :gender, 'Female' %> Female </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :date_of_birth %> </div>
     <div class="col-lg-10"> <%= form.date_field :date_of_birth, class: "form-control" %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :date_of_joining %> </div>
     <div class="col-lg-10"> <%= form.date_field :joining_date, class: "form-control" %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :phone_number %> </div>
     <div class="col-lg-10"> <%= form.text_field :phone_number, class: "form-control" %>  <% @employee.errors.full_messages_for(:phone_number).each do |message| %>
       <div><%= message %></div>
     <% end %></div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :alternate_phone_number %> </div>
+    <div class="col-lg-10"> <%= form.text_field :alternate_phone_number,class: "form-control" %> </div>
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :email %> </div>
     <div class="col-lg-10"> <%= form.text_field :email,class: "form-control" %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :alternate_email %> </div>
+    <div class="col-lg-10"> <%= form.text_field :alternate_email,class: "form-control" %> </div>
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :address %> </div>
     <div class="col-lg-10"> <%= form.text_area :address, class: "form-control" %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :alternate_address %> </div>
+    <div class="col-lg-10"> <%= form.text_area :alternate_address, class: "form-control" %> </div>
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :bank_name %> </div>
     <div class="col-lg-10"> <%= form.text_field :bank_name, class: "form-control" %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :account_number %> </div>
     <div class="col-lg-10"> <%= form.text_field :account_number, class: "form-control" %>  <% @employee.errors.full_messages_for(:account_number).each do |message| %>
       <div><%= message %></div>
     <% end %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :pan_card_number %> </div>
     <div class="col-lg-10"> <%= form.text_field :pan_card_number, class: "form-control" %>  <% @employee.errors.full_messages_for(:pan_card_number).each do |message| %>
       <div><%= message %></div>
     <% end %> </div>
-</div>
-<div class="field row mt-3">
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :aadhar_card_number %> </div>
     <div class="col-lg-10"> <%= form.text_field :aadhar_card_number, class: "form-control" %>  <% @employee.errors.full_messages_for(:aadhar_card_number).each do |message| %>
-      <div><%= message %></div>
-    <% end %> </div>
-</div>
-<div class="field row mt-3">
+    <div><%= message %></div>
+  <% end %> </div>
+  </div>
+
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :primary_skill %> </div>
     <div class="col-lg-10">
        <%= form.text_field :primary_skill, class: "form-control" %>
     </div>
-</div>
+  </div>
 
-<div class="field row mt-3">
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :designation %> </div>
     <div class="col-lg-10"> <%= form.select :designation_id, @designations.map { |t| [t.name, t.id]}, {}, class: "form-control" %> </div>
-</div>
+  </div>
 
-<div class="field row mt-3">
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :role %> </div>
     <div class="col-lg-10"> <%= form.select :role_id, @roles.map { |t| [t.name, t.id]}, {}, class: "form-control" %> </div>
-</div>
+  </div>
 
-<div class="field row mt-3">
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :password %> </div>
     <div class="col-lg-10"> <%= form.password_field :password, class: 'form-control'%> </div>
-</div>
+  </div>
 
-<div class="field row mt-3">
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :password_confirmation %> </div>
     <div class="col-lg-10"> <%= form.password_field :password_confirmation , class: 'form-control'%> </div>
-</div>
+  </div>
 
-<div class="field row mt-3">
+  <div class="field row mt-3">
     <div class="col-lg-2"> <%= form.label :image %> </div>
     <div class="col-lg-10"> <%= form.file_field :image %> </div>
-</div>
-<div class="actions"> <%= form.submit 'Save', class: "btn btn-primary right" %> </div> <% end %>
+  </div>
+
+  <div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :reference_name %> </div>
+    <div class="col-lg-10"> <%= form.text_field :reference_name %> </div>
+  </div>
+
+  <div class="field row mt-3">
+    <div class="col-lg-2"> <%= form.label :reference_contact_number %> </div>
+    <div class="col-lg-10"> <%= form.text_field :reference_contact_number %> </div>
+  </div>
+
+  <div class="actions"> <%= form.submit 'Save', class: "btn btn-primary right" %> </div> <% end %>
 
 <%#= f.check_box :tag_ids, {multiple: true}, tag.id, '' %>

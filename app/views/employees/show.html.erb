@@ -113,8 +113,18 @@
                         </div>
 
                         <div class="row">
+                          <div class="col-lg-3 col-md-4 label">Alternate Address</div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.alternate_address&.capitalize() %></div>
+                        </div>
+
+                        <div class="row">
                           <div class="col-lg-3 col-md-4 label">Phone</div>
                           <div class="col-lg-9 col-md-8"><%= @employee.phone_number %></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-3 col-md-4 label">Alternate Phone</div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.alternate_phone_number %></div>
                         </div>
 
                         <div class="row">
@@ -128,20 +138,39 @@
                         </div>
 
                         <div class="row">
+                          <div class="col-lg-3 col-md-4 label">Alternate Email</div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.alternate_email %></div>
+                        </div>
+
+                        <div class="row">
                           <div class="col-lg-3 col-md-4 label">Pan Card No.</div>
                           <div class="col-lg-9 col-md-8"><%= @employee.pan_card_number %></div>
                         </div>
+
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Aadhar Card No.</div>
                           <div class="col-lg-9 col-md-8"><%= @employee.aadhar_card_number %></div>
                         </div>
+
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Bank Name</div>
                           <div class="col-lg-9 col-md-8"><%= @employee.bank_name %></div>
                         </div>
-                         <div class="row">
+
+                        <div class="row">
                           <div class="col-lg-3 col-md-4 label">Account No.</div>
                           <div class="col-lg-9 col-md-8"><%= @employee.account_number %></div>
+                        </div>
+
+                        <h5 class="card-title">Reference Information</h5>
+                        <div class="row">
+                          <div class="col-lg-3 col-md-4 label">Reference Name</div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.reference_name %></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-3 col-md-4 label">Contact No.</div>
+                          <div class="col-lg-9 col-md-8"><%= @employee.reference_contact_number %></div>
                         </div>
                       </div>
 
