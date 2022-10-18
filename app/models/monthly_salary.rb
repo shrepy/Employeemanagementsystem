@@ -4,7 +4,7 @@
 class MonthlySalary < ApplicationRecord
   has_many :salaries, dependent: :destroy
   after_create :salary_create
-  validates :monthly_working_days, presence: { message: ' is required' }
+  validates :monthly_working_days, presence: { message: ' is required', max: 27, min: 1 }
   validates :month, uniqueness: { message: ' will not repeat again' }
   validate :month_status
 
