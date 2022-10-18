@@ -104,13 +104,28 @@
                 </div>
 
                 <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Alternate Address</div>
+                  <div class="col-lg-9 col-md-8"><%= employee.alternate_address&.capitalize() %></div>
+                </div>
+
+                <div class="row">
                   <div class="col-lg-3 col-md-4 label">Phone</div>
                   <div class="col-lg-9 col-md-8"><%= employee.phone_number %></div>
                 </div>
 
+                 <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Alternate Phone</div>
+                    <div class="col-lg-9 col-md-8"><%= employee.alternate_phone_number %></div>
+                  </div>
+
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Primary Skills</div>
                   <div class="col-lg-9 col-md-8"><%= employee.primary_skill %></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Email</div>
+                  <div class="col-lg-9 col-md-8"><%= employee.email %></div>
                 </div>
 
                 <div class="row">
@@ -136,6 +151,16 @@
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Account No.</div>
                   <div class="col-lg-9 col-md-8"><%= employee.account_number %></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Reference Name</div>
+                  <div class="col-lg-9 col-md-8"><%= employee.reference_name %></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Contact No.</div>
+                  <div class="col-lg-9 col-md-8"><%= employee.reference_contact_number %></div>
                 </div>
               </div>
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
