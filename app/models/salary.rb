@@ -17,13 +17,17 @@ class Salary < ApplicationRecord
   end
 
   def update_total_working_days
-    self.total_working_days = employee_working_days / 8.ceil
+    self.total_working_days = if monthly_salary.monthly_working_days * 8 < employee_working_days
+                                monthly_salary.monthly_working_days
+                              else
+                                employee_working_days / 8.ceil
+                              end
   end
 
   def total_earnings
     hours = monthly_salary.monthly_working_days * 8
     salary_of_hours = salary / hours.to_f
-    total_earning = (employee_working_days * salary_of_hours).round
+    total_earning = (self.total_working_days * 8) * salary_of_hours
     self.earnings = total_earning
   end
 

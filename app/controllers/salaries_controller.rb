@@ -7,12 +7,8 @@ class SalariesController < InheritedResources::Base
   load_and_authorize_resource
 
   def index
-    @salaries = if current_employee.is_hr? || current_employee.is_admin?
-                  if params[:search].nil?
-                    Salary.where(month: Date.today.month - 1)
-                  else
-                    Salary.search(params[:search])
-                  end
+    @salaries = if current_employee.is_admin?
+                  Salary.where(employee_id: params[:employee_id])
                 else
                   current_employee.salaries
                 end
@@ -21,13 +17,13 @@ class SalariesController < InheritedResources::Base
   def edit; end
 
   def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render template: 'salaries/show.html.erb',
-               pdf: "Salary of Month: #{@salary.id}"
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render template: 'salaries/show.html.erb',
+                 pdf: "Salary of Month: #{@salary.id}"
+        end
       end
-    end
   end
 
   def update

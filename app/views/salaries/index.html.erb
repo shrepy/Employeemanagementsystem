@@ -28,13 +28,10 @@
                   </tr>
                 </thead>
                 <br>
-                <%= form_with(url: '/salaries', method: 'get') do %>
-                  <div>
-                    <%= text_field_tag :search%>
-                    <%= submit_tag("Search") %>
-                  </div><br>
+                <%= form_with(url: '/salaries', method: 'get') do |form| %>
+                  <%= form.select :employee_id,Employee.all.pluck(:name, :id),{prompt:'select'}%>
+                  <%= form.submit "Search"%>
                 <% end %>
-
                 <tbody>
                   <% @salaries.each do |salary| %>
                     <tr>
@@ -44,16 +41,19 @@
                       <% month = Date::MONTHNAMES %>
                       <td><%= month[salary.month.to_i]%></td>
                       <td>
-                        <% if salary&.monthly_salary&.company_level == true %>
-                          <% show_pdf =  pdf(salary.monthly_salary) %>
-                          <% if salary.download_status == true %>
-                            <% if show_pdf %>
-                               <%= link_to 'Download PDF', salary_path(salary, :format => :pdf), target: "_blank", class: "text-black text-decoration", data: { confirm: 'You can download pdf only one time. Now you are ready to Download'} %>
+                        <% unless current_employee.is_admin? %>
+                          <% if salary&.monthly_salary&.company_level == true %>
+                            <% show_pdf =  pdf(salary.monthly_salary) %>
+                            <% if salary.download_status == true %>
+                              <% if show_pdf %>
+
+                                 <%= link_to 'Download PDF', salary_path(salary, :format => :pdf), target: "_blank", class: "text-black text-decoration", data: { confirm: 'You can download pdf only one time. Now you are ready to Download'} %>
+                              <% end %>
                             <% end %>
                           <% end %>
-                        <% end %>
-                        <% if current_employee.is_admin? %>
-                          <td><button type="button" class="btn btn-primary"><%= link_to 'Edit Salary', edit_salary_path(salary)%></button></td>
+                        <% else %>
+                         <%= link_to 'View Salary', salary_path(salary), target: "_blank", class: "text-black text-decoration" %>   
+                        <td><button type="button" class="btn btn-primary"><%= link_to 'Edit Salary', edit_salary_path(salary)%></button></td> 
                         <% end %>
                     </tr>
                   <% end %>

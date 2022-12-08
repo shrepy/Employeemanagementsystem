@@ -1,6 +1,6 @@
 </aside><!-- End Sidebar-->
 <main id="main" class="main"> 
-    <%# if current_employee.id == @salary.employee_id %> <div class="col-lg-12">
+   <div class="col-lg-12">
         <table border="1">
             <tr class="heading-align">
                 <td colspan='4' style="color: black;"><%= wicked_pdf_image_tag asset_url('/assets/logo-new.png') %><br>Simply Alliance Software Solution Private Limited, Indore</td>
@@ -37,7 +37,7 @@
             
             <tr>
                 <th>Monthly working days</th>
-                <td><%= @salary.monthly_salary.monthly_working_days %></td>
+                <td><%= @salary&.monthly_salary&.monthly_working_days %></td>
             </tr>
 
             <tr>
@@ -46,7 +46,6 @@
                 <th>Leaves</th>
                 <td><%= @salary.leaves %></td>
             </tr>
-
         </table>
         <tr></tr> <br />
         <table border="1">
@@ -76,8 +75,7 @@
             </tr>
         </table>
     </div> 
-    <%# end %>
-    </main>
+</main>
 <style type="text/css">
     th {
     	text-align: left;
