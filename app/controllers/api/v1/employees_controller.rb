@@ -3,11 +3,15 @@
 module Api
   module V1
     class EmployeesController < ApplicationController
-      before_action :authenticate_employee!
+      # before_action :authenticate_employee!
       before_action :set_employee, only: %i[show]
       skip_before_action :verify_authenticity_token, only: [:update_password]
 
       # GET /employees/1 or /employees/1.json
+      def dashboard
+        render json: {data: "hello welcome"}
+      end
+
       def show
         render json: {
           data: serializer_data(@employee_data, employee_serializer),

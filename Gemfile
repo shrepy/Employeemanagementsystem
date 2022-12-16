@@ -87,3 +87,5 @@ gem 'paperclip'
 gem "letter_opener", group: :development
 gem "image_processing", ">= 1.2"
 gem 'aws-sdk-s3'
+gem 'sassc'
+gem 'react-rails'

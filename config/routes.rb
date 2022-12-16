@@ -81,6 +81,7 @@ Rails.application.routes.draw do
           put 'update_password'
         end
       end
+      get '/dashboard', to: 'employees#dashboard'
     end
   end
 
