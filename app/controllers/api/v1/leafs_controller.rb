@@ -3,7 +3,7 @@
 module Api
   module V1
     class LeafsController < ApplicationController
-      # before_action :authenticate_employee!
+      before_action :authenticate_employee!
       skip_before_action :verify_authenticity_token
 
       def index
@@ -15,7 +15,7 @@ module Api
       end
 
       def create
-        leaf_data = Leaf.new(leaf_params)
+        leaf_data = current_employee.leafs.new(leaf_params)
         if leaf_data.save
           render json: {
             data: serializer_data(leaf_data, leaf_serializer),
