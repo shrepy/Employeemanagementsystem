@@ -1,0 +1,11 @@
+{
+  "editor.formatOnPaste": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "prettier.arrowParens": "always",
+  "prettier.embeddedLanguageFormatting": "off",
+  "prettier.bracketSameLine": true,
+  "prettier.singleQuote": true,
+  "prettier.singleAttributePerLine": true,
+  "prettier.useTabs": true
+}

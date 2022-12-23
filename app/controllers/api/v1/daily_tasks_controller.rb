@@ -23,9 +23,9 @@ module Api
       end
 
       def create
-        task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?',
-                                                  Date.current.day).first
-        if task.blank?
+        # task = current_employee.daily_tasks.where('EXTRACT(DAY FROM created_at) = ?',
+                                                  # Date.current.day).first
+        # if task.blank?
           daily_task_data = current_employee.daily_tasks.new(params_daily_task)
           if daily_task_data.save
             render json: {
@@ -35,9 +35,9 @@ module Api
           else
             render json: daily_task_data, status: 302, type: 'Found'
           end
-        else
-          render json: { message: 'you have already created daily task' }
-        end
+        # else
+          # render json: { message: 'you have already created daily task' }
+        # end
       end
 
       def update

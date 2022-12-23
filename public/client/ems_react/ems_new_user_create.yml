@@ -1,0 +1,10 @@
+(name: "shreyansh" ,father_name: "dinesh",mother_name: "samta", phone_number:"9589010272", address: "INdore", email: "sv@sass.com", leave_count: 1, department: "developer", bank_name: "SBI" , account_number:"123123123", pan_card_number: 123123 , aadhar_card_number: "12345678910", salary: 1202120, primary_skill: "nil",date_of_birth: "08/07/1998", designation_id: "employee", role_id: 1 ,joining_date: "10/10/2022", gender: "male",  alternate_phone_number: "8359868000", alternate_email: "sv@gmail.com", alternate_address: "Indore"
+
+
+
+
+ emp = Employee.new(name: "shreyansh" ,father_name: "dinesh",mother_name: "samta", phone_number:9589010272, address: "INdore", ema
+il: "sv@sass.com", leave_count: 1, department: "developer", bank_name: "SBI" , account_number:123123123, pan_card_number: 123123 , aadhar_card
+_number: 12345678910, salary: 1202120, primary_skill: "nil",date_of_birth: "08/07/1998", designation_id: "employee", role_id: 1 ,joining_date:
+ "10/10/2022", gender: "male",  alternate_phone_number: 8359868000, alternate_email: "sv@gmail.com", alternate_address: "Indore", password: "1
+23456")

@@ -17,7 +17,7 @@ class Employee < ApplicationRecord
   has_many :tickets, dependent: :destroy
   has_many :daily_tasks, dependent: :destroy
   scope :all_except, ->(employee) { where.not(id: employee) }
-  has_one_attached :image
+  has_one_attached :emp_image
 
   before_validation :check_joining_date, on: [:update]
   before_validation :date_of_birth_validation, on: [:update]
