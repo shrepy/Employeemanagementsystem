@@ -20,7 +20,7 @@ const DashboardHome = () => {
 		console.log('dashboardData', resp);
 		const newData = await resp.data.data;
 		setdashboardData(newData);
-		debugger;
+		// debugger;
 	};
 
 	useEffect(() => {
@@ -29,54 +29,72 @@ const DashboardHome = () => {
 
 	return (
 		<>
-			<div className="">
-				<h6>DashboardHome</h6>
-				<CheckIn />
+			<div className="dashboard-card">
+				<p className="index-headers">Dashboard</p>
+				<hr />
+				<div className="checkin-btn">
+					<CheckIn />
+				</div>
+				<br />
+				<br />
 				{/* <img src={logo} /> */}
-				<div class="card-body">
-					<h5 class="card-title">
-						Leave <span>| Balance</span>
-					</h5>
-					<h6> {employeeData.data.leave_count}</h6>
+				<div className="card">
+					<div class="card-body">
+						<h5 class="card-title">
+							Leave <span>| Balance</span>
+						</h5>
+						<h6> {employeeData.data.leave_count}</h6>
+					</div>
 				</div>
-
-				<div class="card-body">
-					<h5 class="card-title">
-						Shift <span></span>
-					</h5>
-					<h6>11 AM to 8 PM</h6>
+				<br />
+				<div className="card">
+					<div class="card-body">
+						<h5 class="card-title">
+							Shift <span></span>
+						</h5>
+						<h6>11 AM to 8 PM</h6>
+					</div>
 				</div>
-
-				<div>
-					<h1 class=" card-title p-4 bi bi-emoji-smile">
-						&nbsp; Upcoming Holidays
-					</h1>
-					<table class="table table-striped holiday">
-						<thead>
-							<tr>
-								<th class="holiday">Date</th>
-								<th
-									class="holiday"
-									scope="col">
-									Holiday Name
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="holiday">25 Dec 2022</td>
-								<td class="holiday">Christmas day</td>
-							</tr>
-						</tbody>
-					</table>
+				<br />
+				<div className="card">
+					<div className="card-body">
+						<h5 class=" card-title p-4 bi bi-emoji-smile">
+							&nbsp; Upcoming Holidays
+						</h5>
+						<table class="table table-striped holiday">
+							<thead>
+								<tr>
+									<th class="holiday">Date</th>
+									<th
+										class="holiday"
+										scope="col">
+										Holiday Name
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="holiday">25 Dec 2022</td>
+									<td class="holiday">Christmas day</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-
-				<h1 class=" card-title p-4 happy-birthdays">Today's Birthdays</h1>
-
-				<div>
-					<h1>Recent Joinings</h1>
-					<p>{dashboardData.recent_join_employees}</p>
+				<br />
+				<div className="card">
+					<div className="card-body">
+						<h5 class=" card-title p-4 happy-birthdays">Today's Birthdays</h5>
+					</div>
 				</div>
+				<br />
+				<div className="card">
+					<div className="card-body">
+						<h5>Recent Joinings</h5>
+						<p>{dashboardData.recent_join_employees}</p>
+					</div>
+				</div>
+				<div></div>
 			</div>
 		</>
 	);

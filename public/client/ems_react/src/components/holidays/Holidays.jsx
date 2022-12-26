@@ -24,33 +24,35 @@ const Holidays = () => {
   const data = Object.keys(holidayData);
 
   return (
-    <>
-      <br />
-      <h3 className=" text-primary">Holidays</h3>
-      <br />
-      <br />
-      <table className="table table-bordered table-active">
-        <thead className=" text-white table-dark bg-black">
-          <th>Sr. no</th>
-          <th>Holiday Name</th>
-          <th>Holiday Date</th>
-        </thead>
-        <tbody className=" table-hover table-striped-columns">
-          {data.map((key, value) => {
-            return (
-              <>
-                <tr>
-                  <td>{holidayData[key].id}</td>
-                  <td>{holidayData[key].holiday_name}</td>
-                  <td>{holidayData[key].holiday_date}</td>
-                </tr>
-              </>
-            );
-          })}
-        </tbody>
-      </table>
-    </>
-  );
+		<>
+			<div className="dashboard-card">
+				<br />
+				<h3 className=" text-primary">Holidays</h3>
+				<br />
+				<br />
+				<table className="table table-bordered table-active">
+					<thead className=" text-white table-dark bg-black">
+						<th>Sr. no</th>
+						<th>Holiday Name</th>
+						<th>Holiday Date</th>
+					</thead>
+					<tbody className=" table-hover table-striped-columns">
+						{data.map((key, value) => {
+							return (
+								<>
+									<tr>
+										<td>{holidayData[key].id}</td>
+										<td>{holidayData[key].holiday_name}</td>
+										<td>{holidayData[key].holiday_date}</td>
+									</tr>
+								</>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
+		</>
+	);
 };
 
 export default Holidays;

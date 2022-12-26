@@ -12,7 +12,9 @@ const Base = () => {
 
 	return (
 		<>
-			<DailyTask />
+			<div className="dashboard-card">
+				<DailyTask />
+			</div>
 		</>
 	);
 };

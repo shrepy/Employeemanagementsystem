@@ -9,6 +9,8 @@ import Navbar from './headers/Navbar';
 import Holidays from './holidays/Holidays';
 import LeavePage from './leaves/LeavePage';
 import LoginPage from './login/LoginPage';
+import EmployeePerformance from './performance/EmployeePerformance';
+import Salary from './salary/Salary';
 import TicketPage from './tickets/TicketPage';
 const Main = () => {
 	return (
@@ -40,6 +42,22 @@ const Main = () => {
 						element={
 							<>
 								<Navbar /> <Holidays />
+							</>
+						}
+					/>
+					<Route
+						path="/salary"
+						element={
+							<>
+								<Navbar /> <Salary />
+							</>
+						}
+					/>
+					<Route
+						path="/performance"
+						element={
+							<>
+								<Navbar /> <EmployeePerformance />
 							</>
 						}
 					/>

@@ -15,22 +15,24 @@ const Dashboard = () => {
 	useEffect(() => {
 		if (cookies.get('access') === undefined) {
 			setpage(false);
+			debugger;
 			navigate('login');
 		} else {
 			setpage(true);
+			debugger;
 			navigate('');
 		}
 	}, []);
 
 	return (
 		<>
-			<Navbar />
 			{page === true ? (
 				<>
+					<Navbar />
 					<HomePage />
 				</>
 			) : (
-				navigate('login')
+				navigate('/login')
 			)}
 		</>
 	);

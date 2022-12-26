@@ -41,39 +41,41 @@ const TicketPage = () => {
 
 	return (
 		<>
-			<div>
-				<h2>Tickets</h2>
-			</div>
-			<br />
-			<AddTicket onChangeFun={checkFunc} />
-			<br />
-			<br />
-			<div>
-				<table className="table table-responsive-lg">
-					<thead>
-						<tr>
-							<th>Date</th>
-							<th>Description</th>
-							<th>Ticket Type</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						{newAry.map((keys, value) => {
-							debugger;
-							return (
-								<>
-									<tr>
-										<td>{getDate(ticketData[keys])}</td>
-										<td>{ticketData[keys].description}</td>
-										<td>{ticketData[keys].ticket_type}</td>
-										<td>{ticketData[keys].status}</td>
-									</tr>
-								</>
-							);
-						})}
-					</tbody>
-				</table>
+			<div className="dashboard-card">
+				<div>
+					<h2>Tickets</h2>
+				</div>
+				<br />
+				<AddTicket onChangeFun={checkFunc} />
+				<br />
+				<br />
+				<div>
+					<table className="table table-responsive-lg">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Description</th>
+								<th>Ticket Type</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{newAry.map((keys, value) => {
+								debugger;
+								return (
+									<>
+										<tr>
+											<td>{getDate(ticketData[keys])}</td>
+											<td>{ticketData[keys].description}</td>
+											<td>{ticketData[keys].ticket_type}</td>
+											<td>{ticketData[keys].status}</td>
+										</tr>
+									</>
+								);
+							})}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</>
 	);

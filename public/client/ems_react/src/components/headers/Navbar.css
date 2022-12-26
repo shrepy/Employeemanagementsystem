@@ -6,9 +6,12 @@
     background-color: var(--navBg);
     height: 80px;
     display: flex;
+    position: fixed;
     justify-content: start;
+    margin-right: -81px;
     margin-top: -20px;
     align-items: center;
+    transition: 850ms
   }
   
   .menu-bars {
@@ -62,6 +65,7 @@
   .nav-menu-items {
     width: 100%;
     padding: 0;
+    margin-top: 122px;
   }
   
   .navbar-toggle {

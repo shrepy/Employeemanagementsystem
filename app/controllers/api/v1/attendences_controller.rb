@@ -3,9 +3,10 @@
 module Api
   module V1
     class AttendencesController < ApplicationController
-      before_action :authenticate_employee!
       before_action :set_attendance, only: %i[show]
       skip_before_action :verify_authenticity_token
+      before_action :authenticate, only: %i[create]
+      before_action :authenticate_employee!
 
       def index
         attendence_data = current_employee.attendences.order(created_at: :desc)
@@ -24,13 +25,13 @@ module Api
       end
 
       def create
-        attendence_data = current_employee.attendences.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now,
-                                                             employee_id: current_employee.id).last
+        attendence_data = @current_employee&.attendences&.where(checkin_time: Time.zone.now - 2.minutes..Time.zone.now,
+                                                             employee_id: @current_employee.id)&.last
         if attendence_data.nil?
-          attendence_data = current_employee.attendences.create(employee_id: current_employee.id, checkin_time: Time.zone.now,
+          attendence_data = @current_employee.attendences.create(employee_id: @current_employee.id, checkin_time: Time.zone.now,
                                                                 status: 'Present', checkin_ip_address: request.remote_ip)
         else
-          attendence_data.update_column('checkout_time', nil)
+          attendence_data&.update_column('checkout_time', nil)
         end
         render json: {
           data: serializer_data(attendence_data, attendence_serializer),
@@ -60,6 +61,13 @@ module Api
 
       def attendence_serializer
         Api::V1::AttendenceSerializer
+      end
+
+      def authenticate
+        unless params[:headers].nil?
+          @current_employee = Employee.find_by(email: params[:headers][:uid])
+          return render json: { message: 'Not Found' }, status: 404 if @current_employee.nil?
+        end
       end
     end
   end

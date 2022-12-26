@@ -6,7 +6,7 @@ import * as IoIcons from 'react-icons/io';
 
 export const SidebarData = [
 	{
-		title: 'Home',
+		title: 'Dashboard',
 		path: '/',
 		func: '() => {dispatch(DashboardApi())}',
 		icon: <AiIcons.AiFillHome />,
