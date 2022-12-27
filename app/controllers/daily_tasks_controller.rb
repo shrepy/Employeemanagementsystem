@@ -3,6 +3,7 @@
 # dailytaskcontroller
 class DailyTasksController < ApplicationController
   before_action :set_daily_task, only: %i[show update edit]
+  before_action :authorize_hr, only: %i[today_task]
   def index
     @daily_tasks = if current_employee.is_hr?
                      DailyTask.all.order(created_at: :desc).page params[:page]
@@ -58,6 +59,10 @@ class DailyTasksController < ApplicationController
     end
   end
 
+  def today_task
+      @tasks = DailyTask.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day)
+  end
+
   private
 
   def set_daily_task
@@ -67,5 +72,9 @@ class DailyTasksController < ApplicationController
 
   def params_daily_task
     params.require(:daily_task).permit(:description, :employee_id)
+  end
+
+  def authorize_hr
+      redirect_to root_path, alert: I18n.t('employee.unauthorize_error') unless current_employee.is_hr?
   end
 end

@@ -13,7 +13,13 @@ Rails.application.routes.draw do
     end
   end
   resources :salaries
-  resources :daily_tasks
+  resources :daily_tasks do 
+    collection do 
+      get :today_task
+    end
+  end
+
+
   get 'dashboard/index'
   root 'dashboard#index'
   resources :performances
