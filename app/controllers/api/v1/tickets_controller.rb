@@ -7,7 +7,8 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def index
-        ticket_data = current_employee.tickets
+        # byebug
+        ticket_data = current_employee.tickets.order(created_at: :desc)
         render json: {
           data: serializer_data(ticket_data, ticket_serializer),
           message: ['show tickets '], status: 200, type: 'Success'
