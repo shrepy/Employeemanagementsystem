@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'rack-cors'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
+  gem 'rspec-activemodel-mocks'
 end
 
 # group :test do
