@@ -5,6 +5,7 @@ class Attendence < ApplicationRecord
   belongs_to :employee
 
   before_save :working_hour
+  before_save :break_hour
   before_validation :checkout_time_validation, on: [:update]
 
   def self.search(search)
@@ -25,6 +26,19 @@ class Attendence < ApplicationRecord
       sec = (data - (hour * 3600) - (min * 60)).to_i
       self.hour = "#{hour}:#{min}"
     end
+  end
+
+  def break_hour
+    attendence_data = Employee.find_by_id(self.employee_id).attendences&.last
+    if attendence_data&.checkout_time.present?
+        data = (checkin_time - attendence_data.checkout_time).to_i
+        hour = (data / 3600).to_i
+        min = ((data - (hour * 3600)) / 60).to_i
+        sec = (data - (hour * 3600) - (min * 60)).to_i
+        self.break = "#{hour}:#{min}"  
+    else
+      self.break = "00:00"
+    end  
   end
 
   def checkout_time_validation
