@@ -8,7 +8,7 @@ module Api
 
       def index
         # byebug
-        ticket_data = current_employee.tickets.order(created_at: :desc)
+        ticket_data = current_employee.tickets.limit(5).order('id desc')
         render json: {
           data: serializer_data(ticket_data, ticket_serializer),
           message: ['show tickets '], status: 200, type: 'Success'
